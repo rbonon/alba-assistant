@@ -31,4 +31,4 @@ Stack TBD in P2. Integrations: Drive/Docs, Git, optional Obsidian, MCP (MVP); Ca
 
 **Current:** P1 — Requirements & spec v1. P0 complete (gate #13 closed).
 
-**Next:** `rbo-create-change` on **#21 — [Grill] P1 — MCP client requirements**. #14–#20 closed (D-015–D-051).
+**Next:** `rbo-create-change` on **#22 — [Grill] P1 — Google Calendar scope**. #14–#21 closed (D-015–D-057).
