@@ -195,6 +195,125 @@ in-flight P1 grilling.
 
 ---
 
+### MVP RAG indexed sources (2026-07-08 — #15 Q-001)
+
+**Decision:** **MVP RAG indexes Obsidian + Git only.**
+
+| Source | Canonical | MVP index? |
+|--------|-----------|------------|
+| Obsidian | Human memory | **Yes** |
+| Git (selected repos) | Technical memory | **Yes** |
+| Google Calendar | Operational | **No** — post-MVP |
+| Google Tasks | Operational | **No** — post-MVP |
+| Google Drive / Meet exports | Operational / files | **No** — post-MVP |
+| Google Contacts | Operational | **No** — post-MVP |
+| Gisele Meet transcriptions (clinical) | Meet/Drive | **No** — gated by privacy grilling **#16** before any indexing |
+
+**Rationale:** Shippable MVP (P6–P7); Calendar/Tasks/Drive/contacts added in later phases. Clinical content requires LGPD design first.
+
+**Implications:**
+- Ricardo: repos + Obsidian at MVP; calendar/contacts via integration later
+- Gisele: Obsidian notes indexable at MVP; Meet transcripts blocked until #16
+- Casa recipes in Obsidian are covered (Obsidian index)
+- Q-009–Q-011 reframed: integration scope for post-MVP, not MVP index
+
+---
+
+### Ricardo GitHub accounts for Git indexing (2026-07-08 — #15 Q-002)
+
+**Decision:** MVP Git memory indexes repos across **all three GitHub identities**: `rbonon`, `fortegb`, and `akamlibehsafe`.
+
+**Rationale:** Ricardo's technical knowledge spans personal, fortegb, and akamlibehsafe repos; MVP should cover the full set he named.
+
+**Implications:**
+- Index config is per-account + per-repo allowlist (paths, secrets exclusions)
+- Auth/credentials for multi-account Git access deferred to P2/P3 (#15 Q-002 does not lock mechanism)
+- Repos remain canonical in Git; RAG is derivative only (D-004)
+
+---
+
+### AI ideation workflow — canonical storage (#15 Q-003)
+
+**Decision:** ChatGPT/Claude sessions (voice or text) are **ephemeral ideation** — not canonical, not indexed as primary storage. The **final markdown** describing the idea is canonical in **Obsidian** (promoted note or `Inbox/AI Drafts` → human promotes).
+
+| Stage | Role |
+|-------|------|
+| Chat (ChatGPT/Claude) | Bounce ideas until refined — **discard or don't index raw threads** |
+| Final idea `.md` | **Obsidian** — system of record for the idea |
+| New product/code | **Git repo** when building — technical canon (D-003); idea doc stays in Obsidian with link to repo |
+
+**Rationale:** Matches D-002 (human memory) and user practice; Obsidian is better than a fresh repo for idea docs that may never become code. Cursor/Claude access via indexed Obsidian + Git when a repo exists.
+
+**Implications:**
+- No RAG indexing of raw chat exports as canon
+- Optional: index promoted Obsidian idea notes at MVP
+- Spawning a Git repo is a **later step** when implementing — not the default home for idea MDs
+
+---
+
+### Idea doc when Git repo exists (#15 Q-004)
+
+**Decision:** When an idea spawns a Git repo, the **canonical idea document stays in Obsidian** (Option A). The repo holds code and technical docs; README or links point back to Obsidian. Obsidian is not replaced by repo `docs/vision/`.
+
+**Rationale:** Single source of truth for the idea; avoids duplicate canon (D-002 vs D-003 split stays clean).
+
+**Implications:**
+- Alba indexes Obsidian idea notes + Git code/docs with distinct roles
+- Repo bootstrap may copy excerpts but Obsidian remains authoritative for product intent
+
+---
+
+### Never-index list (#15 Q-005)
+
+**Decision:** Hard **never-index** exclusions (all phases unless explicitly reopened in grilling + `DECISIONS.md`):
+
+| Category | Examples |
+|----------|----------|
+| Secrets | `.env`, credentials, API keys, tokens |
+| Build/vendor | `node_modules`, `dist`, build output, `.git` internals |
+| Clinical / patient | Meet transcriptions, patient identifiers — **no indexing until #16** approves gated path |
+| Raw chat logs | ChatGPT/Claude thread exports (D-021) |
+
+**Rationale:** Security, LGPD, and canon hygiene; aligns with architecture invariants.
+
+**Implications:**
+- Ingestion pipelines must enforce path/content blocklists
+- #16 privacy grilling defines any future clinical indexing exception
+
+---
+
+### RAG rebuild policy (#15 Q-006)
+
+**Decision:** On corrupt, stale, or schema-change recovery, Alba SHALL support **full rebuild from canonical sources** (Option A) — discard the index and re-ingest Obsidian + Git from scratch.
+
+**Rationale:** Reinforces D-004; canonical sources are always truth; index is disposable.
+
+**Implications:**
+- No requirement to preserve vector DB across rebuilds
+- Scheduled periodic rebuilds may be added later in platform ops (P7) — not MVP requirement
+
+---
+
+### Calendar/Tasks access model (#15 Q-007)
+
+**Decision:** Lock this operational model for spec (integration/indexing **post-MVP** per D-019):
+
+| Layer | Rule |
+|-------|------|
+| **Personal** | Ricardo and Gisele each have **own** Calendar + Tasks (systems of record) |
+| **Casa shared** | **Shared family** Calendar + Tasks — both users can access |
+| **Obsidian** | **Context notes only** — never duplicate scheduling/task truth (D-010) |
+| **MVP** | Model documented in P1 spec; API integration and RAG indexing deferred |
+
+**Rationale:** Matches multi-user day one (D-015), workspace isolation (D-016), and casa shared use cases (schedules, recipes separate — recipes in Obsidian `casa`).
+
+**Implications:**
+- Post-MVP integrations must respect per-user + casa shared calendar/task IDs
+- Alba retrieval filters by authenticated user and shared casa resources
+- Provider choice (Google Calendar/Tasks vs alternatives) remains Q-009/Q-010
+
+---
+
 ## TBD (resolve in grilling — do not implement assumptions)
 
 - Tech stack: SQLite vs Postgres path, vector DB, embedding model (P2)

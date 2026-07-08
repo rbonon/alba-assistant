@@ -7,6 +7,7 @@
 | Feature | Description | Sources |
 |---------|-------------|---------|
 | Read-only memory search | Hybrid vector + keyword search, workspace-filtered | Obsidian `.md`, selected Git files |
+| Git memory (Ricardo) | Index repos from `rbonon`, `fortegb`, `akamlibehsafe` | Git (per-repo allowlist) |
 | Project context | Retrieve notes + repo docs for a named project | Obsidian + Git |
 | Decision lookup | Find prior decisions on a topic | Obsidian decisions/research |
 | Standards lookup | Coding/writing standards for Ricardo | Obsidian + Git agent docs |
@@ -18,6 +19,10 @@
 **MVP users:** Ricardo and Gisele from production go-live (multi-user day one). User model must support adding more users post-launch — each gets dedicated workspace, D-016 read rules, and assigned persona (D-018).
 
 **Workspace read (D-016):** each user — own workspace + `compartilhado` + `casa`; never the other’s private workspace.
+
+**MVP indexed sources (D-019):** Obsidian + Git only. Calendar, Tasks, Drive, contacts, Meet transcripts — post-MVP or gated (#16 for clinical).
+
+**Calendar/Tasks (D-025):** Personal Calendar + Tasks per user; Casa shared Calendar + Tasks for both. Obsidian = context only. Integration post-MVP.
 
 ## Post-MVP — controlled writes (P8)
 
