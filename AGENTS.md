@@ -283,9 +283,11 @@ See `docs/planning/architecture.md` and `DECISIONS.md`:
 
 ## Milestone
 
-**Current:** P0 — Product foundation (portal live, board live, P0 leaves closed).
+**Current:** P1 — Requirements & spec v1 (epic #2; leaves #14–#30).
 
-**Next:** Close `[Gate] P0` (#13) → P1 requirements grilling.
+**Next:** `rbo-create-change` on **#14** → grilling Q-001.
+
+**Handoff:** [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md)
 
 ## Working with this repo
 

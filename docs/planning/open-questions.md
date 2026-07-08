@@ -15,6 +15,6 @@
 | Q-009 | Google Calendar scope (read-only MVP of integration) | P1 | Open |
 | Q-010 | Tasks provider — Google Tasks vs Todoist | P1 | Open |
 | Q-011 | Alexa vs alternative voice assistant | P1 | Open |
-| Q-012 | Alba GitHub org timing and repo migration | P0 | Open |
+| Q-012 | Alba GitHub org timing and repo migration | P0/P1 | Open — repo public on rbonon; org TBD |
 
-**Next grilling (after P0 gate):** Q-001
+**Next grilling:** issue **#14** — Q-001 (MVP primary user)

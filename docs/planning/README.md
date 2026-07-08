@@ -8,10 +8,11 @@
 
 | Step | Action | Doc |
 |------|--------|-----|
-| 1 | `rbo-catch-up` + read **STATUS.md** | [`../../STATUS.md`](../../STATUS.md) |
-| 2 | Read vision handoff (input, not spec) | [`../vision/alba-context-assistant-handoff.md`](../vision/alba-context-assistant-handoff.md) |
-| 3 | GitHub Project board | Board title **`alba-assistant`** |
-| 4 | Next: close **P0 gate**, then **P1 grilling** | [`open-questions.md`](./open-questions.md) |
+| 1 | `rbo-catch-up` + read **session handoff** | [`session-handoff.md`](./session-handoff.md) |
+| 2 | Read **STATUS.md** | [`../../STATUS.md`](../../STATUS.md) |
+| 3 | Read vision handoff (input, not spec) | [`../vision/alba-context-assistant-handoff.md`](../vision/alba-context-assistant-handoff.md) |
+| 4 | Board **`alba-assistant`** #5 | [GitHub Project](https://github.com/users/rbonon/projects/5) |
+| 5 | **`rbo-create-change`** on issue **#14** → grilling Q-001 | [`open-questions.md`](./open-questions.md) |
 
 **Grilling:** use **`rbo-grilling`** — one question at a time. Resolved items move to [`decisions.md`](./decisions.md) and root [`DECISIONS.md`](../../DECISIONS.md).
 
@@ -21,7 +22,7 @@
 
 | Document | Content |
 |----------|---------|
-| [product-vision.md](./product-vision.md) | English vision summary |
+| [session-handoff.md](./session-handoff.md) | **New session start** — full context handoff |
 | [features.md](./features.md) | Feature set — MVP vs later |
 | [modules.md](./modules.md) | Tools & integrations map |
 | [phases.md](./phases.md) | P0–P14 epics and gates |

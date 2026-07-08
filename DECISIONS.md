@@ -87,6 +87,14 @@ This file is **append-only**. New sessions add entries at the bottom under a dat
 - P0 leaf issues #7–#12 retro-closed against commits already on `main` (one-time exception)
 - No more direct-to-main leaf work
 
+### P0 gate closed — P1 started (2026-07-07)
+
+**Decision:** P0 foundation approved. Gate #13 and epic #1 closed. P1 broken into leaf issues #14–#30.
+
+**Implications:**
+- Next work: `rbo-create-change` on #14 (grilling Q-001)
+- Spec implementation blocked until `[Gate] P1` (#30)
+
 ---
 
 ## TBD (resolve in grilling — do not implement assumptions)

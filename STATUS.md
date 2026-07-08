@@ -1,43 +1,57 @@
 # STATUS — Alba Context Assistant
 
-**Updated:** 2026-07-07  
-**Current phase:** P0 — Product foundation  
-**Portal:** https://rbonon.github.io/alba-assistant/ — **live** (repo public, Pages from `/docs`).
+**Updated:** 2026-07-07 (session handoff)  
+**Current phase:** **P1** — Requirements & spec v1  
+**Portal:** https://rbonon.github.io/alba-assistant/
 
 ---
 
 ## Active epics
 
-| Epic | Board status | Next step | Blocked by |
-|------|--------------|-----------|------------|
-| P0 Product foundation | In Progress | Close P0 feature issues; human `[Gate] P0` | — |
-| P1 Requirements & spec v1 | Todo | Start after P0 gate | P0 gate |
-| P2 Architecture v1 | Todo | — | P1 gate |
+| Epic | Status | Next step |
+|------|--------|-----------|
+| ~~P0 Product foundation~~ | **Done** (#1, gate #13 closed) | — |
+| **P1 Requirements & spec v1** | **In Progress** (#2 open) | Start issue **#14** via `rbo-create-change` |
+| P2 Architecture v1 | Todo (#3) | Blocked by `[Gate] P1` (#30) |
 
 ---
 
-## Session focus
+## Immediate next action
 
-1. Bootstrap English GitHub Pages portal under `docs/`
-2. Create GitHub Project **`alba-assistant`** + Phase field
-3. ~~Create P0 issues on board~~ ✅
-4. ~~Retro-close P0 leaf issues #7–#12 (Model A)~~ ✅
-5. **Close `[Gate] P0` (#13)** — waiting for your approval
-6. **Stop** — then P1 grilling (Q-001) via `rbo-create-change` per leaf issue
+```text
+rbo-create-change → issue #14 [Grill] P1 — Users, workspaces & personas
+→ rbo-grilling Q-001 (one question, wait for answer)
+```
+
+**Q-001:** MVP primary user — Ricardo only, or Ricardo + Gisele from day one?  
+**Recommended:** Ricardo only for MVP production.
 
 ---
 
-## Next grilling question (P1, after P0 gate)
+## P1 leaf issues (#14–#30)
 
-**Q-001:** MVP primary user — Ricardo only, or Ricardo + Gisele from day one?
+See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md) for full table and session context.
 
-**Recommended:** Ricardo only for MVP production; Gisele workspace spec'd in P1, production in P9.
+| Block | Issues |
+|-------|--------|
+| Grilling | #14–#25 |
+| Spec docs | #26–#28 |
+| OpenSpec | #29 |
+| Gate | #30 |
+
+---
+
+## Rules reminder
+
+- **Model A:** leaf → branch + change; no direct-to-main
+- **No runtime code** until `[Gate] P5`
+- **Grilling:** one question at a time
+- Refresh: `./scripts/refresh-board-hierarchy.sh` after board updates
 
 ---
 
 ## Links
 
+- [Session handoff](docs/planning/session-handoff.md) ← **new session start**
 - [Planning index](docs/planning/README.md)
-- [Phase map](docs/planning/phase-map.html)
-- [Open questions](docs/planning/open-questions.md)
-- Board: [alba-assistant #5](https://github.com/users/rbonon/projects/5)
+- [Board #5](https://github.com/users/rbonon/projects/5)

@@ -22,6 +22,6 @@ Stack TBD in P2. Integrations: Obsidian, Git, MCP (MVP); Calendar, Tasks, Drive,
 
 ## Milestone
 
-**Current:** P0 — Product foundation (portal, board, agent context).
+**Current:** P1 — Requirements & spec v1. P0 complete (gate #13 closed).
 
-**Next gate:** `[Gate] P0` → begin P1 requirements grilling.
+**Next:** `rbo-create-change` on issue #14 → Q-001 grilling. See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).

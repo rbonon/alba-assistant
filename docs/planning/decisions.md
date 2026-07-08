@@ -19,8 +19,14 @@
 | D-011 | Start read-only; staging before production |
 | D-012 | GitHub Pages portal in **English** for project docs |
 | D-013 | Planned **Alba GitHub org** for alba-assistant, alba-docs, etc. (timing TBD) |
+| D-014 | P0 gate closed; P1 leaf issues #14–#30 created; Model A enforced from P1 |
 
-## TBD (resolve in grilling)
+## Session (2026-07-07)
+
+- P0 complete: portal live, board #5, issues #7–#12 retro-closed
+- Repo public for GitHub Pages
+- Global rules persisted in `AGENTS.md`
+- **Next:** issue #14 → Q-001 grilling
 
 - Tech stack details (P2)
 - Vault paths on disk (P2/P3)
