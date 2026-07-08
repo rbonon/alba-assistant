@@ -7,11 +7,11 @@
 | ID | Decision |
 |----|----------|
 | D-001 | Alba is a context assistant, not a document dump |
-| D-002 | Obsidian = canonical human memory |
+| D-002 | **Human memory** — Google Drive/Docs (workspace roots) + Git; Obsidian optional (#19, amends prior Obsidian-only wording) |
 | D-003 | Git = canonical technical/code memory |
 | D-004 | RAG = regenerable index, never sole storage |
 | D-005 | MCP/API = standard access layer for AI clients |
-| D-006 | AI writes start as drafts in `Inbox/AI Drafts` |
+| D-006 | AI writes to final folders under `Root_*/Alba/`; searchable after TTL — no mandatory inbox promote (#19, amends prior `Inbox/AI Drafts` rule) |
 | D-007 | Multi-workspace from day one: ricardo, gisele, casa, compartilhado |
 | D-008 | Personas: Alba Dev, Alba Texto, Alba Casa |
 | D-009 | Clinical/sensitive content out of MVP |
@@ -24,7 +24,7 @@
 | D-016 | **MVP workspace read boundaries** — each user: own + `compartilhado` + `casa`; never other’s private workspace (#14 Q-002) |
 | D-017 | **MVP persona mapping** — fixed per user (Dev/Texto); `casa`→Alba Casa; persona switching deferred post-MVP (#14 Q-003) |
 | D-018 | **Post-launch users** — dedicated workspace + D-016 read rules + assigned persona at onboarding (#14 Q-004) |
-| D-019 | **MVP RAG index** — Obsidian + Git only; Calendar/Tasks/Drive/contacts post-MVP; Meet transcripts gated #16 (#15 Q-001) |
+| D-019 | **MVP RAG index** — **Drive/Docs + Git** + optional Obsidian; Calendar/Tasks/contacts post-MVP (#19 amends) |
 | D-020 | **Ricardo Git indexing** — all three GitHub accounts: `rbonon`, `fortegb`, `akamlibehsafe` (#15 Q-002) |
 | D-021 | **AI ideation** — chat ephemeral; final idea `.md` canonical in Obsidian; Git when building (#15 Q-003) |
 | D-022 | **Idea doc + repo** — idea stays canonical in Obsidian; Git for implementation (#15 Q-004) |
@@ -44,6 +44,13 @@
 | D-036 | **Search quality bar** — fixture suite, top-3, 100% pass on staging (#18 Q-002) |
 | D-037 | **Staging fixture corpus** — synthetic only; AI/app-generated, not hand-maintained (#18 Q-003) |
 | D-038 | **Production validation** — manual smoke checklist after promote; no prod fixtures (#18 Q-004) |
+| D-039 | **Human memory sources** — Drive/Docs + Git; Obsidian optional per user (#19) |
+| D-040 | **MVP Drive indexing** — Google Drive/Docs at MVP (amends D-019) (#19) |
+| D-041 | **Drive roots** — `Root_Gisele`, `Root_Ricardo`, `Root_Casa` + `Alba/` namespace; per-user auth (#19 Q-002) |
+| D-042 | **Ingest** — poll ~15 min, TTL/subfolder searchable, DB audit + admin UI; no Drive Validar folder (#19 Q-003) |
+| D-043 | **Habilidades da Alba** — `…/Alba/Habilidades/`; gdoc + md; skills template (#19 Q-004) |
+| D-044 | **Obsidian optional** — Ricardo mirror `Alba/`; no Sync required (#19 Q-005) |
+| D-045 | **Meet transcripts** — manual placement in session tree (#19 Q-006) |
 
 ## Session (2026-07-08)
 
@@ -59,6 +66,7 @@
 - **#18 Q-003 closed:** synthetic staging corpus, AI/app-generated (D-037)
 - **#18 Q-004 closed:** prod manual smoke checklist (D-038)
 - **#18 closed** on main (`feede3e`) — D-035–D-038
+- **#19 grilling applied** — D-039–D-045; Drive at MVP; human validation → `rbo-close-change`
 
 ## Session (2026-07-07)
 

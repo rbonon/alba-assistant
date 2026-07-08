@@ -571,8 +571,109 @@ in-flight P1 grilling.
 
 ---
 
+## 2026-07-08 — Human memory & Drive requirements (issue #19)
+
+### Human memory sources — multi-source canon (#19)
+
+**Decision:** **Amends D-002.** Canonical human memory at MVP is **Google Drive/Docs (workspace roots) + Git**, with **Obsidian supported but optional** (primarily Ricardo if he uses the app). Not Obsidian-only.
+
+| Workspace / user | Primary human canon | Optional |
+|----------------|---------------------|----------|
+| Gisele | Drive/Docs under `Root_Gisele/Alba/` | — |
+| Casa | Drive/Docs under `Root_Casa/Alba/` | — |
+| Ricardo | Drive/Docs + Git (`ideas/`, `habilidades/`, repos) | Obsidian vault mirroring `Alba/` |
+| Code | Git | — |
+
+**UI:** ChatGPT/Claude and Alba API/MCP are the assistant surface; chat threads remain ephemeral (D-021).
+
+**Rationale:** Family already uses Google Workspace; MD not required for Gisele; Ricardo uses Drive and Git; Obsidian remains a supported editor path without Sync as a requirement.
+
+**Implications:**
+- P6 ingest adapters: `drive`, `git`, optional `obsidian`
+- Amend D-021/D-022 at use: Ricardo idea `.md` may live in **Git** `ideas/` (not only Obsidian)
+- Spec leaves #26–#28 inherit folder and ingest rules
+
+---
+
+### MVP RAG indexed sources — Drive at MVP (#19, amends D-019)
+
+**Decision:** **Amends D-019.** MVP RAG indexes **Google Drive/Docs (configured workspace roots) + Git + optional Obsidian paths**. Drive is **MVP IN**, not P12-only document index.
+
+| Source | MVP index | Notes |
+|--------|-----------|-------|
+| Google Drive/Docs | **Yes** | Per-user roots + shared `Root_Casa/`; text via Drive API export |
+| Git | **Yes** | Unchanged (D-020) |
+| Obsidian | **Optional** | Local/synced paths if configured |
+| Calendar/Tasks/Drive-as-integration | No | Calendar/Tasks still post-MVP; Drive **content** is canon here, not Calendar |
+
+**Rationale:** Gisele/Casa canon lives in Docs; indexing Drive is required for MVP memory search.
+
+---
+
+### Drive roots — hybrid layout (#19-Q-002)
+
+**Decision:** **Hybrid C** — separate Drive roots per user + shared Casa:
+
+| Root | Location |
+|------|----------|
+| `Root_Gisele/` | Gisele My Drive |
+| `Root_Ricardo/` | Ricardo My Drive |
+| `Root_Casa/` | Shared (both users) |
+
+Each root contains namespace **`Alba/`** with subfolders (e.g. `Sessões de Terapia/`, `Habilidades/`). Alba API uses **per-user authentication** mapped to workspace RBAC (D-016). Drive ingest uses scoped credentials per account (OAuth mechanism P2/P3).
+
+---
+
+### Ingest, searchability, and audit (#19-Q-003, amends D-006)
+
+**Decision:** **Amends D-006** for Drive/Git-first workflow.
+
+| Rule | Value |
+|------|--------|
+| Writes | **Direct to final folder** under `Root_*/Alba/…` — no mandatory human approval queue |
+| Index trigger | **Poller** (~15 min) + per-source change detection |
+| Searchability | Document becomes **`searchable` after TTL** without edit, **per subfolder** (policy table; same rules all users) |
+| Index update | Replace by stable id (`drive_file_id`, git path+commit) |
+| Ingest audit | **Central log in Alba metadata DB** (staging + production) |
+| Admin QA | HTTP admin UI + CLI (Ricardo; Artur in staging); metadata + optional snippet — **not** a Drive `Validar/` folder |
+
+Obsidian optional inbox: if Ricardo uses vault, same TTL policy; no Obsidian Sync requirement.
+
+**Rationale:** Gisele expects AI without supervision step; Ricardo reviews ingest quality via admin log periodically, not per-document approval.
+
+---
+
+### Habilidades da Alba (#19-Q-004)
+
+**Decision:** Skills analogue — folder **`Root_*/Alba/Habilidades/`**. Each skill = one file: inputs, steps, deliverables.
+
+| Area | Format | Location |
+|------|--------|----------|
+| Gisele / Casa | Google Doc | `…/Alba/Habilidades/` |
+| Ricardo | Drive `.gdoc` and/or Git `.md` | `Root_Ricardo/Alba/Habilidades/` and/or `habilidades/*.md` in Git |
+| Ricardo (optional) | Obsidian `.md` | Vault `Alba/Habilidades/` |
+
+**Template sections (all formats):** Quando usar · Workspace(s) · Entradas · Passos · Entregáveis · O que não fazer.
+
+**Index:** `doc_type=habilidade`. Advanced skills (Virtuologia clínica, conciliação recibos/cartão) catalogued post-MVP; P1 locks pattern only.
+
+---
+
+### Obsidian optional (#19-Q-005)
+
+**Decision:** Obsidian **not required** for any user. If Ricardo uses it, mirror **`Alba/`** tree under vault; ingest via local paths on Alba host; **Habilidades/*.md** allowed with same template as Git. Gisele/Casa: no Obsidian requirement.
+
+**Note:** Replaces P2 deferral of “vault topology” for family canon — Obsidian is optional editor; Drive is primary for Gisele/Casa.
+
+---
+
+### Meet transcripts — manual placement (#19-Q-006)
+
+**Decision:** Gisele **manually** saves or moves Meet transcript Docs into session tree (e.g. `Root_Gisele/Alba/Sessões de Terapia/Paciente N/… Transcrição.gdoc`). Alba poll + TTL only; auto-routing from Meet deferred post-MVP.
+
+---
+
 ## TBD (resolve in grilling — do not implement assumptions)
 
 - Tech stack: SQLite vs Postgres path, vector DB, embedding model (P2)
-- Obsidian vault topology: single vault vs multiple (P2)
 - Hosting: local vs homelab vs cloud (P3)
