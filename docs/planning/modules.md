@@ -7,7 +7,7 @@
 | Module | Role | MVP | Staging | Production |
 |--------|------|-----|---------|------------|
 | **Google Drive/Docs** | Human memory — Gisele, Casa, Ricardo docs; `Root_*/Alba/` tree | Index workspace roots | Synthetic fixture Drive trees (D-037, D-034) | Live per-user + shared Casa roots |
-| **Git** | Technical memory — code, README, agent docs; Ricardo `ideas/`, `habilidades/` | Allowlist + exclusions | Test repos subset | Full allowlist |
+| **Git** | Technical memory — code, README, agent docs; Ricardo `ideas/`, `habilidades/` | Explicit allowlist + `canon`/`canon+code` profiles + exclusions (D-046–D-050) | Subset (e.g. `alba-assistant`) | Full curated allowlist per account |
 | **Obsidian** | Optional human memory editor (primarily Ricardo); mirror `Alba/` | Optional path ingest | Optional staging paths | Optional live vault paths |
 
 ## Alba runtime (to be built)

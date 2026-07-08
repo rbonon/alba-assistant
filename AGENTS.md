@@ -326,9 +326,9 @@ See `docs/planning/architecture.md` and `DECISIONS.md`:
 
 ## Milestone
 
-**Current:** P1 — Requirements & spec v1 (epic #2; #19 closed D-039–D-045; leaves #20–#30 open).
+**Current:** P1 — Requirements & spec v1 (epic #2; #20 closed D-046–D-051; leaves #21–#30 open).
 
-**Next:** `rbo-create-change` on **#20 — [Grill] P1 — Git memory requirements**.
+**Next:** `rbo-create-change` on **#21 — [Grill] P1 — MCP client requirements**.
 
 **Handoff:** [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md)
 

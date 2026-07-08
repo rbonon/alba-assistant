@@ -12,7 +12,7 @@
 | 2 | Read **STATUS.md** | [`../../STATUS.md`](../../STATUS.md) |
 | 3 | Read vision handoff (input, not spec) | [`../vision/alba-context-assistant-handoff.html`](../vision/alba-context-assistant-handoff.html) |
 | 4 | Board **`alba-assistant`** #5 | [GitHub Project](https://github.com/users/rbonon/projects/5) |
-| 5 | **`rbo-create-change`** on **#20 — [Grill] P1 — Git memory requirements** | [`open-questions.md`](./open-questions.md) |
+| 5 | **`rbo-create-change`** on **#21 — [Grill] P1 — MCP client requirements** | [`open-questions.md`](./open-questions.md) |
 
 **Grilling:** use **`rbo-grilling`** — one question at a time. Resolved items move to [`decisions.md`](./decisions.md) and root [`DECISIONS.md`](../../DECISIONS.md).
 

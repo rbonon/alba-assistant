@@ -26,8 +26,8 @@
 | D-018 | **Post-launch users** — dedicated workspace + D-016 read rules + assigned persona at onboarding (#14 Q-004) |
 | D-019 | **MVP RAG index** — **Drive/Docs + Git** + optional Obsidian; Calendar/Tasks/contacts post-MVP (#19 amends) |
 | D-020 | **Ricardo Git indexing** — all three GitHub accounts: `rbonon`, `fortegb`, `akamlibehsafe` (#15 Q-002) |
-| D-021 | **AI ideation** — chat ephemeral; final idea `.md` canonical in Obsidian or Git `ideas/` (#20 refines); Git when building (#15 Q-003; **amend at #20**) |
-| D-022 | **Idea doc + repo** — idea stays canonical in Obsidian **or** Git `ideas/`; repo holds implementation (#15 Q-004; **amend at #20**) |
+| D-021 | **AI ideation** — chat ephemeral; final idea `.md` in Obsidian `ideas/` **or** Git `ideas/` / `docs/vision/` (#20 amends) |
+| D-022 | **Idea doc + repo** — Git in product repo canonical once repo exists; Obsidian may mirror; Git wins (#20 amends) |
 | D-023 | **Never-index list** — secrets, build/vendor, clinical until #16, raw chat logs (#15 Q-005) |
 | D-024 | **RAG rebuild** — full rebuild from canonical sources on recovery (D-004) (#15 Q-006) |
 | D-025 | **Calendar/Tasks model** — personal per user + Casa shared; Obsidian context only; integrate post-MVP (#15 Q-007) |
@@ -51,6 +51,12 @@
 | D-043 | **Habilidades da Alba** — `…/Alba/Habilidades/`; gdoc + md; skills template (#19 Q-004) |
 | D-044 | **Obsidian optional** — Ricardo mirror `Alba/`; no Sync required (#19 Q-005) |
 | D-045 | **Meet transcripts** — manual placement in session tree (#19 Q-006) |
+| D-046 | **Git allowlist** — explicit opt-in per account; staging subset; no auto-discovery (#20 Q-001) |
+| D-047 | **Git index profiles** — `canon` / `canon+code` per allowlist entry (#20 Q-002) |
+| D-048 | **Git ref scope** — default branch only (#20 Q-003) |
+| D-049 | **Git exclusions** — extend D-023; lockfiles, agent dirs, binaries, 1 MB cap (#20 Q-004) |
+| D-050 | **Git secret scan** — HEAD only; skip file; `*.example` exempt (#20 Q-005) |
+| D-051 | **Ideas/habilidades in Git** — amends D-021/D-022; D-043 unchanged (#20 Q-006) |
 
 ## Session (2026-07-08)
 
@@ -67,6 +73,7 @@
 - **#18 Q-004 closed:** prod manual smoke checklist (D-038)
 - **#18 closed** on main (`feede3e`) — D-035–D-038
 - **#19 grilling applied** — D-039–D-045; Drive at MVP; human validation → `rbo-close-change`
+- **#20 grilling complete** — D-046–D-051; amends D-021/D-022; ready for validation → `rbo-close-change`
 
 ## Session (2026-07-07)
 

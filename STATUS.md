@@ -1,6 +1,6 @@
 # STATUS — Alba Context Assistant
 
-**Updated:** 2026-07-08 (portal + canon sync; #19 closed D-039–D-045)  
+**Updated:** 2026-07-08 (#20 closed D-046–D-051)  
 **Current phase:** **P1** — Requirements & spec v1  
 **Portal:** https://rbonon.github.io/alba-assistant/
 
@@ -11,7 +11,7 @@
 | Epic | Status | Next step |
 |------|--------|-----------|
 | ~~P0 Product foundation~~ | **Done** (#1, gate #13 closed) | — |
-| **P1 Requirements & spec v1** | **In Progress** (#2 open) | **`rbo-create-change`** on **#20 — [Grill] P1 — Git memory requirements** |
+| **P1 Requirements & spec v1** | **In Progress** (#2 open) | **`rbo-create-change`** on **#21 — [Grill] P1 — MCP client requirements** |
 | P2 Architecture v1 | Todo (#3) | Blocked by **#30 — [Gate] P1 — Approve spec v1** |
 
 ---
@@ -19,7 +19,7 @@
 ## Immediate next action
 
 ```text
-rbo-create-change → #20 — [Grill] P1 — Git memory requirements
+rbo-create-change → #21 — [Grill] P1 — MCP client requirements
 ```
 
 ---
@@ -30,7 +30,7 @@ See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
 
 | Block | Issues |
 |-------|--------|
-| Grilling | #20–#25 (#14–#19 done) |
+| Grilling | #21–#25 (#14–#20 done) |
 | Spec docs | #26–#28 |
 | OpenSpec | #29 |
 | Gate | #30 |
