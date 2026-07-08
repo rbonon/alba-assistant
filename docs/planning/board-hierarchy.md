@@ -26,7 +26,7 @@
 | # | Title | State |
 |---|-------|-------|
 | [14](https://github.com/rbonon/alba-assistant/issues/14) | [Grill] P1 — Users, workspaces & personas | closed |
-| [15](https://github.com/rbonon/alba-assistant/issues/15) | [Grill] P1 — Canonical sources vs RAG boundaries | open |
+| [15](https://github.com/rbonon/alba-assistant/issues/15) | [Grill] P1 — Canonical sources vs RAG boundaries | closed |
 | [16](https://github.com/rbonon/alba-assistant/issues/16) | [Grill] P1 — Privacy, LGPD & sensitive content | open |
 | [17](https://github.com/rbonon/alba-assistant/issues/17) | [Grill] P1 — MVP scope vs post-MVP | open |
 | [18](https://github.com/rbonon/alba-assistant/issues/18) | [Grill] P1 — Success metrics per persona | open |
