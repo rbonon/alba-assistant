@@ -34,6 +34,12 @@
 | #19-Q-004 | Habilidades da Alba (`…/Alba/Habilidades/`) | P1 (#19) | **Closed** — D-043 |
 | #19-Q-005 | Obsidian optional (Ricardo); `Alba/` mirror | P1 (#19) | **Closed** — D-044 |
 | #19-Q-006 | Meet transcript manual placement | P1 (#19) | **Closed** — D-045 |
+| #20-Q-001 | Git repo allowlist (explicit opt-in; staging subset) | P1 (#20) | **Closed** — D-046 |
+| #20-Q-002 | Git indexed paths (canon / canon+code profiles) | P1 (#20) | **Closed** — D-047 |
+| #20-Q-003 | Git ref scope (default branch only) | P1 (#20) | **Closed** — D-048 |
+| #20-Q-004 | Git-specific exclusions (extend D-023) | P1 (#20) | **Closed** — D-049 |
+| #20-Q-005 | Git secret handling (HEAD scan; skip file) | P1 (#20) | **Closed** — D-050 |
+| #20-Q-006 | Amend D-021/D-022 — ideas + habilidades in Git | P1 (#20) | **Closed** — D-051 |
 | Q-002 | Obsidian vault topology | P1 (#19) | **Closed** — optional Obsidian mirror (D-044); not family canon driver |
 | Q-007 | Ingestion trigger — poll vs watch vs manual | P1 (#19) | **Partial** — poll ~15 min locked (D-042); file watcher optional Obsidian (P2) |
 | Q-003 | Hosting model — local Mac, homelab, cloud VM | P3 | Open |
@@ -47,4 +53,4 @@
 | Q-011 | Alexa vs alternative voice assistant | P1 | Open |
 | Q-012 | Alba GitHub org timing and repo migration | P0/P1 | Open — repo public on rbonon; org TBD |
 
-**Next grilling:** issue **#20 — [Grill] P1 — Git memory requirements**
+**Next grilling:** issue **#21 — [Grill] P1 — MCP client requirements**

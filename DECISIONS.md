@@ -673,6 +673,78 @@ Obsidian optional inbox: if Ricardo uses vault, same TTL policy; no Obsidian Syn
 
 ---
 
+## P1 grilling — Git memory requirements (#20, 2026-07-08)
+
+### Git repo allowlist — explicit opt-in (#20-Q-001)
+
+**Decision:** Git indexing uses an **explicit per-account repo allowlist** in version-controlled config. **No auto-discovery.**
+
+| Environment | Rule |
+|-------------|------|
+| Staging | Named **subset** (fixture corpus for D-036/D-037); e.g. `rbonon/alba-assistant` (+ optional `rbonon/ai-skills`) |
+| Production | **Full curated allowlist** per account (`rbonon`, `fortegb`, `akamlibehsafe`); each entry maps to workspace `ricardo` |
+
+New repos require an allowlist add before indexing. Config format and credentials deferred to P2/P3.
+
+**Rationale:** Privacy posture (D-023); no surprise indexing (e.g. `medban-*` off unless explicitly added).
+
+---
+
+### Git indexed paths — dual profile (#20-Q-002)
+
+**Decision:** Each allowlist entry declares an **`index_profile`**. Global exclusions (D-023, D-049) apply on top. Optional `path_add` / `path_remove` per repo.
+
+| Profile | Includes |
+|---------|----------|
+| `canon` | Root agent files; `**/*.{md,mdx,txt}`; `docs/**`; `openspec/**` (incl. `archive/`); `ideas/**`; `habilidades/**` |
+| `canon+code` | `canon` + `src/**`, `app/**`, `lib/**`, `packages/**` (whichever exist) |
+
+**Examples:** `alba-assistant`, `ai-skills` → `canon`; `fortegb/platform` → `canon+code`.
+
+---
+
+### Git ref scope — default branch only (#20-Q-003)
+
+**Decision:** Index **default branch only** (`main` / `master` / repo default). No tags, all-branches, or PR head refs in MVP. Post-MVP: optional per-repo branch allowlist.
+
+---
+
+### Git-specific exclusions — extend D-023 (#20-Q-004)
+
+**Decision:** Git ingest applies D-023 **plus:**
+
+| Category | Patterns / rule |
+|----------|-----------------|
+| Secrets | `**/.env*`, `**/*.{pem,key,p12,crt,cer}` |
+| Build/cache | `**/.next/**`, `**/.turbo/**`, `**/__pycache__/**`, `**/.cache/**`, `**/coverage/**` |
+| Lockfiles | `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml` |
+| Agent noise | `**/.cursor/**`, `**/.claude/**` (root agent files still via canon profile) |
+| Assets | `**/_Branding/**` |
+| Binaries | `*.{png,jpg,jpeg,gif,webp,ico,pdf,zip,tar,gz,woff,woff2,ttf,mp3,mp4,webm}` |
+| Size cap | Skip blobs **> 1 MB** |
+
+**Force-include:** `.github/workflows/**`. **`*.example` config files indexed** (documentation).
+
+---
+
+### Git secret handling — HEAD scan (#20-Q-005)
+
+**Decision:** Scan **HEAD snapshot only** at ingest; **no Git history walk** in MVP. Pattern matchers (GitHub PAT, AWS keys, PEM, `API_KEY=` / `SECRET=` in non-example files). **`*.example` exempt.** On match: **skip file only**; log `ingest_events` with `reason=secret_detected`. Full history scan deferred post-MVP.
+
+---
+
+### Ideas and habilidades in Git — amend D-021/D-022 (#20-Q-006)
+
+**Decision:** **Amends D-021 and D-022.** D-043 unchanged.
+
+| Topic | Rule |
+|-------|------|
+| Ideation (D-021) | Chat ephemeral. Final idea `.md` canonical in **Obsidian `ideas/`** or **Git** (`ideas/<slug>.md`, `docs/vision/`). |
+| Idea + repo (D-022) | Once product repo exists, **Git in that repo is canonical** for idea/vision doc; Obsidian may mirror; **Git wins on conflict**. |
+| Habilidades (D-043) | `habilidades/*.md` in Git canonical when that is the skill file location; one skill = one file = one source. |
+
+---
+
 ## TBD (resolve in grilling — do not implement assumptions)
 
 - Tech stack: SQLite vs Postgres path, vector DB, embedding model (P2)
