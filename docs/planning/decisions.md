@@ -36,6 +36,10 @@
 | D-028 | **Clinical slice gates** — post-MVP, gisele-only, no patient consent in Alba, legal review (#16 Q-004) |
 | D-029 | **Clinical AI inference** — cloud LLM APIs allowed with Patient-00N text (#16 Q-005) |
 | D-030 | **Clinical erasure** — hard delete from Obsidian + clinical RAG (#16 Q-006) |
+| D-031 | **MVP scope** — read-only memory + API/MCP IN; integrations/clinical/voice/writes OUT (#17 Q-001) |
+| D-032 | **P9 reframe** — Gisele clinical slice (post-MVP); multi-user Gisele at MVP P6–P7 (#17 Q-002) |
+| D-033 | **Isolation tests** — automated cross-workspace tests MVP blocker before prod (#17 Q-003) |
+| D-034 | **Artur** — real non-prod stand-in for Gisele workspace testing; removed at prod (#17 Q-004) |
 
 ## Session (2026-07-08)
 
@@ -44,6 +48,8 @@
 - **#15 grilling complete** — ready for validation → `rbo-close-change`
 - **#16 Q-006 closed:** hard delete erasure (D-030)
 - **#16 grilling complete** — ready for validation → `rbo-close-change`
+- **#17 Q-004 closed:** Artur non-prod stand-in (D-034)
+- **#17 grilling complete** — ready for `rbo-close-change`
 
 ## Session (2026-07-07)
 

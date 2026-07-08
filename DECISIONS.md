@@ -392,6 +392,70 @@ in-flight P1 grilling.
 
 ---
 
+### MVP scope boundary (2026-07-08 — #17 Q-001)
+
+**Decision:** Lock P6–P7 production go-live capability bundle:
+
+**MVP IN:**
+- Read-only hybrid search — Obsidian + Git (D-019)
+- Ricardo + Gisele multi-user; workspace isolation (D-015, D-016)
+- HTTP API + MCP: `search_memory`, `get_decisions`, `get_project_context`
+- Casa / `compartilhado` Obsidian content searchable (e.g. recipes as notes)
+- Ricardo Git indexing: `rbonon`, `fortegb`, `akamlibehsafe` (D-020)
+- Staging → controlled production promotion (D-011)
+
+**MVP OUT (post-MVP):**
+- Gisele clinical slice / Meet transcripts (D-026–D-030)
+- Calendar, Tasks, Drive, contacts integration (D-019, D-025)
+- Controlled writes to Obsidian inbox (P8)
+- Interactive voice recipes (“read ingredients step by step”)
+- Android voice capture, Alexa (P13–P14)
+
+**Rationale:** Read-only memory platform first; prior grills aligned; avoids scope creep into integrations and clinical before core works.
+
+**Implications:**
+- P6–P7 deliverables trace to this list
+- Spec leaves #26–#28 use this boundary
+- Success metrics (#18) measure MVP IN only
+
+---
+
+### Board P9 reframe — Gisele clinical slice (#17 Q-002)
+
+**Decision:** Reframe delivery phase **P9** from *"Gisele workspace"* to **Gisele clinical slice** (Option A). P9 delivers post-MVP gated clinical capabilities (D-026–D-030), not first Gisele access — that is **MVP P6–P7** (D-015).
+
+**Rationale:** D-015 made multi-user day one; old P9 label was stale and misleading.
+
+**Implications:**
+- Update `docs/planning/phases.md` and portal phase map when refreshed
+- P6–P7 MVP includes Gisele non-clinical Obsidian + shared workspaces only
+
+---
+
+### Cross-workspace isolation tests at MVP (#17 Q-003)
+
+**Decision:** **Automated cross-workspace isolation tests are an MVP blocker** (Option A). Ricardo MUST NOT retrieve Gisele private content (and vice versa) — tests must pass on **staging** before production promote.
+
+**Rationale:** Multi-user day one (D-015) without provable isolation (D-016) is unacceptable for privacy/LGPD trust.
+
+**Implications:**
+- P6–P7 delivery includes isolation test suite (integration level; harness timing P2/P16 TBD)
+- Manual validation alone is insufficient for prod go-live
+
+---
+
+### Non-prod stand-in user Artur (#17 Q-004)
+
+**Decision:** **Artur** = real third account, **dev/staging only**, stand-in for **Gisele workspace testing** so Gisele does not need credentials during dev/test. Artur receives **same workspace RBAC as Gisele** (`gisele` + `compartilhado` + `casa`, D-016) in non-prod. **Synthetic/fixture data only** — no real patient content in staging. **Artur disabled or removed before production go-live**; Gisele uses real credentials at prod. Artur is **not** a permanent production family user (no ongoing `artur` workspace in prod).
+
+**Rationale:** Reduces burden on Gisele during development; isolation tests (D-033) still validate Ricardo ↔ gisele-workspace boundaries using Artur as stand-in.
+
+**Implications:**
+- P3 environments: document Artur in staging auth config; prod provisioning excludes Artur
+- Clinical slice staging tests use synthetic Patient-00N fixtures only
+
+---
+
 ## TBD (resolve in grilling — do not implement assumptions)
 
 - Tech stack: SQLite vs Postgres path, vector DB, embedding model (P2)

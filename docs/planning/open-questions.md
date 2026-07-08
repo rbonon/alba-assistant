@@ -20,6 +20,10 @@
 | #16-Q-004 | Clinical slice admission gates | P1 (#16) | **Closed** — D-028 |
 | #16-Q-005 | Clinical AI inference (cloud) | P1 (#16) | **Closed** — D-029 |
 | #16-Q-006 | Clinical retention & erasure | P1 (#16) | **Closed** — D-030 |
+| #17-Q-001 | MVP IN / MVP OUT capability bundle | P1 (#17) | **Closed** — D-031 |
+| #17-Q-002 | Reframe P9 → Gisele clinical slice | P1 (#17) | **Closed** — D-032 |
+| #17-Q-003 | Cross-workspace isolation tests MVP blocker | P1 (#17) | **Closed** — D-033 |
+| #17-Q-004 | Non-prod stand-in user Artur (Gisele testing) | P1 (#17) | **Closed** — D-034 |
 | Q-002 | Obsidian vault topology — single vault vs multiple vaults | P2 | Open |
 | Q-003 | Hosting model — local Mac, homelab, cloud VM | P3 | Open |
 | Q-004 | Metadata store — SQLite MVP path to Postgres? | P2 | Open |
@@ -32,4 +36,4 @@
 | Q-011 | Alexa vs alternative voice assistant | P1 | Open |
 | Q-012 | Alba GitHub org timing and repo migration | P0/P1 | Open — repo public on rbonon; org TBD |
 
-**Next grilling:** issue **#17 — [Grill] P1 — MVP scope vs post-MVP**
+**Next grilling:** issue **#18 — [Grill] P1 — Success metrics per persona**

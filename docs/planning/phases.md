@@ -20,7 +20,7 @@
 | **P6** | MVP read-only memory | Index Obsidian + Git, hybrid search, staging |
 | **P7** | MVP API + MCP + prod v0 | HTTP + MCP, production go-live |
 | **P8** | Controlled writes | Drafts to Obsidian inbox |
-| **P9** | Gisele workspace | Multi-user production |
+| **P9** | Gisele clinical slice | Meet transcripts, Patient-00N, Virtuologia (post-MVP gated, D-026–D-030) |
 | **P10** | Google Calendar | Read-only meeting context |
 | **P11** | Tasks integration | TBD provider |
 | **P12** | Google Drive | Metadata/content index |
