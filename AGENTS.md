@@ -52,6 +52,8 @@ See `docs/planning/architecture.md` and `DECISIONS.md`. Invariants:
 
 - **No implementation** until `[Gate] P5` (roadmap approved)
 - Use **`rbo-create-issue`** → **`rbo-create-change`** → **`rbo-close-change`** for delivery work
+- **Every leaf issue** gets a branch (`feat/<change-name>`) and OpenSpec change; epics and gates do not
+- **No direct commits to `main`** for leaf deliverables (P0 #7–#12 retro-closed as one-time exception)
 - Use **`rbo-grilling`** for spec/arch decisions (one question at a time)
 - Never hand-edit `ROADMAP.md` or `docs/planning/board-hierarchy.md` — regenerate via scripts
 - Append to `DECISIONS.md` only — never overwrite entries

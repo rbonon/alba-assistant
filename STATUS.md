@@ -20,9 +20,10 @@
 
 1. Bootstrap English GitHub Pages portal under `docs/`
 2. Create GitHub Project **`alba-assistant`** + Phase field
-3. Create P0 issues on board
-4. Commit and push → enable Pages
-5. **Stop** — wait for `[Gate] P0` before P1 grilling (Q-001)
+3. ~~Create P0 issues on board~~ ✅
+4. ~~Retro-close P0 leaf issues #7–#12 (Model A)~~ ✅
+5. **Close `[Gate] P0` (#13)** — waiting for your approval
+6. **Stop** — then P1 grilling (Q-001) via `rbo-create-change` per leaf issue
 
 ---
 

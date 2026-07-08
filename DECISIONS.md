@@ -76,6 +76,17 @@ This file is **append-only**. New sessions add entries at the bottom under a dat
 - Until migration: use `[Epic]` issue title prefix on `rbonon/alba-assistant`
 - Revisit board + Pages URLs after org move
 
+### Model A — leaf issue change linkage
+
+**Decision:** Every **leaf** issue (Feature/Chore) flows through `rbo-create-change` → branch → propose → close with `Closes #N`. Epics and gates never get a branch or change.
+
+**Rationale:** Traceability between board, branch, OpenSpec, and commits without OpenSpec on epics.
+
+**Implications:**
+- Planning docs (P1–P5) use lightweight OpenSpec (proposal + tasks)
+- P0 leaf issues #7–#12 retro-closed against commits already on `main` (one-time exception)
+- No more direct-to-main leaf work
+
 ---
 
 ## TBD (resolve in grilling — do not implement assumptions)

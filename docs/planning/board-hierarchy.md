@@ -4,7 +4,7 @@
 > **Generated (REST fallback)** — board status omitted while GraphQL rate-limited.
 > Regenerate: `ALBA_PROJECT_NUM=5 ./scripts/refresh-board-hierarchy.sh`
 
-> 13 issues · 6 epics
+> 7 issues · 6 epics
 
 ## P0
 
@@ -46,11 +46,5 @@ GitHub state: **OPEN**
 
 ### —
 
-- [#7](https://github.com/rbonon/alba-assistant/issues/7) Bootstrap GitHub Pages portal (English)
-- [#8](https://github.com/rbonon/alba-assistant/issues/8) Normalize vision handoff into docs/vision/
-- [#9](https://github.com/rbonon/alba-assistant/issues/9) Seed planning canon
-- [#10](https://github.com/rbonon/alba-assistant/issues/10) Populate AGENTS.md and CLAUDE.md
-- [#11](https://github.com/rbonon/alba-assistant/issues/11) Seed DECISIONS.md with validated vision decisions
-- [#12](https://github.com/rbonon/alba-assistant/issues/12) Add board refresh scripts
 - [#13](https://github.com/rbonon/alba-assistant/issues/13) [Gate] P0 — Product foundation complete
 
