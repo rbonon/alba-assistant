@@ -28,16 +28,23 @@
 | #18-Q-002 | Search quality bar — fixture set + relevance threshold | P1 (#18) | **Closed** — D-036 |
 | #18-Q-003 | Staging fixture corpus — synthetic only vs real notes | P1 (#18) | **Closed** — D-037 |
 | #18-Q-004 | Production post-promote validation — manual smoke only? | P1 (#18) | **Closed** — D-038 |
-| Q-002 | Obsidian vault topology — single vault vs multiple vaults | P2 | Open |
+| #19-Q-001 | Human memory source map (Drive + Git + optional Obsidian) | P1 (#19) | **Closed** — D-039 |
+| #19-Q-002 | Drive roots hybrid C + per-user auth | P1 (#19) | **Closed** — D-041 |
+| #19-Q-003 | Ingest poll + TTL; audit log in DB + admin UI | P1 (#19) | **Closed** — D-042 |
+| #19-Q-004 | Habilidades da Alba (`…/Alba/Habilidades/`) | P1 (#19) | **Closed** — D-043 |
+| #19-Q-005 | Obsidian optional (Ricardo); `Alba/` mirror | P1 (#19) | **Closed** — D-044 |
+| #19-Q-006 | Meet transcript manual placement | P1 (#19) | **Closed** — D-045 |
+| Q-002 | Obsidian vault topology | P1 (#19) | **Closed** — optional Obsidian mirror (D-044); not family canon driver |
+| Q-007 | Ingestion trigger — poll vs watch vs manual | P1 (#19) | **Partial** — poll ~15 min locked (D-042); file watcher optional Obsidian (P2) |
 | Q-003 | Hosting model — local Mac, homelab, cloud VM | P3 | Open |
 | Q-004 | Metadata store — SQLite MVP path to Postgres? | P2 | Open |
 | Q-005 | Vector store — LanceDB vs Chroma vs Qdrant | P2 | Open |
 | Q-006 | Embedding provider & model | P2 | Open |
-| Q-007 | Ingestion trigger — file watch vs cron vs manual | P2 | Open |
+| Q-007 | Ingestion trigger — file watch vs cron vs manual | P2 | **Partial** — see D-042 |
 | Q-008 | Auth model for API/MCP (MVP vs staging/prod) | P2/P3 | Open |
 | Q-009 | Google Calendar scope (read-only MVP of integration) | P1 | Open |
 | Q-010 | Tasks provider — Google Tasks vs Todoist | P1 | Open |
 | Q-011 | Alexa vs alternative voice assistant | P1 | Open |
 | Q-012 | Alba GitHub org timing and repo migration | P0/P1 | Open — repo public on rbonon; org TBD |
 
-**Next grilling:** issue **#19 — [Grill] P1 — Obsidian requirements**
+**Next grilling:** issue **#20 — [Grill] P1 — Git memory requirements**

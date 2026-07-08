@@ -307,10 +307,9 @@ alba-assistant/
 
 See `docs/planning/architecture.md` and `DECISIONS.md`:
 
-- Obsidian = human memory; Git = technical memory
-- RAG = regenerable index
+- Drive/Docs + Git = human memory; Obsidian optional; RAG = regenerable index
 - Workspace-filtered retrieval (`ricardo`, `gisele`, `casa`, `compartilhado`)
-- AI writes only to `Inbox/AI Drafts` until human promotes
+- Writes to `Root_*/Alba/…`; searchable after TTL (D-042) — no mandatory inbox promote
 - Staging before production for every slice
 - Never index secrets, `.env`, `node_modules`, clinical/sensitive content
 
@@ -327,9 +326,9 @@ See `docs/planning/architecture.md` and `DECISIONS.md`:
 
 ## Milestone
 
-**Current:** P1 — Requirements & spec v1 (epic #2; leaves #19–#30 open).
+**Current:** P1 — Requirements & spec v1 (epic #2; #19 closed D-039–D-045; leaves #20–#30 open).
 
-**Next:** `rbo-create-change` on **#19 — [Grill] P1 — Obsidian requirements**. #14–#18 closed (D-015–D-038).
+**Next:** `rbo-create-change` on **#20 — [Grill] P1 — Git memory requirements**.
 
 **Handoff:** [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md)
 

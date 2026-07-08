@@ -18,7 +18,7 @@ Ricardo and family need a context assistant that preserves research, decisions, 
 
 Greenfield product repo: **P1** — requirements & spec. Docs portal on GitHub Pages (`/docs`). Engine code starts P6+ after planning gates (Alba board) / after master implementation gate (`rbo-product-*` suite).
 
-Stack TBD in P2. Integrations: Obsidian, Git, MCP (MVP); Calendar, Tasks, Drive, Android, Alexa (later).
+Stack TBD in P2. Integrations: Drive/Docs, Git, optional Obsidian, MCP (MVP); Calendar, Tasks, Android, Alexa (later).
 
 ## How
 
@@ -31,4 +31,4 @@ Stack TBD in P2. Integrations: Obsidian, Git, MCP (MVP); Calendar, Tasks, Drive,
 
 **Current:** P1 — Requirements & spec v1. P0 complete (gate #13 closed).
 
-**Next:** `rbo-create-change` on **#19 — [Grill] P1 — Obsidian requirements**. #14–#18 closed (D-015–D-038). Full handoff (read at session start): [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
+**Next:** `rbo-create-change` on **#20 — [Grill] P1 — Git memory requirements**. #14–#19 closed (D-015–D-045).

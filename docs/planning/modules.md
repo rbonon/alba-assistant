@@ -6,18 +6,20 @@
 
 | Module | Role | MVP | Staging | Production |
 |--------|------|-----|---------|------------|
-| **Obsidian** | Human memory — notes, templates, inbox/drafts | Index + templates | Staging vault paths | Live vault paths |
-| **Git** | Technical memory — code, README, agent docs | Allowlist + exclusions | Test repos subset | Full allowlist |
+| **Google Drive/Docs** | Human memory — Gisele, Casa, Ricardo docs; `Root_*/Alba/` tree | Index workspace roots | Synthetic fixture Drive trees (D-037, D-034) | Live per-user + shared Casa roots |
+| **Git** | Technical memory — code, README, agent docs; Ricardo `ideas/`, `habilidades/` | Allowlist + exclusions | Test repos subset | Full allowlist |
+| **Obsidian** | Optional human memory editor (primarily Ricardo); mirror `Alba/` | Optional path ingest | Optional staging paths | Optional live vault paths |
 
 ## Alba runtime (to be built)
 
 | Module | Role | MVP |
 |--------|------|-----|
-| **Ingestion** | Discover, chunk, embed, index | Obsidian + Git |
-| **Retrieval** | Hybrid search + rerank | Yes |
-| **API** | HTTP endpoints | `/memory/search`, health |
-| **MCP** | Cursor / Claude tools | Read-only tools first |
-| **Metadata store** | Document/chunk registry | SQLite (TBD) |
+| **Ingestion** | Discover, chunk, embed, index | Drive + Git + optional Obsidian |
+| **Ingest audit** | Central log in metadata DB; admin UI + CLI (Ricardo) | Staging + production |
+| **Retrieval** | Hybrid search + rerank; TTL-gated `searchable` flag | Yes |
+| **API** | HTTP endpoints | `/memory/search`, health, `/admin/ingest` |
+| **MCP** | Cursor / Claude / ChatGPT tools | Read-only tools first |
+| **Metadata store** | Document/chunk registry + ingest_events | SQLite (TBD) |
 | **Vector store** | Embeddings index | LanceDB or Chroma (TBD) |
 
 ## Client integrations
@@ -26,7 +28,7 @@
 |--------|------|-----|-------|
 | **Cursor MCP** | Dev assistant access | P7 | — |
 | **Claude Code MCP** | Dev assistant access | P7 | — |
-| **ChatGPT / other MCP** | Additional clients | — | Post-MVP |
+| **ChatGPT / Claude** | Assistant UI via Alba API/MCP | P7 | — |
 
 ## External integrations (post-MVP)
 
@@ -34,8 +36,7 @@
 |--------|------|-----------|-----------|----------|-------|
 | **Google Calendar** | Read event context | ✓ | ✓ | ✓ | P10 |
 | **Tasks** (Google Tasks / Todoist) | Task boundaries | ✓ | ✓ | ✓ | P11 |
-| **Google Drive** | Document index | ✓ | ✓ | ✓ | P12 |
-| **Android voice** | Capture → API → inbox draft | ✓ | ✓ | ✓ | P13 |
+| **Android voice** | Capture → API → draft | ✓ | ✓ | ✓ | P13 |
 | **Alexa / voice assistant** | Short commands | ✓ | ✓ | ✓ | P14 |
 
 ## Environments
