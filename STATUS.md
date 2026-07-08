@@ -2,7 +2,7 @@
 
 **Updated:** 2026-07-07  
 **Current phase:** P0 — Product foundation  
-**Portal:** https://rbonon.github.io/alba-assistant/ — **Pages not enabled yet** (GitHub plan blocks Pages on this repo; enable via public repo, plan upgrade, or Alba org migration — see Q-012).
+**Portal:** https://rbonon.github.io/alba-assistant/ — **live** (repo public, Pages from `/docs`).
 
 ---
 
