@@ -40,6 +40,10 @@
 | D-032 | **P9 reframe** — Gisele clinical slice (post-MVP); multi-user Gisele at MVP P6–P7 (#17 Q-002) |
 | D-033 | **Isolation tests** — automated cross-workspace tests MVP blocker before prod (#17 Q-003) |
 | D-034 | **Artur** — real non-prod stand-in for Gisele workspace testing; removed at prod (#17 Q-004) |
+| D-035 | **MVP success metrics structure** — core + Ricardo/Gisele non-clinical/Casa; clinical/integrations/voice deferred (#18 Q-001) |
+| D-036 | **Search quality bar** — fixture suite, top-3, 100% pass on staging (#18 Q-002) |
+| D-037 | **Staging fixture corpus** — synthetic only; AI/app-generated, not hand-maintained (#18 Q-003) |
+| D-038 | **Production validation** — manual smoke checklist after promote; no prod fixtures (#18 Q-004) |
 
 ## Session (2026-07-08)
 
@@ -50,6 +54,11 @@
 - **#16 grilling complete** — ready for validation → `rbo-close-change`
 - **#17 Q-004 closed:** Artur non-prod stand-in (D-034)
 - **#17 grilling complete** — ready for `rbo-close-change`
+- **#18 Q-001 closed:** MVP metrics structure locked (D-035); Calendar/Tasks in deferred integrations bucket
+- **#18 Q-002 closed:** search fixtures, top-3, 100% pass on staging (D-036)
+- **#18 Q-003 closed:** synthetic staging corpus, AI/app-generated (D-037)
+- **#18 Q-004 closed:** prod manual smoke checklist (D-038)
+- **#18 grilling complete** — ready for validation → `rbo-close-change`
 
 ## Session (2026-07-07)
 

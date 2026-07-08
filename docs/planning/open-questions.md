@@ -24,6 +24,10 @@
 | #17-Q-002 | Reframe P9 → Gisele clinical slice | P1 (#17) | **Closed** — D-032 |
 | #17-Q-003 | Cross-workspace isolation tests MVP blocker | P1 (#17) | **Closed** — D-033 |
 | #17-Q-004 | Non-prod stand-in user Artur (Gisele testing) | P1 (#17) | **Closed** — D-034 |
+| #18-Q-001 | MVP success metrics structure (core + personas + deferred) | P1 (#18) | **Closed** — D-035 |
+| #18-Q-002 | Search quality bar — fixture set + relevance threshold | P1 (#18) | **Closed** — D-036 |
+| #18-Q-003 | Staging fixture corpus — synthetic only vs real notes | P1 (#18) | **Closed** — D-037 |
+| #18-Q-004 | Production post-promote validation — manual smoke only? | P1 (#18) | **Closed** — D-038 |
 | Q-002 | Obsidian vault topology — single vault vs multiple vaults | P2 | Open |
 | Q-003 | Hosting model — local Mac, homelab, cloud VM | P3 | Open |
 | Q-004 | Metadata store — SQLite MVP path to Postgres? | P2 | Open |
@@ -36,4 +40,4 @@
 | Q-011 | Alexa vs alternative voice assistant | P1 | Open |
 | Q-012 | Alba GitHub org timing and repo migration | P0/P1 | Open — repo public on rbonon; org TBD |
 
-**Next grilling:** issue **#18 — [Grill] P1 — Success metrics per persona**
+**Next grilling:** issue **#19 — [Grill] P1 — Obsidian requirements**

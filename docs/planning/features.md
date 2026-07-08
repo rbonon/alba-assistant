@@ -72,3 +72,30 @@
 - Full Alexa/ChatGPT long conversation replacement
 
 See [`non-goals.md`](../spec/non-goals.md) after P1 spec gate.
+
+## MVP success metrics (D-035)
+
+> P6–P7 go-live validation. Integrations/clinical/voice excluded — see deferred below.
+
+### Core (all users)
+
+- Isolation tests pass on staging (D-033)
+- Hybrid search: **fixture suite, top-3, 100% pass on staging** (D-036)
+- Staging corpus: **synthetic only, AI/app-generated** (D-037)
+- Production: **manual smoke checklist** per persona after promote (D-038)
+- API + MCP healthy on staging
+- Staging sign-off before prod (D-011)
+
+### Per persona
+
+| Persona | MVP metric |
+|---------|------------|
+| Alba Dev (Ricardo) | Project context, decision lookup, coding standards from Git index |
+| Alba Texto (Gisele) | Non-clinical `gisele` search; no Ricardo workspace leakage |
+| Alba Casa | `casa` recipes/notes searchable |
+
+### Deferred (post-MVP metrics)
+
+- Clinical (Virtuologia, Meet, Patient-00N) — P9
+- Calendar, Tasks, Drive, contacts — P10–P12 (D-025 model; not MVP index)
+- Voice, writes — P8, P13–P14
