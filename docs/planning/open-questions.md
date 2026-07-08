@@ -15,6 +15,11 @@
 | #15-Q-005 | Never-index list | P1 (#15) | **Closed** — D-023 |
 | #15-Q-006 | RAG rebuild policy | P1 (#15) | **Closed** — D-024 |
 | #15-Q-007 | Calendar/Tasks personal + Casa shared model | P1 (#15) | **Closed** — D-025 |
+| #16-Q-002 | Gisele clinical pseudonym + auto-assign | P1 (#16) | **Closed** — D-026 |
+| #16-Q-003 | Clinical partition encryption at rest | P1 (#16) | **Closed** — D-027 |
+| #16-Q-004 | Clinical slice admission gates | P1 (#16) | **Closed** — D-028 |
+| #16-Q-005 | Clinical AI inference (cloud) | P1 (#16) | **Closed** — D-029 |
+| #16-Q-006 | Clinical retention & erasure | P1 (#16) | **Closed** — D-030 |
 | Q-002 | Obsidian vault topology — single vault vs multiple vaults | P2 | Open |
 | Q-003 | Hosting model — local Mac, homelab, cloud VM | P3 | Open |
 | Q-004 | Metadata store — SQLite MVP path to Postgres? | P2 | Open |
@@ -27,4 +32,4 @@
 | Q-011 | Alexa vs alternative voice assistant | P1 | Open |
 | Q-012 | Alba GitHub org timing and repo migration | P0/P1 | Open — repo public on rbonon; org TBD |
 
-**Next grilling:** issue **#16 — [Grill] P1 — Privacy, LGPD & sensitive content**
+**Next grilling:** issue **#17 — [Grill] P1 — MVP scope vs post-MVP**

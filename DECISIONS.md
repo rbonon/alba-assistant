@@ -314,6 +314,84 @@ in-flight P1 grilling.
 
 ---
 
+### Gisele clinical content — pseudonym model (#16 Q-002)
+
+**Decision:** Gated **post-MVP** clinical path in Alba with this obfuscation model:
+
+| Layer | Content |
+|-------|---------|
+| **RAG (gisele clinical partition)** | **Patient-001, Patient-002, …** only — de-identified session text |
+| **Obsidian (`gisele`)** | Full identity mapping (name, email, etc.) + full transcripts + Gisele's notes — canonical |
+| **Assignment** | **Auto on ingest** — match existing patient (Meet series, email, prior session) or assign next Patient-00N; Gisele does **not** pick numbers in normal flow |
+| **Corrections** | Gisele may split/merge patients or fix mapping in Obsidian when match is wrong |
+
+**Rationale:** Stronger than first-name-only; preserves Virtuologia analysis; mapping outside search index; low friction for Gisele.
+
+**Implications:**
+- Ingest pipeline transforms clinical paths before embed; raw PII never in RAG
+- Return consults match to existing Patient-00N automatically
+- Encryption and legal review — #16 Q-003+
+- No Alba patient-consent workflow (Q-001 direction)
+
+---
+
+### Clinical partition encryption (#16 Q-003)
+
+**Decision:** **Encryption at rest is required** before the Gisele **clinical slice** goes live (Option A). Clinical vectors + metadata use a **separate encryption key** from the family index; host disk encryption (FileVault/LUKS) alone is **not** sufficient.
+
+**Rationale:** Pseudonymization (D-026) and encryption address different threats; LGPD Art. 46 expects appropriate technical measures for sensitive health data.
+
+**Implications:**
+- Clinical slice blocked until app-level at-rest encryption is implemented and validated
+- TLS required in transit (baseline)
+
+---
+
+### Clinical slice admission gates (#16 Q-004)
+
+**Decision:** Lock all admission gates before Gisele clinical slice goes live:
+
+| Gate | Rule |
+|------|------|
+| **Timing** | **Post-MVP only** — not in MVP RAG (D-019) |
+| **Scope** | **`gisele` clinical partition only** — never `compartilhado`, `casa`, or Ricardo |
+| **Consent** | **No Alba patient-consent workflow** — Gisele imports her own Meet data under her accounts |
+| **Legal** | **Professional LGPD review required** before clinical slice go-live |
+
+**Rationale:** Clear go/no-go checklist; separates family MVP from sensitive health path.
+
+**Implications:**
+- Clinical slice is a distinct delivery increment with its own gate checklist
+- D-023 never-index exception for clinical only after these gates + D-027 encryption
+
+---
+
+### Clinical AI inference (#16 Q-005)
+
+**Decision:** Clinical slice AI (summaries, Virtuologia analysis) **may use cloud LLM APIs** (Option B — Claude/OpenAI etc.) with **de-identified Patient-00N text**.
+
+**Rationale:** User priority is maximum model quality and simplest path to AI benefits; pseudonymization (D-026) reduces but does not eliminate sensitive-data exposure to providers.
+
+**Implications:**
+- Prefer API terms with **no training** on customer data; document provider choice in P2/P3
+- Encryption at rest (D-027) and partition isolation still required
+- Legal review (D-028) must cover subprocessors / international transfer
+- Local-only inference may be added later as optional hardening — not default
+
+---
+
+### Clinical data retention & erasure (#16 Q-006)
+
+**Decision:** **Hard delete** (Option A) — when Gisele deletes a patient or session, remove from **Obsidian (canonical) and clinical RAG index**; index rebuild confirms removal. No soft-delete retention of clinical content by default.
+
+**Rationale:** LGPD erasure (right to deletion); provable removal for sensitive health data.
+
+**Implications:**
+- Delete API/workflow must cascade Obsidian notes + clinical vectors + metadata
+- Audit log may record *that* deletion occurred (not retained content)
+
+---
+
 ## TBD (resolve in grilling — do not implement assumptions)
 
 - Tech stack: SQLite vs Postgres path, vector DB, embedding model (P2)
