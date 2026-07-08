@@ -23,6 +23,8 @@
     <table><thead><tr><th>#</th><th>Topic</th><th>Decisions</th></tr></thead><tbody><tr><td>14</td><td>Users, workspaces &amp; personas</td><td>D-015–D-018</td></tr><tr><td>15</td><td>Canonical sources vs RAG</td><td>D-019–D-025</td></tr><tr><td>16</td><td>Privacy, LGPD &amp; sensitive content</td><td>D-026–D-030</td></tr><tr><td>17</td><td>MVP scope vs post-MVP</td><td>D-031–D-034</td></tr><tr><td>18</td><td>Success metrics per persona</td><td>D-035–D-038</td></tr></tbody></table>
     <p><strong>#18 highlights (D-035–D-038):</strong> MVP metrics = core + Ricardo + Gisele non-clinical + Casa search; staging fixture gate (top-3, 100%); synthetic AI/app-generated corpus; prod manual smoke. Calendar/Tasks/clinical/voice metrics <strong>deferred</strong>.</p>
     <p><strong>#19 highlights (D-039–D-045):</strong> Human memory = Drive/Docs + Git + optional Obsidian; <code>Root_*/Alba/</code> tree; poll + TTL searchability; Habilidades; ingest audit in DB + admin UI; Meet manual placement. Amends D-002, D-006, D-019.</p>
+    <h3>This session (2026-07-08, portal + canon sync)</h3>
+    <ul><li>Closed <strong>#19</strong> — <code>grill-p1-human-memory-requirements</code> merged (<code>f294cdc</code>)</li><li>Portal: generated <strong>phase-map</strong> + <strong>progress-report</strong> from live issues; open/closed cues on issue lines</li><li>Canon sync: <code>features.md</code>, <code>phases.md</code>, <code>product-vision.md</code>, <code>index.html</code> — Drive-first MVP (D-039–D-045); <code>features.html</code> now generated from <code>features.md</code></li><li>Confirmed: <strong>P2 leaves</strong> created after <strong>[Gate] P1</strong> (#30); <strong>`rbo-product-bootstrap` Step 1</strong> (inventory only) runs per <a href="./reminder-after-p1-gate.md">`reminder-after-p1-gate.md`</a></li></ul>
     <h3>Platform &amp; agent onboarding (earlier)</h3>
     <ul><li>REST-only doc refresh (<code>scripts/gen-docs.py</code>)</li><li>Portal pages synced with canon (<code>features.md</code>, phase map, progress)</li></ul>
     <hr />
@@ -36,11 +38,11 @@
     <p>See <a href="./board-hierarchy.md">`board-hierarchy.md`</a> and <a href="../../ROADMAP.md">`ROADMAP.md`</a>.</p>
     <hr />
     <h2>Next session — exact steps</h2>
-    <ol><li><strong>`rbo-catch-up`</strong> on <code>alba-assistant</code></li><li>Read <strong>`STATUS.md`</strong> and this handoff</li><li><strong>`rbo-create-change`</strong> on <strong>#20 — [Grill] P1 — Git memory requirements</strong></li><li><strong>`rbo-grilling`</strong> — one question at a time</li><li>Continue #21–#25, then spec leaves #26–#28</li><li>Close <strong>#30</strong> only when spec is approved</li></ol>
+    <ol><li><strong>`rbo-catch-up`</strong> on <code>alba-assistant</code></li><li>Read <strong>`STATUS.md`</strong> and this handoff</li><li><strong>`rbo-create-change`</strong> on <strong>#20 — [Grill] P1 — Git memory requirements</strong></li><li><strong>`rbo-grilling`</strong> — one question at a time</li><li>Continue #21–#25, then spec leaves #26–#28</li><li>Close <strong>#30</strong> only when spec is approved</li><li>After <strong>#30</strong>: run <a href="./reminder-after-p1-gate.md">`reminder-after-p1-gate.md`</a> (<code>rbo-product-bootstrap</code> Step 1 — inventory only)</li><li>Then <strong>leaf out P2</strong> (propose leaves → OK → create issues) under epic <strong>#3</strong></li></ol>
     <p><strong>Do not:</strong> runtime code, skip gates, direct-to-main leaf commits.</p>
     <hr />
     <h2>Key commits on main (recent)</h2>
-    <table><thead><tr><th>Commit</th><th>Summary</th></tr></thead><tbody><tr><td><code>9fef67d</code></td><td>Session-start directive in AGENTS.md + CLAUDE.md</td></tr><tr><td><code>7e0882f</code></td><td>ROADMAP refresh after #18</td></tr><tr><td><code>feede3e</code></td><td>merge #18 — success metrics (D-035–D-038)</td></tr></tbody></table>
+    <table><thead><tr><th>Commit</th><th>Summary</th></tr></thead><tbody><tr><td><code>6ffa75e</code></td><td>Canon sync after #19 — features, phases, product-vision, portal home</td></tr><tr><td><code>769953c</code></td><td>Portal — status marks right column, icon-only</td></tr><tr><td><code>af49518</code></td><td>Portal — phase map + progress issue cues</td></tr><tr><td><code>f294cdc</code></td><td>merge #19 — human memory requirements (D-039–D-045)</td></tr></tbody></table>
     <hr />
     <h2>Architecture invariants (do not violate)</h2>
     <pre><code>
@@ -55,7 +57,7 @@
     <h2>Doc index for agents</h2>
     <table><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><a href="../../AGENTS.md">`AGENTS.md`</a></td><td>Global + repo rules — <strong>mandates reading this handoff at session start</strong></td></tr><tr><td><a href="../../CLAUDE.md">`CLAUDE.md`</a></td><td>Claude context — same session-start rule</td></tr><tr><td><a href="../../STATUS.md">`STATUS.md`</a></td><td>Session compass</td></tr><tr><td><a href="../../DECISIONS.md">`DECISIONS.md`</a></td><td>Append-only decision log</td></tr><tr><td><a href="./features.md">`docs/planning/features.md`</a></td><td>MVP scope + success metrics</td></tr><tr><td><a href="./open-questions.md">`docs/planning/open-questions.md`</a></td><td>Grilling backlog</td></tr><tr><td><a href="./decisions.md">`docs/planning/decisions.md`</a></td><td>Planning mirror of decisions</td></tr></tbody></table>
     <hr />
-    <p><strong>Handoff author:</strong> Cursor session 2026-07-08 (agent onboarding + post #18)</p>
+    <p><strong>Handoff author:</strong> Cursor session 2026-07-08 (#19 close + portal/canon sync)</p>
     <p class="source-note doc-footer">Markdown source: <a href="https://github.com/rbonon/alba-assistant/blob/main/docs/planning/session-handoff.md">session-handoff.md</a></p>
   </main>
   <script>

@@ -35,6 +35,13 @@
 
 **#19 highlights (D-039–D-045):** Human memory = Drive/Docs + Git + optional Obsidian; `Root_*/Alba/` tree; poll + TTL searchability; Habilidades; ingest audit in DB + admin UI; Meet manual placement. Amends D-002, D-006, D-019.
 
+### This session (2026-07-08, portal + canon sync)
+
+- Closed **#19** — `grill-p1-human-memory-requirements` merged (`f294cdc`)
+- Portal: generated **phase-map** + **progress-report** from live issues; open/closed cues on issue lines
+- Canon sync: `features.md`, `phases.md`, `product-vision.md`, `index.html` — Drive-first MVP (D-039–D-045); `features.html` now generated from `features.md`
+- Confirmed: **P2 leaves** created after **[Gate] P1** (#30); **`rbo-product-bootstrap` Step 1** (inventory only) runs per [`reminder-after-p1-gate.md`](./reminder-after-p1-gate.md)
+
 ### Platform & agent onboarding (earlier)
 
 - REST-only doc refresh (`scripts/gen-docs.py`)
@@ -86,6 +93,8 @@ See [`board-hierarchy.md`](./board-hierarchy.md) and [`ROADMAP.md`](../../ROADMA
 4. **`rbo-grilling`** — one question at a time
 5. Continue #21–#25, then spec leaves #26–#28
 6. Close **#30** only when spec is approved
+7. After **#30**: run [`reminder-after-p1-gate.md`](./reminder-after-p1-gate.md) (`rbo-product-bootstrap` Step 1 — inventory only)
+8. Then **leaf out P2** (propose leaves → OK → create issues) under epic **#3**
 
 **Do not:** runtime code, skip gates, direct-to-main leaf commits.
 
@@ -95,9 +104,10 @@ See [`board-hierarchy.md`](./board-hierarchy.md) and [`ROADMAP.md`](../../ROADMA
 
 | Commit | Summary |
 |--------|---------|
-| `9fef67d` | Session-start directive in AGENTS.md + CLAUDE.md |
-| `7e0882f` | ROADMAP refresh after #18 |
-| `feede3e` | merge #18 — success metrics (D-035–D-038) |
+| `6ffa75e` | Canon sync after #19 — features, phases, product-vision, portal home |
+| `769953c` | Portal — status marks right column, icon-only |
+| `af49518` | Portal — phase map + progress issue cues |
+| `f294cdc` | merge #19 — human memory requirements (D-039–D-045) |
 
 ---
 
@@ -128,4 +138,4 @@ No runtime implementation until [Gate] P5
 
 ---
 
-**Handoff author:** Cursor session 2026-07-08 (agent onboarding + post #18)
+**Handoff author:** Cursor session 2026-07-08 (#19 close + portal/canon sync)

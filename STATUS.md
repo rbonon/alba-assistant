@@ -1,6 +1,6 @@
 # STATUS — Alba Context Assistant
 
-**Updated:** 2026-07-08 (#19 closed — D-039–D-045)  
+**Updated:** 2026-07-08 (portal + canon sync; #19 closed D-039–D-045)  
 **Current phase:** **P1** — Requirements & spec v1  
 **Portal:** https://rbonon.github.io/alba-assistant/
 
