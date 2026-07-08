@@ -18,7 +18,7 @@
 | **Ingest audit** | Central log in metadata DB; admin UI + CLI (Ricardo) | Staging + production |
 | **Retrieval** | Hybrid search + rerank; TTL-gated `searchable` flag | Yes |
 | **API** | HTTP endpoints | `/memory/search`, health, `/admin/ingest` |
-| **MCP** | Cursor / Claude / ChatGPT tools | Read-only tools first |
+| **MCP** | Cursor / Claude / ChatGPT tools | Five read-only tools (D-053); IDE MCP + chat API mirror (D-056) |
 | **Metadata store** | Document/chunk registry + ingest_events | SQLite (TBD) |
 | **Vector store** | Embeddings index | LanceDB or Chroma (TBD) |
 

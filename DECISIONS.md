@@ -745,6 +745,44 @@ New repos require an allowlist add before indexing. Config format and credential
 
 ---
 
+## P1 grilling — MCP client requirements (#21, 2026-07-08)
+
+### MVP client priority (#21-Q-001)
+
+**Decision:** All three client paths **required at MVP go-live**. **Build/validation order:** (1) Cursor MCP — Ricardo/Alba Dev; (2) Claude Code MCP — Ricardo/Alba Dev; (3) ChatGPT/Claude chat — Ricardo + Gisele/Alba Texto + Casa. Chat may use HTTP API mirror (#21-Q-005). Staging must prove all three before prod (D-035, D-038).
+
+---
+
+### MVP MCP tool catalog (#21-Q-002)
+
+**Decision:** Five **read-only** tools at MVP: `search_memory`, `get_decisions`, `get_project_context`, `list_workspaces`, `get_habilidade`. No `write_*`, `admin_*`, or raw file dumps. Writes P8; ingest audit via admin UI/CLI (D-042).
+
+---
+
+### Auth at client boundary (#21-Q-003)
+
+**Decision:** **Per-user API token** at MVP (mechanism P2 Q-008). Server derives identity, persona (D-017), and workspaces (D-016) from token — **never trust client `user_id`**. Artur token staging-only (D-034). Post-MVP: OAuth upgrade path.
+
+---
+
+### Workspace enforcement (#21-Q-004)
+
+**Decision:** **Server-only** D-016 enforcement on every MCP/API path. Optional `workspace` param narrows within allowed set; overreach → error. Omitted → search all allowed workspaces. D-033 tests cover all tools + API mirror.
+
+---
+
+### Chat vs IDE transport (#21-Q-005)
+
+**Decision:** IDE → native **MCP**; Chat → **HTTP API mirror** of same five-tool contract. Optional native MCP in chat clients post-MVP. D-021: ephemeral chat threads; one schema, two transports.
+
+---
+
+### Staging vs production client config (#21-Q-006)
+
+**Decision:** Separate staging/prod Alba URLs. Staging: Ricardo + Artur tokens, synthetic index (D-037), all three client paths validated. Production: Ricardo + Gisele tokens only; Artur disabled at go-live. No Gisele credentials in non-prod.
+
+---
+
 ## TBD (resolve in grilling — do not implement assumptions)
 
 - Tech stack: SQLite vs Postgres path, vector DB, embedding model (P2)

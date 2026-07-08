@@ -57,6 +57,12 @@
 | D-049 | **Git exclusions** — extend D-023; lockfiles, agent dirs, binaries, 1 MB cap (#20 Q-004) |
 | D-050 | **Git secret scan** — HEAD only; skip file; `*.example` exempt (#20 Q-005) |
 | D-051 | **Ideas/habilidades in Git** — amends D-021/D-022; D-043 unchanged (#20 Q-006) |
+| D-052 | **MCP client priority** — Cursor → Claude Code → chat; all required at go-live (#21 Q-001) |
+| D-053 | **MCP tools** — five read-only: search, decisions, project, list_workspaces, get_habilidade (#21 Q-002) |
+| D-054 | **MCP auth** — per-user token at MVP; server derives RBAC; OAuth upgrade path (#21 Q-003) |
+| D-055 | **MCP workspace enforcement** — server-only; optional param narrows within allowed (#21 Q-004) |
+| D-056 | **MCP transport** — IDE native MCP; chat HTTP API mirror (#21 Q-005) |
+| D-057 | **MCP staging/prod** — separate URLs; Artur staging; Ricardo+Gisele prod (#21 Q-006) |
 
 ## Session (2026-07-08)
 
@@ -74,6 +80,7 @@
 - **#18 closed** on main (`feede3e`) — D-035–D-038
 - **#19 grilling applied** — D-039–D-045; Drive at MVP; human validation → `rbo-close-change`
 - **#20 grilling complete** — D-046–D-051; amends D-021/D-022; ready for validation → `rbo-close-change`
+- **#21 grilling complete** — D-052–D-057; ready for validation → `rbo-close-change`
 
 ## Session (2026-07-07)
 

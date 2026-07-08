@@ -47,10 +47,16 @@
 | Q-005 | Vector store — LanceDB vs Chroma vs Qdrant | P2 | Open |
 | Q-006 | Embedding provider & model | P2 | Open |
 | Q-007 | Ingestion trigger — file watch vs cron vs manual | P2 | **Partial** — see D-042 |
-| Q-008 | Auth model for API/MCP (MVP vs staging/prod) | P2/P3 | Open |
+| #21-Q-001 | MVP MCP client priority (validate Cursor → Claude Code → chat) | P1 (#21) | **Closed** — D-052 |
+| #21-Q-002 | MVP MCP tool catalog (five read-only tools) | P1 (#21) | **Closed** — D-053 |
+| #21-Q-003 | Auth at client boundary (per-user token) | P1 (#21) | **Closed** — D-054 |
+| #21-Q-004 | Workspace enforcement (server authority) | P1 (#21) | **Closed** — D-055 |
+| #21-Q-005 | Chat vs IDE (MCP + API mirror) | P1 (#21) | **Closed** — D-056 |
+| #21-Q-006 | Staging vs production client config | P1 (#21) | **Closed** — D-057 |
+| Q-008 | Auth model for API/MCP — token format, storage, rotation (mechanism) | P2/P3 | Open — requirements locked D-054 (#21) |
 | Q-009 | Google Calendar scope (read-only MVP of integration) | P1 | Open |
 | Q-010 | Tasks provider — Google Tasks vs Todoist | P1 | Open |
 | Q-011 | Alexa vs alternative voice assistant | P1 | Open |
 | Q-012 | Alba GitHub org timing and repo migration | P0/P1 | Open — repo public on rbonon; org TBD |
 
-**Next grilling:** issue **#21 — [Grill] P1 — MCP client requirements**
+**Next grilling:** issue **#22 — [Grill] P1 — Google Calendar scope**

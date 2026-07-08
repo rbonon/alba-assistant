@@ -16,7 +16,7 @@
 | Casa / shared search | Recipes and family notes in `casa` / `compartilhado` searchable | Drive `Root_Casa/Alba/` |
 | Multi-user production | Ricardo + Gisele day one; workspace isolation | D-015, D-016 |
 | HTTP API | `/memory/search`, health, admin ingest log | Alba API |
-| MCP tools | `search_memory`, `get_decisions`, `get_project_context` | MCP server |
+| MCP tools | `search_memory`, `get_decisions`, `get_project_context`, `list_workspaces`, `get_habilidade` (D-053) | MCP server + API mirror (D-056) |
 | Chat UI | ChatGPT/Claude as client surface (ephemeral threads D-021) | API/MCP |
 | Ingest audit | DB log + admin UI/CLI for Ricardo (staging + prod) | D-042 |
 | Staging → production | Controlled promotion from staging | All MVP components |
