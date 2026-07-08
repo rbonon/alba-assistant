@@ -257,6 +257,13 @@ Update `AGENTS.md` Milestone and relevant sections. Do not wait to be asked.
 
 # Repo-specific — alba-assistant
 
+## Session start (read first)
+
+**At the start of any session — and whenever `rbo-catch-up` runs — read
+[`docs/planning/session-handoff.md`](docs/planning/session-handoff.md) before
+recommending or doing anything.** It is the session baton: current state, issue
+map, and the exact next step. Do not wait to be told; open it automatically.
+
 ## What this repo is
 
 **Alba Context Assistant** — a personal/family context platform that indexes Obsidian notes and Git repositories into a regenerable RAG layer, exposed via HTTP API and MCP. Canonical human memory lives in Obsidian; technical truth in Git; RAG is never primary storage.
@@ -284,6 +291,7 @@ alba-assistant/
 
 ## Key files
 
+- `docs/planning/session-handoff.md` — **session baton** (read first each session)
 - `docs/vision/alba-context-assistant-handoff.md` — vision input (Portuguese)
 - `docs/planning/README.md` — planning index
 - `docs/planning/phases.md` — P0–P14 sequencing
@@ -327,7 +335,7 @@ See `docs/planning/architecture.md` and `DECISIONS.md`:
 
 ## Working with this repo
 
-- Read `DECISIONS.md` and `STATUS.md` before significant work
+- Read **`docs/planning/session-handoff.md`** at session start (see above), then `DECISIONS.md` and `STATUS.md` before significant work
 - Update planning docs and portal as phases complete
 - Run refresh scripts after board changes
 - Step-by-step with the user; no rushing phases

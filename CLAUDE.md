@@ -3,6 +3,13 @@
 
 @AGENTS.md
 
+## Session start (read first)
+
+**At the start of any session — and whenever `rbo-catch-up` runs — read
+[`docs/planning/session-handoff.md`](docs/planning/session-handoff.md) before
+recommending or doing anything.** It is the session baton: current state, issue
+map, and the exact next step. Do not wait to be told; open it automatically.
+
 ## Why
 
 Ricardo and family need a context assistant that preserves research, decisions, code patterns, recipes, and project knowledge across AI sessions — without losing data in chat history or duplicating Git in Obsidian.
@@ -24,4 +31,4 @@ Stack TBD in P2. Integrations: Obsidian, Git, MCP (MVP); Calendar, Tasks, Drive,
 
 **Current:** P1 — Requirements & spec v1. P0 complete (gate #13 closed).
 
-**Next:** `rbo-create-change` on **#19 — [Grill] P1 — Obsidian requirements**. #14–#18 closed (D-015–D-038). See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
+**Next:** `rbo-create-change` on **#19 — [Grill] P1 — Obsidian requirements**. #14–#18 closed (D-015–D-038). Full handoff (read at session start): [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
