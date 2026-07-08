@@ -33,7 +33,12 @@
 
 **#18 highlights (D-035–D-038):** MVP metrics = core + Ricardo + Gisele non-clinical + Casa search; staging fixture gate (top-3, 100%); synthetic AI/app-generated corpus; prod manual smoke. Calendar/Tasks/clinical/voice metrics **deferred**.
 
-### Platform
+### Platform & agent onboarding (this session)
+
+- **`AGENTS.md` + `CLAUDE.md`** — explicit **Session start (read first)** block: agents must open this handoff (and `rbo-catch-up` must too) without the user asking (`9fef67d`, pushed)
+- **Cross-repo (dotfiles `daf7713`):** `setup_ai` generates `~/.cursor/rules/global-behavioral-rules.mdc` and mirrors skills to `~/.cursor/skills/` — machine-global Cursor config; no product impact here
+
+### Platform (earlier)
 
 - REST-only doc refresh (`scripts/gen-docs.py`)
 - Portal pages synced with canon (`features.md`, phase map, progress)
@@ -92,9 +97,9 @@ See [`board-hierarchy.md`](./board-hierarchy.md) and [`ROADMAP.md`](../../ROADMA
 
 | Commit | Summary |
 |--------|---------|
+| `9fef67d` | Session-start directive in AGENTS.md + CLAUDE.md |
 | `7e0882f` | ROADMAP refresh after #18 |
 | `feede3e` | merge #18 — success metrics (D-035–D-038) |
-| `17bd5c2` | merge #17 — MVP scope (D-031–D-034) |
 
 ---
 
@@ -115,7 +120,8 @@ No runtime implementation until [Gate] P5
 
 | File | Role |
 |------|------|
-| [`AGENTS.md`](../../AGENTS.md) | Global + repo rules |
+| [`AGENTS.md`](../../AGENTS.md) | Global + repo rules — **mandates reading this handoff at session start** |
+| [`CLAUDE.md`](../../CLAUDE.md) | Claude context — same session-start rule |
 | [`STATUS.md`](../../STATUS.md) | Session compass |
 | [`DECISIONS.md`](../../DECISIONS.md) | Append-only decision log |
 | [`docs/planning/features.md`](./features.md) | MVP scope + success metrics |
@@ -124,4 +130,4 @@ No runtime implementation until [Gate] P5
 
 ---
 
-**Handoff author:** Cursor session 2026-07-08 (post #18 close)
+**Handoff author:** Cursor session 2026-07-08 (agent onboarding + post #18)
