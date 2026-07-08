@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alba — Architecture overview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/portal.css" />
+  <style>
+    .doc-body { max-width: 820px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    pre { background: var(--bg); padding: 1rem; border-radius: 8px; font-size: 0.82rem; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <div class="toolbar"><div class="brand"><a href="../index.html">← Alba Docs</a></div></div>
+  <main class="doc-body">
+    <h1 style="font-size:1.5rem;color:var(--navy)">Architecture overview</h1>
+    <p class="notice" style="margin-top:1rem"><strong>P2 deliverable.</strong> This page will expand after architecture grilling. Source: <a href="./architecture.md">architecture.md</a></p>
+
+    <h2 style="font-size:1.1rem;color:var(--navy);margin:1.5rem 0 0.75rem">Target shape (from vision)</h2>
+    <pre>Clients (Cursor, Claude, apps, voice)
+        ↓
+Alba API / MCP  — auth, workspace, personas, tools
+        ↓
+RAG layer  — hybrid search, filters, rerank
+        ↓
+Canonical sources
+  Obsidian · Git · Calendar · Tasks · Drive</pre>
+
+    <h2 style="font-size:1.1rem;color:var(--navy);margin:1.5rem 0 0.75rem">Environments</h2>
+    <p>Staging and production parity matrix — defined in <strong>P3</strong> → <code>docs/architecture/environments.md</code>.</p>
+
+    <p style="margin-top:1.5rem"><a href="./modules.md">Modules &amp; integrations →</a></p>
+  </main>
+</body>
+</html>

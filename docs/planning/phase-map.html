@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alba — Phase map</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/portal.css" />
+  <style>
+    .wrap { max-width: 920px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    .gate-chip {
+      display: inline-block; margin: 0.5rem 0 1rem;
+      background: #fdf6e9; border: 1px solid #f0d9a8; color: #8a5a12;
+      font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 8px;
+    }
+    h2 { font-size: 1rem; color: var(--navy); margin: 1.5rem 0 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="toolbar"><div class="brand"><a href="../index.html">← Alba Docs</a></div></div>
+  <main class="wrap">
+    <h1 style="font-size:1.5rem;color:var(--navy)">Phase map</h1>
+    <p style="color:var(--muted);margin:0.5rem 0 1rem">Source: <a href="./phases.md">phases.md</a>. <span class="badge badge-progress">Current: P0</span></p>
+
+    <h2>Planning (no code)</h2>
+    <div class="phase-track">
+      <div class="phase-node current"><div class="num">P0</div><div class="label">Foundation</div></div>
+      <div class="phase-node future"><div class="num">P1</div><div class="label">Spec</div></div>
+      <div class="phase-node future"><div class="num">P2</div><div class="label">Architecture</div></div>
+      <div class="phase-node future"><div class="num">P3</div><div class="label">Environments</div></div>
+      <div class="phase-node future"><div class="num">P4</div><div class="label">Operations</div></div>
+      <div class="phase-node future"><div class="num">P5</div><div class="label">Roadmap</div></div>
+    </div>
+    <div class="gate-chip">Gate after each phase — human approval required</div>
+
+    <h2>Delivery (OpenSpec)</h2>
+    <div class="phase-track">
+      <div class="phase-node future"><div class="num">P6</div><div class="label">MVP index</div></div>
+      <div class="phase-node future"><div class="num">P7</div><div class="label">API+MCP</div></div>
+      <div class="phase-node future"><div class="num">P8–P9</div><div class="label">Writes+Users</div></div>
+      <div class="phase-node future"><div class="num">P10–P14</div><div class="label">Integrations</div></div>
+    </div>
+    <p style="margin-top:1rem;color:var(--muted);font-size:0.88rem">MVP go-live marker at end of <strong>P7</strong> (staging → production).</p>
+  </main>
+</body>
+</html>
