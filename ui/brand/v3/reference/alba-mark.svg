@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Alba Simplified Mark Starter</title>
+  <path d="M146 226 A110 88 0 0 1 366 226"
+        stroke="#E8950A"
+        stroke-width="32"
+        stroke-linecap="round"/>
+  <path d="M190 342 L256 164 L322 342"
+        stroke="#101828"
+        stroke-width="42"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+  <path d="M222 275 L290 275"
+        stroke="#101828"
+        stroke-width="30"
+        stroke-linecap="round"/>
+  <path d="M166 360 C208 340 304 340 346 360"
+        stroke="#E8950A"
+        stroke-width="20"
+        stroke-linecap="round"/>
+</svg>

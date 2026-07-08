@@ -1,0 +1,113 @@
+{
+  "$comment": "Alba v3 — reconciled design system. Source of truth = SHIPPED (app/globals.css + the approved staging-layout-v75 mock). Structure inherited from the v2 GPT design-system files; every value conflict resolved in favor of what is live in production. See README.md for the full reconciliation rationale. v2/ is preserved untouched as the original concept.",
+  "brand": {
+    "name": "Alba",
+    "direction": "Rising Halo — Simplified",
+    "tagline": "Clarity at dawn. Productivity all day.",
+    "description": "A calm, intelligent AI assistant suite that helps organize, create, and accomplish with clarity."
+  },
+  "fonts": {
+    "display": {
+      "family": "Playfair Display",
+      "fallback": "Georgia, serif",
+      "cssVar": "--font-display",
+      "usage": ["Alba wordmark", "hero/landing titles", "brand moments"]
+    },
+    "body": {
+      "family": "Inter",
+      "fallback": "Arial, Helvetica, sans-serif",
+      "cssVar": "--font-inter",
+      "usage": ["all UI", "navigation", "buttons", "labels", "tables", "body copy"]
+    },
+    "mono": {
+      "family": "Geist Mono",
+      "cssVar": "--font-mono",
+      "usage": ["code", "keyboard shortcuts (kbd)"]
+    }
+  },
+  "$typeNote": "Shipped uses a compact UI scale, overriding the GPT spec's larger marketing sizes. Values below are the actual sizes from staging-layout-v75.",
+  "type": {
+    "wordmark_alba": { "size": 38, "weight": 500, "font": "display" },
+    "wordmark_product": { "size": 22, "weight": 500, "font": "body" },
+    "page_title": { "size": 17, "weight": 500 },
+    "card_title": { "size": 14, "weight": 600 },
+    "body": { "size": 13, "weight": 400 },
+    "label": { "size": 12, "weight": 500 },
+    "caption": { "size": 11, "weight": 500 },
+    "micro": { "size": 9, "weight": 600 }
+  },
+  "colors": {
+    "$note": "Authoritative = app/globals.css. light + dark are 1:1 with the live CSS custom properties.",
+    "light": {
+      "bg": "#F0EDE8",
+      "card": "#FFFFFF",
+      "border": "#E8EAED",
+      "accent": "#E8950A",
+      "foreground": "#101828",
+      "text_primary": "#101828",
+      "text_secondary": "#6B7280",
+      "text_muted": "#9AA0AC",
+      "text_faint": "#C8CDD8"
+    },
+    "dark": {
+      "bg": "#1B1916",
+      "card": "#242220",
+      "border": "#38332E",
+      "accent": "#F0A52E",
+      "foreground": "#F3F1ED",
+      "text_primary": "#E6E0D7",
+      "text_secondary": "#C5C0B8",
+      "text_muted": "#A39E96",
+      "text_faint": "#6E6A63"
+    }
+  },
+  "semantic": {
+    "$note": "Functional UI colors taken from the approved staging-layout-v75 mock. Shipped's success green (#4CB783) wins over the GPT spec's #35A66F.",
+    "success": "#4CB783",
+    "success_on": "#FFFFFF",
+    "warning_text": "#92400E",
+    "warning_bg": "#FEF3C7",
+    "warning_border": "#FDE68A",
+    "warning_dark_text": "#FBBF54",
+    "warning_dark_bg": "#3A2A0C",
+    "warning_dark_border": "#6B4F1E",
+    "accent_chip_bg": "#FFF4E6",
+    "accent_chip_border": "#FDD09A",
+    "badge_bg": "#FFC98A",
+    "badge_text": "#7A4A00",
+    "danger": "#DC2626",
+    "danger_soft": "#FCA5A5",
+    "highlight_bg": "#FEF3C7",
+    "highlight_text": "#92400E"
+  },
+  "products": {
+    "$note": "Per-skill accent system for the Alba suite (used by the app-auth skills selector). Docs is reconciled to the SHIPPED accent; the others remain GPT placeholders until those skills ship and get tuned.",
+    "docs": { "accent": "#E8950A", "accent_dark": "#F0A52E", "descriptor": "Documents organized and clear.", "shipped": true },
+    "photos": { "accent": "#8E6DE5", "descriptor": "Memories beautifully organized.", "shipped": false },
+    "expenses": { "accent": "#35A66F", "descriptor": "Track, understand, stay in control.", "shipped": false },
+    "virtuo": { "accent": "#5F8FEF", "descriptor": "Guided processing and clarity.", "shipped": false }
+  },
+  "radii": {
+    "$note": "Scale derived from actual shipped usage, overriding the GPT 6/10/16/24/32 scale. Tailwind v4 named radii resolve to 0px here, so these ship as explicit px (see DECISIONS.md 2026-06-16).",
+    "xs": 4,
+    "sm": 6,
+    "md": 8,
+    "lg": 10,
+    "xl": 12,
+    "pill": 50,
+    "circle": 9999
+  },
+  "shadows": {
+    "$note": "Shipped's tighter elevation, overriding the GPT soft-shadow spec.",
+    "nav": "0 1px 3px rgba(0,0,0,0.07)",
+    "sm": "0 2px 8px rgba(0,0,0,0.08)",
+    "dropdown": "0 4px 20px rgba(16,24,40,0.08)",
+    "dropdown_strong": "0 4px 20px rgba(16,24,40,0.10)",
+    "modal": "0 16px 48px rgba(16,24,40,0.20)",
+    "focus_ring": "0 0 0 3px rgba(232,149,10,0.10)"
+  },
+  "spacing": {
+    "$note": "Common inset/gap steps observed in shipped components (px). Not yet enforced as tokens in code.",
+    "1": 4, "2": 6, "3": 8, "4": 10, "5": 12, "6": 14, "7": 16, "8": 20, "9": 22, "10": 28
+  }
+}

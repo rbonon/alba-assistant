@@ -1,0 +1,150 @@
+/*
+ * Alba v3 — reconciled design tokens as CSS custom properties.
+ *
+ * Source of truth = SHIPPED. The :root / .dark color blocks below are 1:1 with
+ * app/globals.css — keep them in sync.
+ *
+ * Updated during the `tokenization` change to include all tokens discovered
+ * in the full audit (confidence badges, row states, button states, text variants).
+ */
+
+:root {
+  color-scheme: light;
+
+  /* --- base --- */
+  --bg: #F0EDE8;
+  --card: #FFFFFF;
+  --border: #E8EAED;
+  --accent: #E8950A;
+  --foreground: #101828;
+  --text-primary: #101828;
+  --text-secondary: #6B7280;
+  --text-muted: #9AA0AC;
+  --text-faint: #C8CDD8;
+
+  /* --- text variants --- */
+  --text-body: #6B7280;        /* document row body text; same as secondary in light, diverges in dark */
+  --text-interactive: #374151; /* sidebar inactive nav, table header hover, search input */
+  --text-body-hover: #374151;  /* document description hover; same light as interactive, different dark */
+
+  /* --- product accents (skills selector) --- */
+  --accent-docs: #E8950A;
+  --accent-photos: #8E6DE5;
+  --accent-expenses: #35A66F;
+  --accent-virtuo: #5F8FEF;
+
+  /* --- semantic --- */
+  --success: #4CB783;
+  --danger: #DC2626;
+  --warning-text: #92400E;
+  --warning-bg: #FEF3C7;
+  --warning-border: #FDE68A;
+
+  /* --- confidence badges --- */
+  --badge-confidence-high-bg: #DCFCE7;
+  --badge-confidence-high-text: #166534;
+  --badge-confidence-low-bg: #FEE2E2;
+  --badge-confidence-low-text: #991B1B;
+  /* mid confidence reuses warning tokens: --warning-bg / --warning-text */
+
+  /* --- row states --- */
+  --row-flagged-bg: #FFFBF2;
+  --row-flagged-hover: #FFF6E6;
+  --row-hover: #F5F3F0;
+  --row-border: #F7F8F9;       /* hairline row separator */
+  --table-header-border: #F3F4F6;
+
+  /* --- chip / pagination active --- */
+  --chip-active-bg: #FFF4E6;
+  --chip-active-border: #FDD09A;
+
+  /* --- queue / role badge --- */
+  --badge-bg: #FFC98A;
+  --badge-text: #7A4A00;
+
+  /* --- button states --- */
+  --btn-border: #D1D5DB;
+  --btn-border-hover: #C8CDD8;
+  --btn-discard-hover-bg: #FFF5F5;
+  --btn-discard-hover-border: #FCA5A5;
+  --btn-discard-hover-text: #DC2626;
+
+  /* --- misc --- */
+  --checkbox-border: #E0E2E6;
+
+  /* --- radii --- */
+  --radius-highlight: 2px;   /* search mark highlight */
+  --radius-checkbox: 3px;
+  --radius-xs: 4px;
+  --radius-kbd: 5px;         /* kbd elements */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-pill: 50px;
+
+  /* --- shadows --- */
+  --shadow-nav: 0 1px 3px rgba(0,0,0,0.07);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-dropdown: 0 4px 20px rgba(16,24,40,0.08);
+  --shadow-modal: 0 16px 48px rgba(16,24,40,0.20);
+  --shadow-focus: 0 0 0 3px rgba(232,149,10,0.10);
+
+  /* --- type families --- */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-inter: "Inter", Arial, Helvetica, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* --- base --- */
+  --bg: #1B1916;
+  --card: #242220;
+  --border: #38332E;
+  --accent: #F0A52E;
+  --foreground: #F3F1ED;
+  --text-primary: #E6E0D7;
+  --text-secondary: #C5C0B8;
+  --text-muted: #A39E96;
+  --text-faint: #6E6A63;
+
+  /* --- text variants --- */
+  --text-body: #C9C3BA;
+  --text-interactive: #D1CCC4;
+  --text-body-hover: #E5E1DA;
+
+  /* --- product accents --- */
+  --accent-docs: #F0A52E;
+
+  /* --- semantic --- */
+  --success: #3F9D6E;
+  --warning-text: #FBBF54;
+  --warning-bg: #3A2A0C;
+  --warning-border: #6B4F1E;
+
+  /* --- confidence badges --- */
+  --badge-confidence-high-bg: #16301F;
+  --badge-confidence-high-text: #6EE7A8;
+  --badge-confidence-low-bg: #3A1414;
+  --badge-confidence-low-text: #FB7185;
+
+  /* --- row states --- */
+  --row-flagged-bg: #2E2613;
+  --row-flagged-hover: #362C16;
+  --row-hover: #2A2724;
+  --row-border: #312D29;
+  --table-header-border: #312D29;
+
+  /* --- chip / pagination active --- */
+  --chip-active-bg: #3A2F18;
+  --chip-active-border: #6B4F1E;
+
+  /* --- button states --- */
+  --btn-border: #44403A;
+  --btn-border-hover: #57524A;
+  --btn-discard-hover-bg: #3A1A1A;
+  --btn-discard-hover-border: #5C2A2A;
+  --btn-discard-hover-text: #F3A0A0;
+}

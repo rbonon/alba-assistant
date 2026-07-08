@@ -1,0 +1,253 @@
+{
+  "figma_file": "Alba \u2014 Rising Halo Simplified \u2014 Production Rebuild",
+  "production_frames": {
+    "desktop_brand_board": {
+      "size": {
+        "width": 1920,
+        "height": 1440
+      },
+      "background": "#F0EDE8",
+      "grid": {
+        "columns": 12,
+        "margin": 72,
+        "gutter": 24,
+        "column_width": 126
+      },
+      "sections": {
+        "concept_intro": {
+          "x": 72,
+          "y": 64,
+          "w": 480,
+          "h": 360
+        },
+        "master_logo_light": {
+          "x": 600,
+          "y": 64,
+          "w": 560,
+          "h": 360
+        },
+        "master_logo_dark": {
+          "x": 1208,
+          "y": 64,
+          "w": 640,
+          "h": 360
+        },
+        "app_icon_variations": {
+          "x": 72,
+          "y": 456,
+          "w": 520,
+          "h": 220
+        },
+        "color_palette": {
+          "x": 624,
+          "y": 456,
+          "w": 640,
+          "h": 220
+        },
+        "typography": {
+          "x": 1296,
+          "y": 456,
+          "w": 552,
+          "h": 220
+        },
+        "sub_brand_system": {
+          "x": 72,
+          "y": 708,
+          "w": 1230,
+          "h": 240
+        },
+        "why_this_works": {
+          "x": 1334,
+          "y": 708,
+          "w": 514,
+          "h": 240
+        },
+        "web_preview": {
+          "x": 72,
+          "y": 980,
+          "w": 760,
+          "h": 300
+        },
+        "dashboard_preview": {
+          "x": 856,
+          "y": 980,
+          "w": 600,
+          "h": 300
+        },
+        "brand_applications": {
+          "x": 1480,
+          "y": 980,
+          "w": 368,
+          "h": 300
+        },
+        "values_strip": {
+          "x": 72,
+          "y": 1312,
+          "w": 1776,
+          "h": 88
+        }
+      }
+    },
+    "mobile_ui_board": {
+      "size": {
+        "width": 1920,
+        "height": 1440
+      },
+      "background": "#F0EDE8",
+      "grid": {
+        "columns": 12,
+        "margin": 72,
+        "gutter": 24,
+        "column_width": 126
+      },
+      "sections": {
+        "brand_lockup": {
+          "x": 72,
+          "y": 56,
+          "w": 360,
+          "h": 180
+        },
+        "mobile_title_block": {
+          "x": 480,
+          "y": 56,
+          "w": 520,
+          "h": 180
+        },
+        "feature_row": {
+          "x": 1040,
+          "y": 56,
+          "w": 808,
+          "h": 180
+        },
+        "phone_1": {
+          "x": 72,
+          "y": 280,
+          "w": 336,
+          "h": 780,
+          "phone_x": 100,
+          "phone_y": 344,
+          "phone_w": 280,
+          "phone_h": 608
+        },
+        "phone_2": {
+          "x": 432,
+          "y": 280,
+          "w": 336,
+          "h": 780,
+          "phone_x": 460,
+          "phone_y": 344,
+          "phone_w": 280,
+          "phone_h": 608
+        },
+        "phone_3": {
+          "x": 792,
+          "y": 280,
+          "w": 336,
+          "h": 780,
+          "phone_x": 820,
+          "phone_y": 344,
+          "phone_w": 280,
+          "phone_h": 608
+        },
+        "phone_4": {
+          "x": 1152,
+          "y": 280,
+          "w": 336,
+          "h": 780,
+          "phone_x": 1180,
+          "phone_y": 344,
+          "phone_w": 280,
+          "phone_h": 608
+        },
+        "phone_5": {
+          "x": 1512,
+          "y": 280,
+          "w": 336,
+          "h": 780,
+          "phone_x": 1540,
+          "phone_y": 344,
+          "phone_w": 280,
+          "phone_h": 608
+        },
+        "components_strip": {
+          "x": 72,
+          "y": 1100,
+          "w": 420,
+          "h": 280
+        },
+        "color_palette_strip": {
+          "x": 516,
+          "y": 1100,
+          "w": 420,
+          "h": 280
+        },
+        "typography_strip": {
+          "x": 960,
+          "y": 1100,
+          "w": 360,
+          "h": 280
+        },
+        "iconography_logo_note": {
+          "x": 1344,
+          "y": 1100,
+          "w": 504,
+          "h": 280
+        }
+      }
+    }
+  },
+  "logo_geometry": {
+    "base_frame": {
+      "width": 512,
+      "height": 512
+    },
+    "halo_arc": {
+      "path": "M146 226 A110 88 0 0 1 366 226",
+      "stroke": "#E8950A",
+      "stroke_width": 32,
+      "stroke_cap": "round"
+    },
+    "a_shape": {
+      "path": "M190 342 L256 164 L322 342",
+      "stroke": "#101828",
+      "stroke_width": 42,
+      "stroke_cap": "round",
+      "stroke_join": "round"
+    },
+    "a_crossbar": {
+      "path": "M222 275 L290 275",
+      "stroke": "#101828",
+      "stroke_width": 30,
+      "stroke_cap": "round"
+    },
+    "horizon": {
+      "path": "M166 360 C208 340 304 340 346 360",
+      "stroke": "#E8950A",
+      "stroke_width": 20,
+      "stroke_cap": "round"
+    }
+  },
+  "export_targets": {
+    "board_1x": {
+      "format": "PNG",
+      "scale": 1,
+      "size": "1920x1440"
+    },
+    "board_4x": {
+      "format": "PNG",
+      "scale": 4,
+      "size": "7680x5760"
+    },
+    "board_pdf": {
+      "format": "PDF",
+      "scale": 1
+    },
+    "logo_svg": {
+      "format": "SVG"
+    },
+    "app_icon_master": {
+      "format": "PNG",
+      "size": "1024x1024"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+Component,Variants,Notes
+Logo / Mark,Light; Dark; Mono,Vector-only simplified Alba mark
+Logo / Horizontal,Light; Dark,Mark left and wordmark right
+Logo / Stacked,Light; Dark,Mark above wordmark
+Logo / App Icon,Light; Dark; Mono; Shortcut,Use 1024x1024 master frame
+Button / Primary,Default; Hover; Disabled,Deep Navy fill
+Button / Secondary,Default; Hover; Disabled,White fill with soft border
+Chip,Active; Inactive; Soft,Used for filters and categories
+Card / Base,Default; Elevated,White card with radius 24
+Card / Product Tile,Docs; Photos; Expenses; Virtuo,Product accent icon containers
+Row / File,Default,Document list row
+Row / Priority,Default; Checked,Task/priority row
+Row / Expense,Default,Expense list row
+Navigation / Mobile Bottom,Home; Docs; Expenses; Virtuo; More,Five-item nav
+Device / Phone Frame,Default,280x608 board mockup frame
+Sidebar / Desktop,Default,Dark navigation sidebar
+Panel / Dashboard Card,Today; Recent; Summary,Dashboard content cards
+Icon / Product,Docs; Photos; Expenses; Virtuo,Simple rounded line icons
