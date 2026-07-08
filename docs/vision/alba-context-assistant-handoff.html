@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alba — Architecture handoff</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/portal.css" />
+  <link rel="stylesheet" href="../assets/portal-doc.css" />
+</head>
+<body>
+  <div class="toolbar"><div class="brand"><a href="../index.html">← Alba Docs</a></div></div>
+  <main class="doc-body doc-body--wide">
+    <p class="notice"><strong>Vision input (Portuguese)</strong> — not final spec. Canon lives in <code>docs/planning/</code> and <code>DECISIONS.md</code> after grilling.</p>
+    <h1>Alba Context Assistant — Handoff de Arquitetura e Implementação</h1>
+    <p><strong>Data:</strong> 2026-07-07</p>
+    <p><strong>Autor/Contexto:</strong> Ricardo Bonon — discussão consolidada com ChatGPT</p>
+    <p><strong>Objetivo:</strong> servir como documento único para continuar a implementação no Cursor/Claude Code.</p>
+    <hr />
+    <h2>1. Resumo executivo</h2>
+    <p>A ideia discutida é evoluir a <strong>Alba</strong> para uma <strong>assistente de contexto pessoal/familiar/profissional</strong>, capaz de guardar, consultar e reaproveitar informações de diferentes fontes: notas humanas, pesquisas rápidas, receitas, decisões técnicas, documentos, repositórios Git, agenda e futuramente voz.</p>
+    <p>A decisão arquitetural principal é:</p>
+    <pre><code>
+    Obsidian = memória humana e editável
+    Git = fonte da verdade técnica e código
+    Calendar/Tasks = fonte da verdade operacional de agenda e tarefas
+    Drive/Docs = documentos formais
+    RAG = índice inteligente e regenerável
+    MCP/API = porta padronizada para as IAs
+    Alba = assistente que usa tudo isso com contexto, permissões e personas
+    </code></pre>
+    <p>O RAG <strong>não deve ser o local primário onde o conhecimento é armazenado</strong>. Ele deve ser um <strong>índice consultável</strong> criado a partir das fontes canônicas.</p>
+    <hr />
+    <h2>2. Problema que a Alba resolve</h2>
+    <p>Ricardo faz pequenas pesquisas e explorações com IA, como conversas sobre arquitetura, Obsidian, RAG, MCP, ferramentas de desenvolvimento, receitas, processos pessoais etc. Muitas dessas conversas têm valor futuro, mas se perdem em chats longos.</p>
+    <p>A Alba deve permitir:</p>
+    <ul><li>Capturar pesquisas e ideias rapidamente.</li><li>Transformar conversas úteis em notas estruturadas.</li><li>Consultar decisões antigas.</li><li>Reaproveitar padrões técnicos e código existente.</li><li>Guardar receitas e adaptações culinárias.</li><li>Ajudar com textos, especialmente para Gisele.</li><li>Preparar reuniões e tarefas a partir de contexto.</li><li>Usar voz no Android ou Alexa como entrada opcional.</li><li>Separar contextos de diferentes usuários: Ricardo, Gisele e Casa/Família.</li></ul>
+    <hr />
+    <h2>3. Conceitos fundamentais</h2>
+    <h3>3.1 Obsidian</h3>
+    <p>Obsidian é um app de notas baseado em arquivos Markdown locais. Ele é adequado para:</p>
+    <ul><li>Ideias.</li><li>Pesquisas.</li><li>Decisões.</li><li>Receitas.</li><li>Notas de projeto.</li><li>Contextos pessoais.</li><li>Templates.</li><li>Rascunhos gerados por IA.</li></ul>
+    <p>No projeto Alba, o Obsidian deve ser usado como <strong>memória humana canônica</strong>.</p>
+    <h3>3.2 Git/GitHub</h3>
+    <p>Os repositórios Git devem continuar sendo a fonte da verdade para:</p>
+    <ul><li>Código.</li><li>README.</li><li>Documentação técnica.</li><li><code>CLAUDE.md</code>.</li><li><code>AGENTS.md</code>.</li><li><code>.cursor/rules</code>.</li><li>Scripts.</li><li>Arquitetura formal dos projetos.</li></ul>
+    <p>O Obsidian não deve copiar o repo inteiro. O RAG deve indexar os repositórios diretamente, com filtros.</p>
+    <h3>3.3 RAG</h3>
+    <p>RAG é a camada que recupera trechos relevantes de fontes externas antes de a IA responder.</p>
+    <p>Neste projeto:</p>
+    <pre><code>
+    RAG = índice consultável e regenerável
+    </code></pre>
+    <p>Ele pode ser apagado e reconstruído a partir das fontes reais.</p>
+    <h3>3.4 MCP/API</h3>
+    <p>MCP ou API central funciona como a “tomada universal” para que diferentes clientes de IA consultem a memória.</p>
+    <p>Clientes possíveis:</p>
+    <ul><li>Cursor.</li><li>Claude Code.</li><li>ChatGPT.</li><li>App próprio da Alba.</li><li>Android voice.</li><li>Alexa Skill.</li><li>Scripts locais.</li></ul>
+    <h3>3.5 Assistente de contexto</h3>
+    <p>A Alba não deve ser apenas um chatbot. Ela deve ser uma assistente que entende:</p>
+    <ul><li>Quem está usando.</li><li>Qual contexto está ativo.</li><li>Quais fontes pode consultar.</li><li>Quais ferramentas pode executar.</li><li>Qual tom/persona deve usar.</li></ul>
+    <hr />
+    <h2>4. Princípios arquiteturais</h2>
+    <h3>4.1 Fonte da verdade ≠ índice</h3>
+    <pre><code>
+    Fonte da verdade:
+      - Obsidian
+      - Git
+      - Calendar
+      - Tasks
+      - Drive
+    
+    Índice:
+      - Vector DB
+      - Busca textual
+      - Metadados
+    </code></pre>
+    <p>O índice RAG nunca deve ser a única cópia de uma informação importante.</p>
+    <h3>4.2 A IA pode sugerir memória, mas não deve gravar direto sem controle</h3>
+    <p>Fluxo recomendado:</p>
+    <pre><code>
+    Conversa útil
+      ↓
+    IA gera nota estruturada
+      ↓
+    Salva em Inbox/AI Drafts
+      ↓
+    Usuário revisa
+      ↓
+    Move para pasta final
+      ↓
+    RAG reindexa
+    </code></pre>
+    <h3>4.3 Separação por usuário e contexto</h3>
+    <p>Desde o início, toda nota/documento/embedding deve ter:</p>
+    <ul><li><code>owner</code></li><li><code>workspace</code></li><li><code>visibility</code></li><li><code>source</code></li><li><code>type</code></li><li><code>tags</code></li></ul>
+    <h3>4.4 Busca híbrida</h3>
+    <p>Para esse caso, busca apenas vetorial não basta.</p>
+    <p>Usar:</p>
+    <pre><code>
+    Vector search + keyword/BM25 + metadata filters + reranking
+    </code></pre>
+    <p>Especialmente porque repositórios têm nomes exatos de funções, arquivos e comandos.</p>
+    <h3>4.5 Começar read-only</h3>
+    <p>A primeira versão deve consultar, resumir e gerar rascunhos. Escrita automática e ações operacionais devem vir depois.</p>
+    <hr />
+    <h2>5. Arquitetura alvo</h2>
+    <pre><code>
+    Interfaces
+      ├── Web app Alba
+      ├── Android app/voice capture
+      ├── Alexa Skill, futuro
+      ├── ChatGPT Voice, possível
+      ├── Cursor
+      └── Claude Code
+    
+            ↓
+    
+    Alba API / MCP Server
+      ├── autenticação
+      ├── seleção de usuário/contexto
+      ├── políticas de permissão
+      ├── roteamento para ferramentas
+      ├── acesso ao RAG
+      └── criação de rascunhos
+    
+            ↓
+    
+    RAG Layer
+      ├── busca vetorial
+      ├── busca textual
+      ├── metadados
+      ├── filtros por workspace
+      ├── reranking
+      └── referências às fontes
+    
+            ↓
+    
+    Fontes canônicas
+      ├── Obsidian Vaults
+      ├── Git repositories
+      ├── Google Calendar
+      ├── Tasks/Todoist/Google Tasks
+      ├── Google Drive
+      └── Gmail, opcional e com cuidado
+    </code></pre>
+    <hr />
+    <h2>6. Multiusuário e multicontexto</h2>
+    <p>A Alba deve suportar múltiplos contextos desde o início.</p>
+    <h3>6.1 Workspaces iniciais</h3>
+    <pre><code>
+    workspace: ricardo
+    workspace: gisele
+    workspace: casa
+    workspace: compartilhado
+    </code></pre>
+    <h3>6.2 Contexto Ricardo</h3>
+    <p>Uso principal:</p>
+    <ul><li>Desenvolvimento de software.</li><li>Arquitetura.</li><li>IA.</li><li>RAG/MCP.</li><li>Repositórios Git.</li><li>Padrões de UI.</li><li>Decisões técnicas.</li><li>Documentação para Cursor/Claude.</li><li>Pesquisas técnicas.</li></ul>
+    <p>Persona sugerida:</p>
+    <pre><code>
+    Alba Dev
+    = objetiva, técnica, estruturada, orientada a implementação.
+    </code></pre>
+    <p>Ferramentas permitidas:</p>
+    <ul><li>Buscar em Git.</li><li>Buscar em Obsidian/Ricardo.</li><li>Consultar padrões.</li><li>Gerar documentação técnica.</li><li>Gerar prompts/CLAUDE.md.</li><li>Encontrar código reaproveitável.</li></ul>
+    <h3>6.3 Contexto Gisele</h3>
+    <p>Uso principal:</p>
+    <ul><li>Tratamento de texto.</li><li>Reescrita.</li><li>Organização de ideias.</li><li>Estudos.</li><li>Materiais de psicanálise/virtologia.</li><li>Textos profissionais.</li></ul>
+    <p>Persona sugerida:</p>
+    <pre><code>
+    Alba Texto
+    = clara, cuidadosa, acolhedora, boa editora, preserva voz da autora.
+    </code></pre>
+    <p>Ferramentas permitidas:</p>
+    <ul><li>Reescrever texto.</li><li>Ajustar tom.</li><li>Resumir estudo.</li><li>Transformar anotações em material organizado.</li><li>Criar rascunhos.</li></ul>
+    <p>Observação importante:</p>
+    <p>Conteúdo clínico sensível, dados de pacientes ou dados identificáveis de saúde mental devem ficar fora do MVP ou em área isolada, criptografada e com regras de privacidade rigorosas.</p>
+    <h3>6.4 Contexto Casa/Família</h3>
+    <p>Uso principal:</p>
+    <ul><li>Receitas.</li><li>Listas.</li><li>Tarefas domésticas.</li><li>Viagens.</li><li>Documentos familiares.</li><li>Agenda compartilhada.</li></ul>
+    <p>Persona sugerida:</p>
+    <pre><code>
+    Alba Casa
+    = prática, simples, útil no dia a dia.
+    </code></pre>
+    <p>Ferramentas permitidas:</p>
+    <ul><li>Buscar receitas.</li><li>Criar lista.</li><li>Criar rascunho de tarefa.</li><li>Preparar briefing de evento.</li><li>Consultar documentos domésticos autorizados.</li></ul>
+    <h3>6.5 Regras de acesso</h3>
+    <pre><code>
+    Ricardo pode consultar:
+      - workspace ricardo
+      - workspace casa
+      - workspace compartilhado
+    
+    Gisele pode consultar:
+      - workspace gisele
+      - workspace casa
+      - workspace compartilhado
+    
+    Casa pode consultar:
+      - workspace casa
+      - workspace compartilhado
+    </code></pre>
+    <p>Não misturar contextos privados por padrão.</p>
+    <hr />
+    <h2>7. Modelo de dados mínimo</h2>
+    <h3>7.1 Documento indexado</h3>
+    <pre><code>
+    export type IndexedDocument = {
+      id: string;
+      owner: &#x27;ricardo&#x27; | &#x27;gisele&#x27; | &#x27;shared&#x27;;
+      workspace: &#x27;ricardo&#x27; | &#x27;gisele&#x27; | &#x27;casa&#x27; | &#x27;compartilhado&#x27;;
+      visibility: &#x27;private&#x27; | &#x27;shared&#x27; | &#x27;restricted&#x27;;
+      source: &#x27;obsidian&#x27; | &#x27;git&#x27; | &#x27;calendar&#x27; | &#x27;task&#x27; | &#x27;drive&#x27; | &#x27;gmail&#x27; | &#x27;manual&#x27;;
+      sourcePath?: string;
+      repo?: string;
+      title: string;
+      type:
+        | &#x27;research_note&#x27;
+        | &#x27;decision&#x27;
+        | &#x27;recipe&#x27;
+        | &#x27;project_note&#x27;
+        | &#x27;coding_standard&#x27;
+        | &#x27;source_code&#x27;
+        | &#x27;meeting_context&#x27;
+        | &#x27;task&#x27;
+        | &#x27;document&#x27;
+        | &#x27;draft&#x27;;
+      tags: string[];
+      createdAt?: string;
+      updatedAt?: string;
+      contentHash: string;
+    };
+    </code></pre>
+    <h3>7.2 Chunk indexado</h3>
+    <pre><code>
+    export type IndexedChunk = {
+      id: string;
+      documentId: string;
+      chunkIndex: number;
+      text: string;
+      embedding?: number[];
+      metadata: {
+        owner: string;
+        workspace: string;
+        source: string;
+        sourcePath?: string;
+        repo?: string;
+        type: string;
+        tags: string[];
+        priority: &#x27;high&#x27; | &#x27;medium&#x27; | &#x27;low&#x27;;
+      };
+    };
+    </code></pre>
+    <h3>7.3 Perfil de usuário</h3>
+    <pre><code>
+    export type AlbaUser = {
+      id: &#x27;ricardo&#x27; | &#x27;gisele&#x27;;
+      displayName: string;
+      defaultWorkspace: string;
+      allowedWorkspaces: string[];
+      defaultPersona: string;
+    };
+    </code></pre>
+    <h3>7.4 Persona</h3>
+    <pre><code>
+    export type AlbaPersona = {
+      id: &#x27;alba_dev&#x27; | &#x27;alba_texto&#x27; | &#x27;alba_casa&#x27;;
+      name: string;
+      tone: string;
+      allowedTools: string[];
+      defaultRetrievalFilters: Record&lt;string, unknown&gt;;
+    };
+    </code></pre>
+    <hr />
+    <h2>8. Estrutura sugerida de vaults</h2>
+    <h3>8.1 Opção simples: um vault com pastas separadas</h3>
+    <pre><code>
+    AlbaVault/
+      00 Inbox/
+        AI Drafts/
+        Quick Notes/
+    
+      10 Ricardo/
+        Pesquisas/
+        Projetos/
+        Decisoes/
+        Padroes/
+        IA/
+    
+      20 Gisele/
+        Textos/
+        Estudos/
+        Rascunhos/
+        Referencias/
+    
+      30 Casa/
+        Receitas/
+        Documentos/
+        Viagens/
+        Tarefas/
+    
+      40 Compartilhado/
+        Familia/
+        Receitas/
+        AgendaContext/
+    
+      90 Templates/
+        pesquisa.md
+        receita.md
+        decisao.md
+        projeto.md
+        texto.md
+    </code></pre>
+    <h3>8.2 Opção mais isolada: múltiplos vaults</h3>
+    <pre><code>
+    AlbaData/
+      vaults/
+        ricardo/
+        gisele/
+        casa/
+        compartilhado/
+    
+      rag-index/
+        ricardo/
+        gisele/
+        casa/
+        compartilhado/
+    </code></pre>
+    <p>Para MVP familiar, a primeira opção é mais simples. Para privacidade mais forte, usar múltiplos vaults.</p>
+    <hr />
+    <h2>9. Templates de notas</h2>
+    <h3>9.1 Template de pesquisa</h3>
+    <pre><code>
+    # Pesquisa: {{title}}
+    
+    ## Resumo
+    
+    ## Contexto
+    
+    ## Principais conclusões
+    
+    ## Decisões tomadas
+    
+    ## Próximas ações
+    
+    ## Fontes / links
+    
+    ## Status
+    - [ ] Revisar
+    - [ ] Implementar
+    - [ ] Arquivar
+    
+    ## Tags
+    #pesquisa
+    </code></pre>
+    <h3>9.2 Template de decisão</h3>
+    <pre><code>
+    # Decisão: {{title}}
+    
+    ## Data
+    {{date}}
+    
+    ## Contexto
+    
+    ## Opções consideradas
+    
+    ## Decisão
+    
+    ## Motivo
+    
+    ## Consequências
+    
+    ## Revisar quando
+    
+    ## Tags
+    #decisao
+    </code></pre>
+    <h3>9.3 Template de receita</h3>
+    <pre><code>
+    # Receita: {{title}}
+    
+    ## Contexto
+    
+    ## Ingredientes
+    
+    ## Modo de preparo
+    
+    ## O que funcionou
+    
+    ## Ajustes para próxima vez
+    
+    ## Variações
+    
+    ## Tags
+    #receita
+    </code></pre>
+    <h3>9.4 Template de projeto</h3>
+    <pre><code>
+    # Projeto: {{title}}
+    
+    ## Objetivo
+    
+    ## Status atual
+    
+    ## Repositórios relacionados
+    
+    ## Decisões importantes
+    
+    ## Arquitetura resumida
+    
+    ## Próximas ações
+    
+    ## Links úteis
+    
+    ## Tags
+    #projeto
+    </code></pre>
+    <h3>9.5 Template de texto para Gisele</h3>
+    <pre><code>
+    # Texto: {{title}}
+    
+    ## Objetivo do texto
+    
+    ## Público
+    
+    ## Tom desejado
+    
+    ## Rascunho original
+    
+    ## Versão trabalhada
+    
+    ## Observações
+    
+    ## Tags
+    #texto
+    </code></pre>
+    <hr />
+    <h2>10. Pipeline de ingestão/indexação</h2>
+    <h3>10.1 Fontes iniciais</h3>
+    <p>MVP deve indexar:</p>
+    <pre><code>
+    Obsidian:
+      - .md
+    
+    Git:
+      - README.md
+      - CLAUDE.md
+      - AGENTS.md
+      - docs/**/*.md
+      - package.json
+      - src/**/*.{ts,tsx,js,jsx,py}
+    </code></pre>
+    <p>Excluir:</p>
+    <pre><code>
+    node_modules/
+    dist/
+    build/
+    .git/
+    .env
+    .env.*
+    *.log
+    coverage/
+    .cache/
+    .next/
+    out/
+    </code></pre>
+    <h3>10.2 Etapas do indexador</h3>
+    <pre><code>
+    1. Descobrir arquivos
+    2. Aplicar filtros
+    3. Ler conteúdo
+    4. Normalizar texto
+    5. Detectar metadados
+    6. Dividir em chunks
+    7. Gerar embeddings
+    8. Atualizar banco vetorial
+    9. Atualizar índice textual
+    10. Registrar origem e hash
+    </code></pre>
+    <h3>10.3 Prioridades de indexação</h3>
+    <p>Alta prioridade:</p>
+    <pre><code>
+    Obsidian/Decisoes
+    Obsidian/Padroes
+    Obsidian/Projetos
+    repo/CLAUDE.md
+    repo/AGENTS.md
+    repo/README.md
+    repo/docs
+    </code></pre>
+    <p>Média prioridade:</p>
+    <pre><code>
+    src/components
+    src/lib
+    src/services
+    package.json
+    scripts
+    </code></pre>
+    <p>Baixa prioridade:</p>
+    <pre><code>
+    Inbox
+    rascunhos
+    notas soltas
+    conversas importadas
+    </code></pre>
+    <hr />
+    <h2>11. Ferramentas da Alba API/MCP</h2>
+    <h3>11.1 Ferramentas read-only iniciais</h3>
+    <pre><code>
+    search_memory(query, filters)
+    get_project_context(projectName)
+    get_decisions(topic)
+    get_standards(area)
+    search_repos(query, filters)
+    find_reusable_code(description)
+    find_recipe(query)
+    </code></pre>
+    <h3>11.2 Ferramentas de escrita controlada</h3>
+    <pre><code>
+    save_note_draft(title, content, workspace)
+    save_research_draft(title, content, workspace)
+    save_recipe_draft(title, content, workspace)
+    save_decision_draft(title, content, workspace)
+    summarize_conversation_to_draft(conversation, workspace)
+    </code></pre>
+    <p>Todas devem salvar inicialmente em:</p>
+    <pre><code>
+    00 Inbox/AI Drafts/
+    </code></pre>
+    <h3>11.3 Ferramentas futuras de ação</h3>
+    <pre><code>
+    create_task(title, dueDate, workspace)
+    create_calendar_event(title, start, end, attendees)
+    prepare_meeting(eventId)
+    read_calendar_context(dateRange)
+    search_drive(query)
+    </code></pre>
+    <hr />
+    <h2>12. Fluxos principais</h2>
+    <h3>12.1 Capturar pesquisa feita com IA</h3>
+    <pre><code>
+    1. Ricardo conversa com IA sobre um assunto.
+    2. Ao final, pede: “salve isso como pesquisa”.
+    3. Alba gera nota estruturada.
+    4. Nota vai para Inbox/AI Drafts.
+    5. Ricardo revisa e move para Pesquisas/ ou Decisoes/.
+    6. Indexador reprocessa.
+    7. Futuras IAs conseguem consultar.
+    </code></pre>
+    <h3>12.2 Consultar decisões antigas</h3>
+    <pre><code>
+    Pergunta:
+    “O que eu já decidi sobre RAG, Obsidian e MCP?”
+    
+    Fluxo:
+    1. search_memory()
+    2. Busca nos workspaces autorizados.
+    3. Retorna notas de pesquisa, decisões e projeto.
+    4. Alba responde com síntese e links para arquivos.
+    </code></pre>
+    <h3>12.3 Reaproveitar código</h3>
+    <pre><code>
+    Pergunta:
+    “Onde eu já fiz upload de documento com validação humana?”
+    
+    Fluxo:
+    1. search_repos()
+    2. Busca textual por upload, receipt, document, validation.
+    3. Busca vetorial por significado.
+    4. Retorna arquivos e trechos relevantes.
+    5. Alba sugere reaproveitamento.
+    </code></pre>
+    <h3>12.4 Receita culinária</h3>
+    <pre><code>
+    Pergunta:
+    “Tenho frango seco e não quero usar creme de leite. O que já fiz antes?”
+    
+    Fluxo:
+    1. find_recipe()
+    2. Busca em Casa/Receitas e Ricardo/Receitas.
+    3. Retorna receita adaptada e variações.
+    </code></pre>
+    <h3>12.5 Preparar reunião</h3>
+    <pre><code>
+    Pergunta:
+    “Prepare minha reunião de amanhã sobre Alba Docs.”
+    
+    Fluxo futuro:
+    1. Calendar identifica evento.
+    2. RAG busca contexto em Projetos/Alba.
+    3. Git busca status técnico.
+    4. Alba gera briefing.
+    </code></pre>
+    <hr />
+    <h2>13. Voz: Android e Alexa</h2>
+    <h3>13.1 Decisão</h3>
+    <p>Ricardo não tem iPhone. As interfaces mais práticas são:</p>
+    <pre><code>
+    Android = captura pessoal principal
+    Alexa = comandos domésticos curtos
+    ChatGPT Voice = conversa longa, se integrado ao MCP
+    </code></pre>
+    <p>Google Assistant/Gemini pode ser útil como assistente geral do Android, mas não parece a melhor base para customização profunda do sistema próprio.</p>
+    <h3>13.2 Arquitetura Android</h3>
+    <pre><code>
+    Android app
+      ↓ fala
+    Speech-to-text
+      ↓ texto
+    Alba API
+      ↓
+    Obsidian Inbox / RAG / Tasks / Calendar
+    </code></pre>
+    <p>MVP Android:</p>
+    <ul><li>Botão “Falar”.</li><li>Transcrição.</li><li>Seleção de tipo: pesquisa, receita, tarefa, nota rápida.</li><li>Envio para <code>/capture</code>.</li><li>Salvamento como Markdown em <code>00 Inbox/AI Drafts</code>.</li></ul>
+    <h3>13.3 Arquitetura Alexa</h3>
+    <pre><code>
+    Alexa Device
+      ↓
+    Alexa Skill
+      ↓
+    Webhook/Lambda
+      ↓
+    Alba API
+      ↓
+    RAG / Obsidian / Tasks
+    </code></pre>
+    <p>Usos bons para Alexa:</p>
+    <ul><li>“Salvar receita rápida.”</li><li>“Adicionar item na lista.”</li><li>“Consultar uma receita.”</li><li>“Criar lembrete simples.”</li></ul>
+    <p>Usos ruins para Alexa:</p>
+    <ul><li>Exploração técnica longa.</li><li>Discussões complexas.</li><li>Geração extensa de documentação.</li></ul>
+    <hr />
+    <h2>14. Agenda, tarefas e documentos</h2>
+    <h3>14.1 Agenda</h3>
+    <p>Agenda real deve ficar em:</p>
+    <pre><code>
+    Google Calendar / Outlook / Apple Calendar
+    </code></pre>
+    <p>Obsidian pode guardar contexto de reuniões, não a agenda em si.</p>
+    <h3>14.2 Tarefas</h3>
+    <p>Tarefas com data, recorrência e cobrança devem ficar em ferramenta própria:</p>
+    <pre><code>
+    Google Tasks / Todoist / Apple Reminders / Linear / Jira
+    </code></pre>
+    <p>Obsidian pode guardar checklists e tarefas contextuais leves.</p>
+    <h3>14.3 Documentos</h3>
+    <p>Documentos formais devem ficar em:</p>
+    <pre><code>
+    Google Drive / filesystem / storage próprio
+    </code></pre>
+    <p>RAG indexa metadados e conteúdo permitido.</p>
+    <hr />
+    <h2>15. Segurança, privacidade e LGPD</h2>
+    <h3>15.1 Regra geral</h3>
+    <p>Separar fortemente:</p>
+    <pre><code>
+    Conteúdo pessoal comum
+    Conteúdo técnico
+    Conteúdo familiar compartilhado
+    Conteúdo sensível
+    </code></pre>
+    <h3>15.2 Conteúdo clínico ou sensível da Gisele</h3>
+    <p>Para MVP:</p>
+    <pre><code>
+    Não indexar conteúdo clínico sensível.
+    Não armazenar dados identificáveis de pacientes.
+    Não misturar em RAG geral.
+    </code></pre>
+    <p>Futuro, se necessário:</p>
+    <pre><code>
+    - workspace separado
+    - criptografia
+    - anonimização
+    - controle de acesso
+    - logs de acesso
+    - política de retenção
+    - opção de exclusão
+    </code></pre>
+    <h3>15.3 Segredos em repositórios</h3>
+    <p>Nunca indexar:</p>
+    <pre><code>
+    .env
+    .env.*
+    secrets.json
+    credentials.json
+    keys
+    certificados privados
+    tokens
+    </code></pre>
+    <hr />
+    <h2>16. Stack técnica sugerida</h2>
+    <h3>16.1 MVP simples</h3>
+    <pre><code>
+    Backend:
+      Node.js/TypeScript ou Python/FastAPI
+    
+    Armazenamento:
+      filesystem + SQLite
+    
+    Vector DB:
+      Chroma, LanceDB ou Qdrant local
+    
+    Busca textual:
+      SQLite FTS5 ou Tantivy/Meilisearch, futuro
+    
+    Framework RAG:
+      LlamaIndex ou LangChain
+    
+    Interface inicial:
+      CLI + API HTTP
+    
+    Integração dev:
+      MCP server para Cursor/Claude
+    </code></pre>
+    <h3>16.2 Alternativa mais robusta</h3>
+    <pre><code>
+    Backend:
+      TypeScript + Fastify/NestJS
+    
+    DB:
+      PostgreSQL + pgvector
+    
+    Busca:
+      PostgreSQL full text ou Meilisearch
+    
+    Queue:
+      BullMQ/Redis, futuro
+    
+    Auth:
+      local auth simples no MVP
+    </code></pre>
+    <h3>16.3 Escolha recomendada para começar</h3>
+    <p>Para começar rápido no Cursor:</p>
+    <pre><code>
+    TypeScript + Node.js
+    SQLite para metadados
+    LanceDB ou Chroma para vetores
+    Express/Fastify para API
+    MCP server separado ou no mesmo projeto
+    </code></pre>
+    <p>Motivo: aproxima do ecossistema de desenvolvimento web/app que Ricardo já usa.</p>
+    <hr />
+    <h2>17. Estrutura inicial de repositório</h2>
+    <pre><code>
+    alba-assistant/
+      README.md
+      CLAUDE.md
+      package.json
+      .env.example
+      .gitignore
+    
+      src/
+        config/
+          paths.ts
+          workspaces.ts
+          personas.ts
+    
+        core/
+          types.ts
+          permissions.ts
+          metadata.ts
+    
+        ingestion/
+          fileDiscovery.ts
+          obsidianLoader.ts
+          gitLoader.ts
+          chunker.ts
+          embedder.ts
+          indexer.ts
+    
+        retrieval/
+          vectorSearch.ts
+          keywordSearch.ts
+          hybridSearch.ts
+          reranker.ts
+    
+        tools/
+          searchMemory.ts
+          getProjectContext.ts
+          getDecisions.ts
+          getStandards.ts
+          findRecipe.ts
+          saveDraft.ts
+    
+        api/
+          server.ts
+          routes.ts
+    
+        mcp/
+          server.ts
+          tools.ts
+    
+        writers/
+          markdownWriter.ts
+          draftWriter.ts
+    
+        security/
+          filters.ts
+          secretScanner.ts
+    
+      scripts/
+        index-obsidian.ts
+        index-git.ts
+        reindex-all.ts
+        dev-server.ts
+    
+      data/
+        .gitkeep
+    
+      docs/
+        architecture.md
+        roadmap.md
+        data-model.md
+    </code></pre>
+    <hr />
+    <h2>18. Configuração de workspaces</h2>
+    <p>Exemplo:</p>
+    <pre><code>
+    export const workspaces = {
+      ricardo: {
+        owner: &#x27;ricardo&#x27;,
+        rootPath: &#x27;/Users/ricardo/AlbaData/vaults/ricardo&#x27;,
+        allowedUsers: [&#x27;ricardo&#x27;],
+        defaultPersona: &#x27;alba_dev&#x27;,
+      },
+      gisele: {
+        owner: &#x27;gisele&#x27;,
+        rootPath: &#x27;/Users/ricardo/AlbaData/vaults/gisele&#x27;,
+        allowedUsers: [&#x27;gisele&#x27;],
+        defaultPersona: &#x27;alba_texto&#x27;,
+      },
+      casa: {
+        owner: &#x27;shared&#x27;,
+        rootPath: &#x27;/Users/ricardo/AlbaData/vaults/casa&#x27;,
+        allowedUsers: [&#x27;ricardo&#x27;, &#x27;gisele&#x27;],
+        defaultPersona: &#x27;alba_casa&#x27;,
+      },
+    };
+    </code></pre>
+    <hr />
+    <h2>19. API HTTP inicial</h2>
+    <h3>19.1 Buscar memória</h3>
+    <pre><code>
+    POST /memory/search
+    </code></pre>
+    <p>Body:</p>
+    <pre><code>
+    {
+      &quot;userId&quot;: &quot;ricardo&quot;,
+      &quot;workspace&quot;: &quot;ricardo&quot;,
+      &quot;query&quot;: &quot;o que eu decidi sobre Obsidian RAG MCP?&quot;,
+      &quot;filters&quot;: {
+        &quot;types&quot;: [&quot;research_note&quot;, &quot;decision&quot;, &quot;project_note&quot;]
+      }
+    }
+    </code></pre>
+    <h3>19.2 Salvar rascunho</h3>
+    <pre><code>
+    POST /drafts
+    </code></pre>
+    <p>Body:</p>
+    <pre><code>
+    {
+      &quot;userId&quot;: &quot;ricardo&quot;,
+      &quot;workspace&quot;: &quot;ricardo&quot;,
+      &quot;type&quot;: &quot;research_note&quot;,
+      &quot;title&quot;: &quot;Obsidian, RAG e MCP como memória pessoal&quot;,
+      &quot;content&quot;: &quot;...&quot;
+    }
+    </code></pre>
+    <h3>19.3 Buscar receita</h3>
+    <pre><code>
+    POST /recipes/search
+    </code></pre>
+    <p>Body:</p>
+    <pre><code>
+    {
+      &quot;userId&quot;: &quot;ricardo&quot;,
+      &quot;query&quot;: &quot;molho quente para frango seco sem creme de leite&quot;
+    }
+    </code></pre>
+    <hr />
+    <h2>20. MCP tools iniciais</h2>
+    <pre><code>
+    const tools = [
+      {
+        name: &#x27;search_memory&#x27;,
+        description: &#x27;Search Alba memory across allowed workspaces.&#x27;,
+      },
+      {
+        name: &#x27;get_project_context&#x27;,
+        description: &#x27;Retrieve project context from notes and repos.&#x27;,
+      },
+      {
+        name: &#x27;get_decisions&#x27;,
+        description: &#x27;Find prior decisions about a topic.&#x27;,
+      },
+      {
+        name: &#x27;get_standards&#x27;,
+        description: &#x27;Retrieve Ricardo coding or writing standards.&#x27;,
+      },
+      {
+        name: &#x27;find_recipe&#x27;,
+        description: &#x27;Find recipes and cooking notes.&#x27;,
+      },
+      {
+        name: &#x27;save_note_draft&#x27;,
+        description: &#x27;Save a draft note to the correct Inbox/AI Drafts folder.&#x27;,
+      },
+    ];
+    </code></pre>
+    <hr />
+    <h2>21. Roadmap de implementação</h2>
+    <h3>Fase 0 — Preparação conceitual</h3>
+    <ul><li>☐ Criar repositório <code>alba-assistant</code>.</li><li>☐ Criar este documento em <code>docs/architecture.md</code>.</li><li>☐ Definir local das pastas/vaults.</li><li>☐ Definir nomes dos workspaces.</li><li>☐ Criar <code>.env.example</code>.</li></ul>
+    <h3>Fase 1 — Obsidian manual</h3>
+    <ul><li>☐ Criar estrutura de vault.</li><li>☐ Criar templates de pesquisa, decisão, receita e projeto.</li><li>☐ Começar captura manual de notas.</li><li>☐ Salvar esta discussão como primeira pesquisa.</li></ul>
+    <p>Critério de sucesso:</p>
+    <pre><code>
+    Ricardo consegue criar e consultar manualmente notas estruturadas no Obsidian.
+    </code></pre>
+    <h3>Fase 2 — Indexador read-only</h3>
+    <ul><li>☐ Implementar file discovery.</li><li>☐ Ler Markdown do Obsidian.</li><li>☐ Ler README/CLAUDE/docs de repos Git.</li><li>☐ Criar chunks.</li><li>☐ Gerar embeddings.</li><li>☐ Salvar metadados.</li><li>☐ Criar busca simples.</li></ul>
+    <p>Critério de sucesso:</p>
+    <pre><code>
+    Uma pergunta sobre “Obsidian RAG MCP” retorna as notas corretas.
+    </code></pre>
+    <h3>Fase 3 — Busca híbrida</h3>
+    <ul><li>☐ Adicionar busca textual.</li><li>☐ Combinar score vetorial + textual.</li><li>☐ Filtrar por workspace.</li><li>☐ Retornar fontes e paths.</li></ul>
+    <p>Critério de sucesso:</p>
+    <pre><code>
+    Busca por termos exatos como CLAUDE.md, repo_init e rbo-ui-tokenize funciona bem.
+    </code></pre>
+    <h3>Fase 4 — API local</h3>
+    <ul><li>☐ Criar <code>/memory/search</code>.</li><li>☐ Criar <code>/drafts</code>.</li><li>☐ Criar <code>/recipes/search</code>.</li><li>☐ Criar autenticação simples ou user selector.</li></ul>
+    <p>Critério de sucesso:</p>
+    <pre><code>
+    Um cliente externo consegue consultar e salvar rascunho.
+    </code></pre>
+    <h3>Fase 5 — MCP server</h3>
+    <ul><li>☐ Expor <code>search_memory</code>.</li><li>☐ Expor <code>get_project_context</code>.</li><li>☐ Expor <code>get_decisions</code>.</li><li>☐ Expor <code>find_recipe</code>.</li><li>☐ Testar no Cursor/Claude.</li></ul>
+    <p>Critério de sucesso:</p>
+    <pre><code>
+    Cursor consegue perguntar à Alba sobre decisões e padrões pessoais.
+    </code></pre>
+    <h3>Fase 6 — Escrita controlada</h3>
+    <ul><li>☐ Implementar <code>save_research_draft</code>.</li><li>☐ Implementar <code>save_recipe_draft</code>.</li><li>☐ Implementar <code>save_decision_draft</code>.</li><li>☐ Garantir que tudo vá para Inbox/AI Drafts.</li></ul>
+    <p>Critério de sucesso:</p>
+    <pre><code>
+    Após uma conversa, a IA gera nota revisável no Obsidian.
+    </code></pre>
+    <h3>Fase 7 — Android voice capture</h3>
+    <ul><li>☐ Criar app simples ou automação Android.</li><li>☐ Capturar fala.</li><li>☐ Transcrever.</li><li>☐ Enviar para API.</li><li>☐ Salvar rascunho.</li></ul>
+    <p>Critério de sucesso:</p>
+    <pre><code>
+    Ricardo fala uma pesquisa curta no Android e ela aparece como Markdown no Inbox.
+    </code></pre>
+    <h3>Fase 8 — Alexa, futuro</h3>
+    <ul><li>☐ Criar Alexa Skill.</li><li>☐ Integrar webhook/Lambda.</li><li>☐ Restringir a comandos curtos.</li><li>☐ Testar receitas/listas/notas rápidas.</li></ul>
+    <hr />
+    <h2>22. Primeiras histórias de usuário</h2>
+    <h3>22.1 Ricardo salva pesquisa</h3>
+    <pre><code>
+    Como Ricardo,
+    quero transformar uma conversa útil com IA em uma nota de pesquisa,
+    para recuperar e implementar depois.
+    </code></pre>
+    <p>Aceite:</p>
+    <ul><li>Gera Markdown estruturado.</li><li>Salva em <code>00 Inbox/AI Drafts</code>.</li><li>Inclui resumo, decisões e próximas ações.</li></ul>
+    <h3>22.2 Ricardo consulta decisão técnica</h3>
+    <pre><code>
+    Como Ricardo,
+    quero perguntar o que já decidi sobre um assunto,
+    para não repetir discussões antigas.
+    </code></pre>
+    <p>Aceite:</p>
+    <ul><li>Busca no workspace <code>ricardo</code>.</li><li>Retorna notas relevantes.</li><li>Mostra paths das fontes.</li></ul>
+    <h3>22.3 Ricardo encontra código reaproveitável</h3>
+    <pre><code>
+    Como Ricardo,
+    quero encontrar onde já implementei algo parecido,
+    para reaproveitar padrões ou código.
+    </code></pre>
+    <p>Aceite:</p>
+    <ul><li>Busca em repos autorizados.</li><li>Ignora <code>node_modules</code>, build e secrets.</li><li>Retorna arquivos e resumo.</li></ul>
+    <h3>22.4 Gisele trata texto</h3>
+    <pre><code>
+    Como Gisele,
+    quero transformar anotações em um texto claro,
+    para usar em estudos ou materiais profissionais.
+    </code></pre>
+    <p>Aceite:</p>
+    <ul><li>Usa persona <code>Alba Texto</code>.</li><li>Não consulta workspace Ricardo.</li><li>Salva rascunho no workspace Gisele.</li></ul>
+    <h3>22.5 Casa consulta receita</h3>
+    <pre><code>
+    Como usuário da casa,
+    quero consultar uma receita que já funcionou,
+    para repetir ou adaptar.
+    </code></pre>
+    <p>Aceite:</p>
+    <ul><li>Busca em receitas compartilhadas.</li><li>Retorna variações e observações.</li></ul>
+    <hr />
+    <h2>23. Decisões já tomadas nesta discussão</h2>
+    <ol><li>Alba deve ser uma assistente de contexto, não apenas um repositório de documentos.</li><li>Obsidian é adequado para memória humana: pesquisas, ideias, receitas, decisões e notas.</li><li>Git continua sendo a fonte da verdade para software.</li><li>Repositórios podem fazer parte da memória consultável, mas não devem ser copiados integralmente para o Obsidian.</li><li>RAG deve indexar Obsidian + Git + documentos autorizados.</li><li>RAG não é storage primário; é índice regenerável.</li><li>MCP/API central deve ser a camada de acesso para Cursor, Claude, ChatGPT e outros clientes.</li><li>Escrita por IA deve começar como rascunho revisável.</li><li>Android é melhor ponto inicial para captura por voz, já que Ricardo não tem iPhone.</li><li>Alexa é viável para comandos domésticos curtos.</li><li>Google Assistant/Gemini não deve ser a base principal de customização no início.</li><li>A arquitetura deve nascer multiusuário/multicontexto.</li><li>Workspaces iniciais: Ricardo, Gisele, Casa e Compartilhado.</li><li>Persona Ricardo deve ser técnica/dev.</li><li>Persona Gisele deve focar em tratamento de texto e organização de ideias.</li><li>Conteúdo clínico sensível deve ficar fora do MVP.</li><li>Agenda deve ficar em Calendar; Obsidian guarda contexto, não a agenda principal.</li><li>Tarefas com cobrança devem ficar em ferramenta própria; Obsidian guarda tarefas contextuais leves.</li></ol>
+    <hr />
+    <h2>24. Riscos e mitigação</h2>
+    <h3>24.1 Memória virar bagunça</h3>
+    <p>Mitigação:</p>
+    <ul><li>Usar templates.</li><li>Salvar IA em Inbox/Drafts.</li><li>Revisar antes de promover.</li><li>Usar tags e tipos.</li></ul>
+    <h3>24.2 Misturar contextos de usuários</h3>
+    <p>Mitigação:</p>
+    <ul><li>Workspace obrigatório.</li><li>Filtros de permissão em todas as buscas.</li><li>Índices separados ou namespaces.</li></ul>
+    <h3>24.3 Indexar segredo de repo</h3>
+    <p>Mitigação:</p>
+    <ul><li>Lista forte de exclusão.</li><li>Secret scanner.</li><li>Nunca indexar <code>.env</code>.</li></ul>
+    <h3>24.4 Conteúdo sensível da Gisele</h3>
+    <p>Mitigação:</p>
+    <ul><li>Fora do MVP.</li><li>Workspace separado e restrito, se necessário no futuro.</li></ul>
+    <h3>24.5 Excesso de complexidade</h3>
+    <p>Mitigação:</p>
+    <ul><li>Começar read-only.</li><li>Primeiro Obsidian + Git local.</li><li>Depois API.</li><li>Depois MCP.</li><li>Depois voz.</li></ul>
+    <hr />
+    <h2>25. Próximo passo recomendado no Cursor</h2>
+    <p>Criar o repositório <code>alba-assistant</code> com este objetivo inicial:</p>
+    <pre><code>
+    Construir um MVP local read-only que indexa notas Markdown do Obsidian e arquivos selecionados de repositórios Git, permitindo busca híbrida filtrada por workspace.
+    </code></pre>
+    <p>Prompt inicial para Cursor:</p>
+    <pre><code>
+    You are helping me implement Alba Context Assistant.
+    
+    Goal for MVP:
+    Build a local TypeScript project that indexes Markdown notes from an Obsidian vault and selected files from Git repositories, stores metadata and embeddings, and exposes a simple API for hybrid memory search.
+    
+    Important architectural decisions:
+    - Obsidian is the canonical human memory.
+    - Git is the canonical technical/code memory.
+    - RAG is a regenerable index, not the source of truth.
+    - The system must support multiple workspaces: ricardo, gisele, casa, compartilhado.
+    - All search must be filtered by allowed workspaces.
+    - AI-generated writes must go to Inbox/AI Drafts only.
+    - Do not index secrets, .env files, node_modules, build outputs, or sensitive clinical material.
+    
+    Start by creating:
+    - project structure
+    - TypeScript types
+    - workspace config
+    - file discovery
+    - Markdown loader
+    - git loader with exclusion rules
+    - chunker
+    - placeholder embedding interface
+    - simple metadata store
+    - search API skeleton
+    </code></pre>
+    <hr />
+    <h2>26. Primeira nota a salvar no Obsidian</h2>
+    <p>Sugestão de arquivo:</p>
+    <pre><code>
+    AlbaVault/10 Ricardo/Pesquisas/alba-assistant-assistant-rag-mcp.md
+    </code></pre>
+    <p>Conteúdo sugerido:</p>
+    <pre><code>
+    # Alba Context Assistant com Obsidian, Git, RAG e MCP
+    
+    ## Resumo
+    
+    Quero desenvolver a Alba como uma assistente de contexto pessoal/familiar/profissional. Ela deve consultar notas humanas, repositórios Git, receitas, documentos e futuramente agenda e tarefas.
+    
+    ## Decisões principais
+    
+    - Obsidian será a memória humana.
+    - Git continuará sendo a fonte da verdade técnica.
+    - RAG será o índice consultável e regenerável.
+    - MCP/API será a interface para Cursor, Claude, ChatGPT e apps.
+    - A Alba deve nascer com suporte a múltiplos workspaces.
+    - A escrita da IA deve começar como rascunho em Inbox/AI Drafts.
+    
+    ## Workspaces iniciais
+    
+    - Ricardo: software, IA, arquitetura, decisões técnicas.
+    - Gisele: textos, estudos, organização de ideias.
+    - Casa: receitas, documentos, tarefas domésticas.
+    - Compartilhado: contexto familiar comum.
+    
+    ## Próximas ações
+    
+    - Criar repo alba-assistant.
+    - Criar estrutura de vault.
+    - Implementar indexador read-only.
+    - Implementar busca híbrida.
+    - Expor API local.
+    - Depois criar MCP.
+    </code></pre>
+    <hr />
+    <h2>27. Glossário</h2>
+    <h3>Alba</h3>
+    <p>Nome da assistente/plataforma de contexto.</p>
+    <h3>Workspace</h3>
+    <p>Espaço lógico de conhecimento e permissão. Exemplos: Ricardo, Gisele, Casa.</p>
+    <h3>Persona</h3>
+    <p>Modo de resposta e conjunto de ferramentas. Exemplos: Alba Dev, Alba Texto, Alba Casa.</p>
+    <h3>Obsidian Vault</h3>
+    <p>Pasta de arquivos Markdown usada como memória humana.</p>
+    <h3>RAG</h3>
+    <p>Retrieval-Augmented Generation. Técnica para buscar contexto externo antes da IA responder.</p>
+    <h3>MCP</h3>
+    <p>Model Context Protocol. Padrão para conectar modelos de IA a ferramentas e fontes externas.</p>
+    <h3>Fonte canônica</h3>
+    <p>Local onde o dado realmente vive. Exemplo: Git para código, Obsidian para notas.</p>
+    <h3>Índice regenerável</h3>
+    <p>Banco de busca que pode ser reconstruído a partir das fontes canônicas.</p>
+    <hr />
+    <h2>28. Conclusão</h2>
+    <p>A ideia é viável, útil e alinhada ao uso real de Ricardo e Gisele.</p>
+    <p>A Alba deve começar simples:</p>
+    <pre><code>
+    Obsidian + Git + RAG read-only + API local
+    </code></pre>
+    <p>Depois evoluir para:</p>
+    <pre><code>
+    MCP + escrita controlada + Android voice + Calendar/Tasks + Alexa
+    </code></pre>
+    <p>O maior cuidado arquitetural é manter separação clara entre:</p>
+    <pre><code>
+    memória humana
+    memória técnica
+    índice RAG
+    ações operacionais
+    contextos de usuários
+    </code></pre>
+    <p>Com essas bases, a Alba pode se tornar uma assistente pessoal/familiar de contexto, capaz de lembrar, organizar, consultar e ajudar a executar ideias sem virar um sistema excessivamente complexo desde o início.</p>
+    <p class="source-note doc-footer">Markdown source: <a href="https://github.com/rbonon/alba-assistant/blob/main/docs/vision/alba-context-assistant-handoff.md">alba-context-assistant-handoff.md</a></p>
+  </main>
+  <script>
+if (window.self !== window.top) document.body.classList.add('embed');
+</script>
+</body>
+</html>

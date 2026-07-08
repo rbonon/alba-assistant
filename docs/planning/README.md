@@ -10,7 +10,7 @@
 |------|--------|-----|
 | 1 | `rbo-catch-up` + read **session handoff** | [`session-handoff.md`](./session-handoff.md) |
 | 2 | Read **STATUS.md** | [`../../STATUS.md`](../../STATUS.md) |
-| 3 | Read vision handoff (input, not spec) | [`../vision/alba-context-assistant-handoff.md`](../vision/alba-context-assistant-handoff.md) |
+| 3 | Read vision handoff (input, not spec) | [`../vision/alba-context-assistant-handoff.html`](../vision/alba-context-assistant-handoff.html) |
 | 4 | Board **`alba-assistant`** #5 | [GitHub Project](https://github.com/users/rbonon/projects/5) |
 | 5 | **`rbo-create-change`** on **#19 — [Grill] P1 — Obsidian requirements** | [`open-questions.md`](./open-questions.md) |
 

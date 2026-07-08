@@ -138,6 +138,17 @@ def md_to_html(md: str) -> str:
             out.append(f"<blockquote>{inline_format(' '.join(quotes))}</blockquote>")
             continue
 
+        m = re.match(r"- \[( |x|X)\] (.*)", stripped)
+        if m:
+            if list_buf and list_ordered:
+                flush_list()
+            list_ordered = False
+            checked = m.group(1).lower() == "x"
+            mark = "☑" if checked else "☐"
+            list_buf.append(f"{mark} {m.group(2)}")
+            i += 1
+            continue
+
         m = re.match(r"(\d+)\.\s+(.*)", stripped)
         if m:
             if list_buf and not list_ordered:
@@ -172,6 +183,8 @@ def portal_page_html(
     back_href: str = "../index.html",
     source_md: Path | str | None = None,
     embed_friendly: bool = True,
+    lang: str = "en",
+    preamble_html: str = "",
 ) -> str:
     source_line = ""
     if source_md is not None:
@@ -187,7 +200,7 @@ def portal_page_html(
 if (window.self !== window.top) document.body.classList.add('embed');
 </script>"""
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="{html.escape(lang)}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -198,7 +211,8 @@ if (window.self !== window.top) document.body.classList.add('embed');
 </head>
 <body>
   <div class="toolbar"><div class="brand"><a href="{html.escape(back_href)}">← Alba Docs</a></div></div>
-  <main class="doc-body">
+  <main class="doc-body doc-body--wide">
+    {preamble_html}
     {body_html}
     {source_line}
   </main>

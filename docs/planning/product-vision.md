@@ -1,6 +1,6 @@
 # Alba Context Assistant — product vision
 
-> English summary. Full vision input: [`../vision/alba-context-assistant-handoff.md`](../vision/alba-context-assistant-handoff.md)
+> English summary. Full vision input: [`../vision/alba-context-assistant-handoff.html`](../vision/alba-context-assistant-handoff.html)
 
 ## What
 

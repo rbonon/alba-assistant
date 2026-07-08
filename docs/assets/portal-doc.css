@@ -5,6 +5,10 @@
   padding: 2rem 1.25rem 3rem;
 }
 
+.doc-body--wide {
+  max-width: 920px;
+}
+
 .doc-body h1 {
   font-size: 1.5rem;
   color: var(--navy);

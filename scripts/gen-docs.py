@@ -35,16 +35,25 @@ HIERARCHY_HTML = PLANNING / "board-hierarchy.html"
 PHASE_ORDER = [f"P{i}" for i in range(15)] + ["No Phase"]
 
 # Markdown canon → portal HTML (features.html is hand-maintained separately)
-PORTAL_MD_PAGES: list[tuple[str, str]] = [
-    ("open-questions.md", "Open questions"),
-    ("decisions.md", "Decisions log"),
-    ("workflow.md", "Workflow"),
-    ("phases.md", "Phases & epics"),
-    ("modules.md", "Modules & tools"),
-    ("architecture.md", "Architecture"),
-    ("session-handoff.md", "Session handoff"),
-    ("product-vision.md", "Product vision"),
-    ("README.md", "Planning index"),
+PORTAL_MD_SOURCES: list[tuple[Path, str, str, str]] = [
+    # path (from repo root), title, lang, optional preamble HTML
+    (Path("docs/planning/open-questions.md"), "Open questions", "en", ""),
+    (Path("docs/planning/decisions.md"), "Decisions log", "en", ""),
+    (Path("docs/planning/workflow.md"), "Workflow", "en", ""),
+    (Path("docs/planning/phases.md"), "Phases & epics", "en", ""),
+    (Path("docs/planning/modules.md"), "Modules & tools", "en", ""),
+    (Path("docs/planning/architecture.md"), "Architecture", "en", ""),
+    (Path("docs/planning/session-handoff.md"), "Session handoff", "en", ""),
+    (Path("docs/planning/product-vision.md"), "Product vision", "en", ""),
+    (Path("docs/planning/README.md"), "Planning index", "en", ""),
+    (
+        Path("docs/vision/alba-context-assistant-handoff.md"),
+        "Architecture handoff",
+        "pt",
+        '<p class="notice"><strong>Vision input (Portuguese)</strong> — not final spec. '
+        "Canon lives in <code>docs/planning/</code> and <code>DECISIONS.md</code> after grilling.</p>",
+    ),
+    (Path("docs/vision/README.md"), "Vision index", "en", ""),
 ]
 
 
@@ -250,18 +259,20 @@ def write_roadmap_html(issues: list[dict]) -> None:
 
 
 def write_portal_md_html() -> None:
-    for md_name, title in PORTAL_MD_PAGES:
-        src = PLANNING / md_name
+    for rel_path, title, lang, preamble in PORTAL_MD_SOURCES:
+        src = ROOT / rel_path
         if not src.is_file():
             print(f"Skip missing {src}", file=sys.stderr)
             continue
-        out = PLANNING / (src.stem + ".html")
+        out = src.with_suffix(".html")
         body = md_to_html(src.read_text(encoding="utf-8"))
         out.write_text(
             portal_page_html(
                 title=title,
                 body_html=body,
-                source_md=src.relative_to(ROOT),
+                source_md=rel_path,
+                lang=lang,
+                preamble_html=preamble,
             ),
             encoding="utf-8",
         )
