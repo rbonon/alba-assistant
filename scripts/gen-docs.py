@@ -136,8 +136,8 @@ def issue_line(issue: dict, *, compact_badge: bool = True) -> str:
     title = html.escape(issue["title"])
     badge = state_badge(issue, compact=compact_badge)
     return (
-        f'<li class="{li_cls}">{badge} {issue_link(issue)} '
-        f'<span class="issue-title">{title}</span></li>'
+        f'<li class="{li_cls}">{issue_link(issue)} '
+        f'<span class="issue-title">{title}</span> {badge}</li>'
     )
 
 
@@ -242,8 +242,8 @@ def _issue_row(i: dict) -> str:
     row_cls = "issue-closed" if closed else "issue-open"
     title = html.escape(i["title"])
     return (
-        f'<tr class="{row_cls}"><td>{state_badge(i)}</td>'
-        f"<td>{issue_link(i)}</td><td>{title}</td></tr>"
+        f'<tr class="{row_cls}"><td>{issue_link(i)}</td><td>{title}</td>'
+        f'<td class="col-status">{state_badge(i, compact=True)}</td></tr>'
     )
 
 
@@ -271,21 +271,20 @@ def write_board_hierarchy_html(issues: list[dict]) -> None:
         for en in sorted(epics_by_phase.get(ph, [])):
             e = by_num[en]
             epic_closed = e["state"] == "closed"
-            state_cls = "state-closed" if epic_closed else "state-open"
-            state_lbl = "✅ closed" if epic_closed else "🟡 open"
             blocks.append(
                 f'<div class="epic-head"><h3>'
                 f'<a href="{html.escape(e["html_url"])}" target="_blank" rel="noopener">'
-                f"#{en}</a> — {html.escape(e["title"])}</h3>"
-                f'<span class="{state_cls}">{state_lbl}</span></div>'
+                f"#{en}</a> — {html.escape(e['title'])}</h3>"
+                f'{state_badge(e, compact=True)}</div>'
             )
         leaves = sorted(leaves_by_phase.get(ph, []))
         if leaves:
             rows = "".join(_issue_row(by_num[n]) for n in leaves)
             blocks.append(
                 "<table><colgroup>"
-                '<col class="col-status" /><col class="col-num" /><col />'
-                "</colgroup><thead><tr><th>Status</th><th>#</th><th>Title</th></tr></thead>"
+                '<col class="col-num" /><col /><col class="col-status" />'
+                "</colgroup><thead><tr><th>#</th><th>Title</th>"
+                '<th class="col-status" aria-label="Status"></th></tr></thead>'
                 f"<tbody>{rows}</tbody></table>"
             )
         sections.append("".join(blocks))

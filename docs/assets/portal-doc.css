@@ -138,14 +138,14 @@
   line-height: 1;
 }
 
-.doc-body tr.issue-open td:first-child .state-open,
-.doc-body tr.issue-closed td:first-child .state-closed,
+.doc-body tr.issue-open td:last-child .issue-state,
+.doc-body tr.issue-closed td:last-child .issue-state,
 .doc-body li.issue-open .issue-state,
 .doc-body li.issue-closed .issue-state {
   font-weight: 600;
 }
 
-.doc-body tr.issue-closed td:not(:first-child),
+.doc-body tr.issue-closed td:nth-child(2),
 .doc-body li.issue-closed .issue-title {
   color: var(--muted);
 }
@@ -161,6 +161,11 @@
   list-style: none;
 }
 
+.doc-body .issue-list li .issue-state {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
 .doc-body .issue-list,
 .doc-body .phase-issue-list {
   margin: 0;
@@ -174,8 +179,14 @@
   min-width: 0;
 }
 
-.doc-body table col.col-status { width: 4.5rem; }
+.doc-body table col.col-status { width: 2rem; }
 .doc-body table col.col-num { width: 3rem; }
+
+.doc-body table th.col-status,
+.doc-body table td.col-status {
+  text-align: center;
+  vertical-align: middle;
+}
 
 /* iframe embed — hide chrome */
 body.embed .toolbar,
