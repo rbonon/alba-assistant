@@ -1,8 +1,8 @@
 # Feature set — Alba Context Assistant
 
-> Business-facing capability map. Technical choices stay open until P2 grilling.
+> Business-facing capability map. **MVP boundary locked D-031** (issue #17).
 
-## MVP (target: P6–P7)
+## MVP (P6–P7 go-live) — IN
 
 | Feature | Description | Sources |
 |---------|-------------|---------|
@@ -11,18 +11,26 @@
 | Project context | Retrieve notes + repo docs for a named project | Obsidian + Git |
 | Decision lookup | Find prior decisions on a topic | Obsidian decisions/research |
 | Standards lookup | Coding/writing standards for Ricardo | Obsidian + Git agent docs |
+| Casa / shared search | Recipes and family notes in `casa` / `compartilhado` searchable | Obsidian |
+| Multi-user production | Ricardo + Gisele day one; workspace isolation | D-015, D-016 |
 | HTTP API | `/memory/search` and health | Alba API |
 | MCP tools | `search_memory`, `get_decisions`, `get_project_context` | MCP server |
-| Staging environment | Full stack parity skeleton | All MVP components |
-| Production go-live v0 | Controlled promotion from staging | All MVP components |
+| Staging → production | Controlled promotion from staging | All MVP components |
+| Workspace isolation tests | Automated — Ricardo ↔ Gisele private never cross-read (D-033) | Staging gate before prod |
 
-**MVP users:** Ricardo and Gisele from production go-live (multi-user day one). User model must support adding more users post-launch — each gets dedicated workspace, D-016 read rules, and assigned persona (D-018).
+**Non-prod testing (D-034):** Real account **Artur** — staging/dev stand-in for Gisele workspace RBAC; synthetic data only; disabled before production.
 
-**Workspace read (D-016):** each user — own workspace + `compartilhado` + `casa`; never the other’s private workspace.
+**Indexed sources (D-019):** Obsidian + Git only.
 
-**MVP indexed sources (D-019):** Obsidian + Git only. Calendar, Tasks, Drive, contacts, Meet transcripts — post-MVP or gated (#16 for clinical).
+## MVP — OUT (post-MVP)
 
-**Calendar/Tasks (D-025):** Personal Calendar + Tasks per user; Casa shared Calendar + Tasks for both. Obsidian = context only. Integration post-MVP.
+| Category | Examples | Phase (tentative) |
+|----------|----------|-------------------|
+| Clinical slice | Meet transcripts, Patient-00N, Virtuologia analysis | Post-MVP gated (D-026–D-030) |
+| Integrations | Calendar, Tasks, Drive, contacts | P10–P12 |
+| Controlled writes | Drafts to Obsidian inbox | P8 |
+| Interactive voice | Step-by-step recipe reading, Alexa | P13–P14 |
+| Android capture | Voice → API | P13 |
 
 ## Post-MVP — Gisele clinical slice (gated)
 
@@ -43,13 +51,6 @@
 | Save recipe / decision draft | Template-based drafts for human review |
 | Reindex on promote | Index updates after user moves note out of inbox |
 
-## Post-MVP — multi-user (P9)
-
-| Feature | Description |
-|---------|-------------|
-| Gisele workspace production | Persona Alba Texto, privacy-enforced filters |
-| Cross-workspace isolation tests | Ricardo cannot read Gisele private content |
-
 ## Post-MVP — integrations
 
 | Feature | Phase (tentative) | Tool |
@@ -62,10 +63,12 @@
 
 ## Explicit non-goals (MVP)
 
-- Clinical / sensitive mental-health content in index
+- Clinical / patient content in RAG (clinical slice post-MVP)
 - Gmail indexing
 - Autonomous writes without human review
+- Calendar/Tasks/Drive as indexed sources at MVP
 - Replacing Calendar or Tasks as systems of record
+- Interactive voice / Alexa at MVP
 - Full Alexa/ChatGPT long conversation replacement
 
 See [`non-goals.md`](../spec/non-goals.md) after P1 spec gate.

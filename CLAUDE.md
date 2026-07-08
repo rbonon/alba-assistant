@@ -24,4 +24,4 @@ Stack TBD in P2. Integrations: Obsidian, Git, MCP (MVP); Calendar, Tasks, Drive,
 
 **Current:** P1 — Requirements & spec v1. P0 complete (gate #13 closed).
 
-**Next:** `rbo-create-change` on **#17 — [Grill] P1 — MVP scope vs post-MVP**. #14–#16 closed (D-015–D-030). See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
+**Next:** `rbo-create-change` on **#18 — [Grill] P1 — Success metrics per persona**. #14–#17 closed (D-015–D-034). See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
