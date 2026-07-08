@@ -31,12 +31,19 @@
 | D-023 | **Never-index list** — secrets, build/vendor, clinical until #16, raw chat logs (#15 Q-005) |
 | D-024 | **RAG rebuild** — full rebuild from canonical sources on recovery (D-004) (#15 Q-006) |
 | D-025 | **Calendar/Tasks model** — personal per user + Casa shared; Obsidian context only; integrate post-MVP (#15 Q-007) |
+| D-026 | **Gisele clinical pseudonym** — Patient-00N in RAG; identity in Obsidian; auto-assign on ingest (#16 Q-002) |
+| D-027 | **Clinical encryption** — at-rest required (separate key) before clinical slice go-live (#16 Q-003) |
+| D-028 | **Clinical slice gates** — post-MVP, gisele-only, no patient consent in Alba, legal review (#16 Q-004) |
+| D-029 | **Clinical AI inference** — cloud LLM APIs allowed with Patient-00N text (#16 Q-005) |
+| D-030 | **Clinical erasure** — hard delete from Obsidian + clinical RAG (#16 Q-006) |
 
 ## Session (2026-07-08)
 
 - **Q-001 closed (#14):** MVP = Ricardo + Gisele from day one; extensible for more users
 - **#15 Q-007 closed:** Calendar/Tasks personal + Casa shared (D-025)
 - **#15 grilling complete** — ready for validation → `rbo-close-change`
+- **#16 Q-006 closed:** hard delete erasure (D-030)
+- **#16 grilling complete** — ready for validation → `rbo-close-change`
 
 ## Session (2026-07-07)
 

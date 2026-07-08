@@ -24,6 +24,17 @@
 
 **Calendar/Tasks (D-025):** Personal Calendar + Tasks per user; Casa shared Calendar + Tasks for both. Obsidian = context only. Integration post-MVP.
 
+## Post-MVP — Gisele clinical slice (gated)
+
+> Not MVP. Requires D-027–D-030 + professional LGPD review (D-028).
+
+| Feature | Description |
+|---------|-------------|
+| Meet transcript import | Auto-match or assign Patient-00N; Obsidian canonical chart |
+| Clinical RAG search | De-identified Patient-00N only; `gisele` partition; encrypted at rest |
+| Virtuologia analysis | Cloud LLM summaries/patterns (D-029) |
+| Hard delete | Remove patient/session from Obsidian + clinical index (D-030) |
+
 ## Post-MVP — controlled writes (P8)
 
 | Feature | Description |
