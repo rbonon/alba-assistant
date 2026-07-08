@@ -1,6 +1,20 @@
 # Alba Context Assistant — ROADMAP
 
-> Generated mirror of GitHub issues. Regenerate: `./scripts/refresh-board-hierarchy.sh`
+> Generated (REST-only) mirror of GitHub issues. Do not hand-edit.
+> Regenerate: `./scripts/refresh-roadmap.sh`
+
+# P0
+
+## Closed
+
+- [#1](https://github.com/rbonon/alba-assistant/issues/1) [Epic] P0 — Product foundation
+- [#7](https://github.com/rbonon/alba-assistant/issues/7) Bootstrap GitHub Pages portal (English)
+- [#8](https://github.com/rbonon/alba-assistant/issues/8) Normalize vision handoff into docs/vision/
+- [#9](https://github.com/rbonon/alba-assistant/issues/9) Seed planning canon
+- [#10](https://github.com/rbonon/alba-assistant/issues/10) Populate AGENTS.md and CLAUDE.md
+- [#11](https://github.com/rbonon/alba-assistant/issues/11) Seed DECISIONS.md with validated vision decisions
+- [#12](https://github.com/rbonon/alba-assistant/issues/12) Add board refresh scripts
+- [#13](https://github.com/rbonon/alba-assistant/issues/13) [Gate] P0 — Product foundation complete
 
 # P1
 
