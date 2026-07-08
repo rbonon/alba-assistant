@@ -119,6 +119,59 @@ a.card:hover { border-color: var(--blue); transform: translateY(-2px); }
 .phase-node .num { font-size: 0.68rem; font-weight: 700; color: var(--muted); text-transform: uppercase; }
 .phase-node .label { font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-top: 0.15rem; }
 
+.phase-map-wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+.gate-chip {
+  display: inline-block; margin: 0.5rem 0 1rem;
+  background: #fdf6e9; border: 1px solid #f0d9a8; color: #8a5a12;
+  font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 8px;
+}
+.phase-section-title {
+  font-size: 1rem; color: var(--navy); margin: 1.5rem 0 0.5rem;
+}
+.phase-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0 0.5rem;
+}
+.phase-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.85rem 0.85rem;
+  min-width: 0;
+}
+.phase-card.done { border-color: var(--green); background: #f0faf4; }
+.phase-card.current { border-color: var(--blue); background: #eef6fb; box-shadow: var(--shadow); }
+.phase-card.future { opacity: 0.85; }
+.phase-card-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 0.35rem;
+  margin-bottom: 0.5rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border);
+}
+.phase-card-head .num { font-size: 0.72rem; font-weight: 700; color: var(--muted); }
+.phase-card-head .label { font-size: 0.82rem; font-weight: 700; color: var(--navy); }
+.phase-card-count {
+  font-size: 0.68rem; font-weight: 600; color: var(--muted); white-space: nowrap;
+}
+.phase-issue-list { margin: 0; padding: 0; list-style: none; }
+.phase-issue-list li {
+  display: flex; align-items: flex-start; gap: 0.3rem;
+  font-size: 0.72rem; line-height: 1.35; margin-bottom: 0.2rem;
+}
+.phase-issue-list .issue-state { width: 0.95rem; font-size: 0.68rem; flex-shrink: 0; }
+.phase-issue-list .issue-title {
+  flex: 1; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+}
+.phase-issue-list li.issue-closed .issue-title { color: var(--muted); }
+.phase-issue-list .issue-state.state-open { color: var(--amber); }
+.phase-issue-list .issue-state.state-closed { color: var(--green); }
+.phase-issue-list .empty { color: var(--muted); font-size: 0.72rem; font-style: italic; }
+
+.state-open { color: var(--amber); font-weight: 600; }
+.state-closed { color: var(--green); font-weight: 600; }
+
 @media print {
   .toolbar { position: static; }
   .card-interactive:hover, a.card:hover { transform: none; }

@@ -128,6 +128,55 @@
   font-size: 0.8rem;
 }
 
+/* Issue rows — reuse epic open/closed cues */
+.doc-body .issue-state {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.doc-body tr.issue-open td:first-child .state-open,
+.doc-body tr.issue-closed td:first-child .state-closed,
+.doc-body li.issue-open .issue-state,
+.doc-body li.issue-closed .issue-state {
+  font-weight: 600;
+}
+
+.doc-body tr.issue-closed td:not(:first-child),
+.doc-body li.issue-closed .issue-title {
+  color: var(--muted);
+}
+
+.doc-body .issue-list li,
+.doc-body .phase-issue-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  margin-bottom: 0.25rem;
+  list-style: none;
+}
+
+.doc-body .issue-list,
+.doc-body .phase-issue-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.doc-body .issue-list .issue-title,
+.doc-body .phase-issue-list .issue-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.doc-body table col.col-status { width: 4.5rem; }
+.doc-body table col.col-num { width: 3rem; }
+
 /* iframe embed — hide chrome */
 body.embed .toolbar,
 body.embed .source-note,
