@@ -1,6 +1,6 @@
 # STATUS — Alba Context Assistant
 
-**Updated:** 2026-07-08 (#14 closed)  
+**Updated:** 2026-07-08 (#14–#15 closed)  
 **Current phase:** **P1** — Requirements & spec v1  
 **Portal:** https://rbonon.github.io/alba-assistant/
 
@@ -11,7 +11,7 @@
 | Epic | Status | Next step |
 |------|--------|-----------|
 | ~~P0 Product foundation~~ | **Done** (#1, gate #13 closed) | — |
-| **P1 Requirements & spec v1** | **In Progress** (#2 open) | **`rbo-create-change`** on **#15 — [Grill] P1 — Canonical sources vs RAG boundaries** |
+| **P1 Requirements & spec v1** | **In Progress** (#2 open) | **`rbo-create-change`** on **#16 — [Grill] P1 — Privacy, LGPD & sensitive content** |
 | P2 Architecture v1 | Todo (#3) | Blocked by **#30 — [Gate] P1 — Approve spec v1** |
 
 ---
@@ -19,7 +19,7 @@
 ## Immediate next action
 
 ```text
-rbo-create-change → #15 — [Grill] P1 — Canonical sources vs RAG boundaries
+rbo-create-change → #16 — [Grill] P1 — Privacy, LGPD & sensitive content
 ```
 
 ---

@@ -24,12 +24,19 @@
 | D-016 | **MVP workspace read boundaries** — each user: own + `compartilhado` + `casa`; never other’s private workspace (#14 Q-002) |
 | D-017 | **MVP persona mapping** — fixed per user (Dev/Texto); `casa`→Alba Casa; persona switching deferred post-MVP (#14 Q-003) |
 | D-018 | **Post-launch users** — dedicated workspace + D-016 read rules + assigned persona at onboarding (#14 Q-004) |
+| D-019 | **MVP RAG index** — Obsidian + Git only; Calendar/Tasks/Drive/contacts post-MVP; Meet transcripts gated #16 (#15 Q-001) |
+| D-020 | **Ricardo Git indexing** — all three GitHub accounts: `rbonon`, `fortegb`, `akamlibehsafe` (#15 Q-002) |
+| D-021 | **AI ideation** — chat ephemeral; final idea `.md` canonical in Obsidian; Git when building (#15 Q-003) |
+| D-022 | **Idea doc + repo** — idea stays canonical in Obsidian; Git for implementation (#15 Q-004) |
+| D-023 | **Never-index list** — secrets, build/vendor, clinical until #16, raw chat logs (#15 Q-005) |
+| D-024 | **RAG rebuild** — full rebuild from canonical sources on recovery (D-004) (#15 Q-006) |
+| D-025 | **Calendar/Tasks model** — personal per user + Casa shared; Obsidian context only; integrate post-MVP (#15 Q-007) |
 
 ## Session (2026-07-08)
 
 - **Q-001 closed (#14):** MVP = Ricardo + Gisele from day one; extensible for more users
-- **#14 Q-004 closed:** post-launch user model (D-018)
-- **#14 grilling complete** — ready for human validation → `rbo-close-change`
+- **#15 Q-007 closed:** Calendar/Tasks personal + Casa shared (D-025)
+- **#15 grilling complete** — ready for validation → `rbo-close-change`
 
 ## Session (2026-07-07)
 
