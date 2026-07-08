@@ -38,7 +38,7 @@
 | Page | URL path |
 |------|----------|
 | Home | `/docs/index.html` |
-| Progress — issues | `/docs/planning/progress-report.html` |
+| Progress — issues | `/docs/planning/progress-report.html` (embeds generated `roadmap.html`) |
 | Progress — phases | `/docs/planning/phase-map.html` |
 | Features | `/docs/planning/features.html` |
 | Architecture | `/docs/planning/architecture-overview.html` |

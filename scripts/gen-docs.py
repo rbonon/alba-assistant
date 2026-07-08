@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate ROADMAP.md and docs/planning/board-hierarchy.md.
+"""Generate ROADMAP.md, board-hierarchy.md, and docs/planning/roadmap.html.
 
 REST-ONLY. Uses `gh api repos/<owner>/<repo>/issues` (REST budget) — never the
 GraphQL `gh project` API. This avoids the point-heavy ProjectsV2 GraphQL calls
@@ -9,8 +9,12 @@ Phase is parsed from the issue title/body convention (`P0`..`P14`), not from the
 Project board (board field values are GraphQL-only). Board membership/status is
 NOT read here; issue open/closed state is used instead.
 
+`roadmap.html` is published under `/docs` for GitHub Pages embeds (repo-root
+ROADMAP.md is not deployed).
+
 Safe by design: single paginated REST call, no loops, hard-fail on error.
 """
+import html
 import json
 import re
 import subprocess
@@ -23,6 +27,7 @@ REPO = "alba-assistant"
 ROOT = Path(__file__).resolve().parents[1]
 ROADMAP = ROOT / "ROADMAP.md"
 HIERARCHY = ROOT / "docs/planning/board-hierarchy.md"
+ROADMAP_HTML = ROOT / "docs/planning/roadmap.html"
 PHASE_ORDER = [f"P{i}" for i in range(15)] + ["No Phase"]
 
 
@@ -52,10 +57,15 @@ def kind(issue: dict) -> str:
     return "leaf"
 
 
-def write_roadmap(issues: list[dict]) -> None:
+def issues_by_phase(issues: list[dict]) -> dict[str, dict[str, list]]:
     by_phase: dict[str, dict[str, list]] = defaultdict(lambda: {"open": [], "closed": []})
     for i in issues:
         by_phase[phase_of(i)]["open" if i["state"] == "open" else "closed"].append(i)
+    return by_phase
+
+
+def write_roadmap(issues: list[dict]) -> None:
+    by_phase = issues_by_phase(issues)
 
     lines = [
         "# Alba Context Assistant — ROADMAP",
@@ -120,6 +130,62 @@ def write_hierarchy(issues: list[dict]) -> None:
     print(f"Wrote {HIERARCHY}")
 
 
+def write_roadmap_html(issues: list[dict]) -> None:
+    """Portal embed for progress-report.html (published under /docs on GitHub Pages)."""
+    by_phase = issues_by_phase(issues)
+    sections: list[str] = []
+    for ph in PHASE_ORDER:
+        d = by_phase.get(ph)
+        if not d or (not d["open"] and not d["closed"]):
+            continue
+        blocks: list[str] = []
+        for state in ("open", "closed"):
+            items = sorted(d[state], key=lambda x: x["number"])
+            if not items:
+                continue
+            lis = []
+            for i in items:
+                cls = ' class="closed"' if state == "closed" else ""
+                title = html.escape(i["title"])
+                lis.append(
+                    f'<li{cls}><a href="{html.escape(i["html_url"])}" target="_blank" rel="noopener">'
+                    f'#{i["number"]}</a> {title}</li>'
+                )
+            blocks.append(
+                f'<h3>{state.capitalize()}</h3><ul>{"".join(lis)}</ul>'
+            )
+        sections.append(f'<section class="phase"><h2>{html.escape(ph)}</h2>{"".join(blocks)}</section>')
+
+    body = "\n    ".join(sections) if sections else "<p>No issues.</p>"
+    ROADMAP_HTML.write_text(
+        f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ROADMAP mirror</title>
+  <link rel="stylesheet" href="../assets/portal.css" />
+  <style>
+    body {{ padding: 1rem 1.25rem 1.5rem; font-size: 0.88rem; background: #fff; }}
+    .phase {{ margin-bottom: 1.25rem; }}
+    .phase h2 {{ font-size: 1rem; color: var(--navy); margin: 0 0 0.35rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; }}
+    .phase h3 {{ font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 0.65rem 0 0.3rem; font-weight: 600; }}
+    ul {{ margin: 0; padding-left: 1.1rem; list-style: disc; }}
+    li {{ margin: 0.2rem 0; line-height: 1.45; }}
+    li.closed {{ color: var(--muted); }}
+    li a {{ font-weight: 600; }}
+  </style>
+</head>
+<body>
+  {body}
+</body>
+</html>
+""",
+        encoding="utf-8",
+    )
+    print(f"Wrote {ROADMAP_HTML}")
+
+
 def main() -> int:
     try:
         issues = fetch_issues()
@@ -131,6 +197,7 @@ def main() -> int:
         return 1
     write_roadmap(issues)
     write_hierarchy(issues)
+    write_roadmap_html(issues)
     return 0
 
 
