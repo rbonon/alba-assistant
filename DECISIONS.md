@@ -116,6 +116,83 @@ This file is **append-only**. New sessions add entries at the bottom under a dat
 - Guide: `ai-skills/docs/rbo-product-bootstrap-guide.md` · Suite: `ai-skills/docs/rbo-product-skills.md`
 - Prod promote stays manual (Vercel/GitHub); `rbo-product-release` does not deploy
 
+### Deferred — post-P1 bootstrap inventory (2026-07-08)
+
+**Decision:** After P1 leaves **#14–#30** close and **[Gate] P1** (#30) is approved, run
+`rbo-product-bootstrap` **brownfield Step 1 only** (inventory + gap report; no mutations
+until explicit OK). Checklist: `docs/planning/reminder-after-p1-gate.md`.
+
+**Rationale:** Compare Alba compressed phase map vs suite template without derailing
+in-flight P1 grilling.
+
+**Implications:**
+- Do not invoke full bootstrap during P1
+- Realignment (if any) is a separate approved change — not automatic
+
+---
+
+### MVP multi-user from day one (2026-07-08 — Q-001, issue #14)
+
+**Decision:** MVP production targets **multiple users from day one** — Ricardo and Gisele at launch, with the user model designed to add more users post-launch without rework.
+
+**Rationale:** Family product intent; both primary users should benefit from go-live. Extensibility avoids a false "single-user MVP" that blocks Gisele.
+
+**Implications:**
+- P1 spec must cover two production users, workspace isolation, and persona mapping (Alba Dev / Alba Texto)
+- Privacy/LGPD grilling (#16) is required before production — not optional
+- Alba board P9 "Gisele workspace" may need reframing: multi-user is day one; P9 becomes capability depth or polish, not first Gisele access
+- Revisit `features.md` and phase map when Q-002+ on #14 are resolved
+
+---
+
+### MVP workspace read boundaries (2026-07-08 — #14 Q-002)
+
+**Decision:** At MVP production go-live, each user reads **own workspace + `compartilhado` + `casa`**. Users MUST NOT read the other’s private workspace (`ricardo` ↔ `gisele`).
+
+| User | Read workspaces |
+|------|-----------------|
+| Ricardo | `ricardo`, `compartilhado`, `casa` |
+| Gisele | `gisele`, `compartilhado`, `casa` |
+
+**Rationale:** Family shared context via `casa` and `compartilhado`; strict isolation on personal workspaces for privacy/LGPD.
+
+**Implications:**
+- Retrieval and auth must enforce workspace filter per user
+- Indexing must tag content by workspace; `casa` and `compartilhado` are shared read paths
+- Privacy grilling (#16) builds on this baseline
+
+---
+
+### MVP persona mapping (2026-07-08 — #14 Q-003)
+
+**Decision:** At MVP, personas are **fixed per user** (Option A):
+
+| User / context | Persona |
+|----------------|---------|
+| Ricardo | Alba Dev — technical, implementation-focused |
+| Gisele | Alba Texto — writing, clarity, preserves voice |
+| `casa` workspace (either user) | Alba Casa — practical family tone |
+
+**Post-MVP:** Persona switching, multi-persona per user, or richer persona customization MAY be added after go-live as new functionality (new issues/features — not MVP scope).
+
+**Rationale:** Keeps MVP simple; matches primary use cases. Expansion path preserved without blocking launch.
+
+**Implications:**
+- API/MCP can default persona from authenticated user + workspace context
+- Post-launch persona features → `rbo-create-issue` when prioritized
+
+---
+
+### Post-launch user model (2026-07-08 — #14 Q-004)
+
+**Decision:** Each **new user added post-launch** gets a **dedicated workspace**, D-016 read rules (own + `compartilhado` + `casa`), and an **assigned persona** at onboarding — same pattern as Ricardo/Gisele.
+
+**Rationale:** Consistent extensibility model; avoids one-off exceptions as the family grows.
+
+**Implications:**
+- User provisioning is a first-class concept in P1 spec (even if automation comes later)
+- Persona catalog may grow; assignment at onboarding, switching still post-MVP (D-017)
+
 ---
 
 ## TBD (resolve in grilling — do not implement assumptions)
@@ -123,4 +200,3 @@ This file is **append-only**. New sessions add entries at the bottom under a dat
 - Tech stack: SQLite vs Postgres path, vector DB, embedding model (P2)
 - Obsidian vault topology: single vault vs multiple (P2)
 - Hosting: local vs homelab vs cloud (P3)
-- MVP primary user scope: Ricardo-only vs Ricardo+Gisele day one (P1 — Q-001)

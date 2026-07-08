@@ -70,5 +70,12 @@
 ## Dependency spine
 
 ```text
-P0 ✅ → P1 (grill + spec) → [Gate P1] → P2 → … → P5 → P6+ implementation
+P0 ✅ → P1 (grill + spec) → [Gate P1] → [REALIGN CHECK] → P2 → … → P5 → P6+ implementation
 ```
+
+### After P1 gate — deferred realignment check
+
+When **#14–#30** are done and **[Gate] P1** (#30) is closed, run the checklist in
+[`reminder-after-p1-gate.md`](./reminder-after-p1-gate.md) (`rbo-product-bootstrap`
+brownfield inventory only — compare Alba map vs suite template; stop for OK before
+any board changes).

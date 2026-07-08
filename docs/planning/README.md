@@ -26,6 +26,7 @@
 | [features.md](./features.md) | Feature set — MVP vs later |
 | [modules.md](./modules.md) | Tools & integrations map |
 | [phases.md](./phases.md) | P0–P14 epics and gates |
+| [reminder-after-p1-gate.md](./reminder-after-p1-gate.md) | **After #14–#30** — bootstrap brownfield inventory (deferred) |
 | [architecture.md](./architecture.md) | Architecture summary (P2 gate) |
 | [open-questions.md](./open-questions.md) | Grilling backlog |
 | [decisions.md](./decisions.md) | Human-readable decisions |
