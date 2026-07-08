@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alba — Session handoff</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/portal.css" />
+  <link rel="stylesheet" href="../assets/portal-doc.css" />
+</head>
+<body>
+  <div class="toolbar"><div class="brand"><a href="../index.html">← Alba Docs</a></div></div>
+  <main class="doc-body">
+    <h1>Session handoff — 2026-07-08</h1>
+    <blockquote><strong>Start here in a new session.</strong> Run <code>rbo-catch-up</code> then read this file + <a href="../../STATUS.md">`STATUS.md`</a>.</blockquote>
+    <hr />
+    <h2>Where we are</h2>
+    <table><thead><tr><th>Item</th><th>State</th></tr></thead><tbody><tr><td><strong>Phase</strong></td><td><strong>P1</strong> — Requirements &amp; spec v1</td></tr><tr><td><strong>P0</strong></td><td><strong>Complete</strong> — gate #13 closed</td></tr><tr><td><strong>P1 grilling</strong></td><td><strong>#14–#18 closed</strong> (D-015–D-038)</td></tr><tr><td><strong>Portal</strong></td><td>Live — https://rbonon.github.io/alba-assistant/</td></tr><tr><td><strong>Board</strong></td><td>GitHub Project <strong>`alba-assistant`</strong> <a href="https://github.com/users/rbonon/projects/5">#5</a></td></tr><tr><td><strong>Branch</strong></td><td><code>main</code> — no open Change</td></tr><tr><td><strong>OpenSpec</strong></td><td>Empty — no active change</td></tr><tr><td><strong>ROADMAP</strong></td><td>REST-only (<code>scripts/refresh-roadmap.sh</code>)</td></tr></tbody></table>
+    <hr />
+    <h2>What recent sessions accomplished</h2>
+    <h3>P1 grilling closed (#14–#18)</h3>
+    <table><thead><tr><th>#</th><th>Topic</th><th>Decisions</th></tr></thead><tbody><tr><td>14</td><td>Users, workspaces &amp; personas</td><td>D-015–D-018</td></tr><tr><td>15</td><td>Canonical sources vs RAG</td><td>D-019–D-025</td></tr><tr><td>16</td><td>Privacy, LGPD &amp; sensitive content</td><td>D-026–D-030</td></tr><tr><td>17</td><td>MVP scope vs post-MVP</td><td>D-031–D-034</td></tr><tr><td>18</td><td>Success metrics per persona</td><td>D-035–D-038</td></tr></tbody></table>
+    <p><strong>#18 highlights (D-035–D-038):</strong> MVP metrics = core + Ricardo + Gisele non-clinical + Casa search; staging fixture gate (top-3, 100%); synthetic AI/app-generated corpus; prod manual smoke. Calendar/Tasks/clinical/voice metrics <strong>deferred</strong>.</p>
+    <h3>Platform</h3>
+    <ul><li>REST-only doc refresh (<code>scripts/gen-docs.py</code>)</li><li>Portal pages synced with canon (<code>features.md</code>, phase map, progress)</li></ul>
+    <hr />
+    <h2>Issue map (current)</h2>
+    <h3>Closed — P0</h3>
+    <table><thead><tr><th>#</th><th>Title</th></tr></thead><tbody><tr><td>1</td><td>[Epic] P0 — Product foundation</td></tr><tr><td>7–12</td><td>P0 leaf features</td></tr><tr><td>13</td><td>[Gate] P0 — Product foundation complete</td></tr></tbody></table>
+    <h3>Closed — P1 grilling (#14–#18)</h3>
+    <table><thead><tr><th>#</th><th>Title</th></tr></thead><tbody><tr><td>14</td><td>[Grill] Users, workspaces &amp; personas</td></tr><tr><td>15</td><td>[Grill] Canonical sources vs RAG boundaries</td></tr><tr><td>16</td><td>[Grill] Privacy, LGPD &amp; sensitive content</td></tr><tr><td>17</td><td>[Grill] MVP scope vs post-MVP</td></tr><tr><td>18</td><td>[Grill] Success metrics per persona</td></tr></tbody></table>
+    <h3>Open — P1</h3>
+    <table><thead><tr><th>#</th><th>Title</th><th>Notes</th></tr></thead><tbody><tr><td>2</td><td>[Epic] P1 — Requirements &amp; spec v1</td><td></td></tr><tr><td><strong>19</strong></td><td>[Grill] Obsidian requirements</td><td><strong>NEXT</strong></td></tr><tr><td>20–25</td><td>Remaining grills</td><td></td></tr><tr><td>26–28</td><td>Spec docs</td><td>After grills</td></tr><tr><td>29</td><td>OpenSpec spec v1 (docs only)</td><td></td></tr><tr><td><strong>30</strong></td><td>[Gate] Approve spec v1</td><td>→ P2</td></tr></tbody></table>
+    <p>See <a href="./board-hierarchy.md">`board-hierarchy.md`</a> and <a href="../../ROADMAP.md">`ROADMAP.md`</a>.</p>
+    <hr />
+    <h2>Next session — exact steps</h2>
+    <ol><li><strong>`rbo-catch-up`</strong> on <code>alba-assistant</code></li><li>Read <strong>`STATUS.md`</strong> and this handoff</li><li><strong>`rbo-create-change`</strong> on <strong>#19 — [Grill] P1 — Obsidian requirements</strong></li><li><strong>`rbo-grilling`</strong> — one question at a time</li><li>Continue #20–#25, then spec leaves #26–#28</li><li>Close <strong>#30</strong> only when spec is approved</li></ol>
+    <p><strong>Do not:</strong> runtime code, skip gates, direct-to-main leaf commits.</p>
+    <hr />
+    <h2>Key commits on main (recent)</h2>
+    <table><thead><tr><th>Commit</th><th>Summary</th></tr></thead><tbody><tr><td><code>7e0882f</code></td><td>ROADMAP refresh after #18</td></tr><tr><td><code>feede3e</code></td><td>merge #18 — success metrics (D-035–D-038)</td></tr><tr><td><code>17bd5c2</code></td><td>merge #17 — MVP scope (D-031–D-034)</td></tr></tbody></table>
+    <hr />
+    <h2>Architecture invariants (do not violate)</h2>
+    <pre><code>
+    Obsidian = human memory · Git = technical memory · RAG = regenerable index
+    Workspaces: ricardo, gisele, casa, compartilhado
+    Vision docs = input only · Canon = spec/arch/plan/decisions after grilling
+    AI writes → Inbox/AI Drafts only · Staging before prod per slice
+    Never index secrets, .env, node_modules, clinical/sensitive content
+    No runtime implementation until [Gate] P5
+    </code></pre>
+    <hr />
+    <h2>Doc index for agents</h2>
+    <table><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><a href="../../AGENTS.md">`AGENTS.md`</a></td><td>Global + repo rules</td></tr><tr><td><a href="../../STATUS.md">`STATUS.md`</a></td><td>Session compass</td></tr><tr><td><a href="../../DECISIONS.md">`DECISIONS.md`</a></td><td>Append-only decision log</td></tr><tr><td><a href="./features.md">`docs/planning/features.md`</a></td><td>MVP scope + success metrics</td></tr><tr><td><a href="./open-questions.md">`docs/planning/open-questions.md`</a></td><td>Grilling backlog</td></tr><tr><td><a href="./decisions.md">`docs/planning/decisions.md`</a></td><td>Planning mirror of decisions</td></tr></tbody></table>
+    <hr />
+    <p><strong>Handoff author:</strong> Cursor session 2026-07-08 (post #18 close)</p>
+    <p class="source-note doc-footer">Markdown source: <a href="https://github.com/rbonon/alba-assistant/blob/main/docs/planning/session-handoff.md">session-handoff.md</a></p>
+  </main>
+  <script>
+if (window.self !== window.top) document.body.classList.add('embed');
+</script>
+</body>
+</html>

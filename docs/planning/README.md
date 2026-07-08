@@ -38,9 +38,10 @@
 | Page | URL path |
 |------|----------|
 | Home | `/docs/index.html` |
-| Progress — issues | `/docs/planning/progress-report.html` (embeds generated `roadmap.html`) |
+| Progress — issues | `/docs/planning/progress-report.html` (embeds `roadmap.html`, `board-hierarchy.html`) |
 | Progress — phases | `/docs/planning/phase-map.html` |
-| Features | `/docs/planning/features.html` |
+| Features | `/docs/planning/features.html` (hand-maintained) |
+| Planning canon | `docs/planning/*.html` generated from `*.md` via `gen-docs.py` |
 | Architecture | `/docs/planning/architecture-overview.html` |
 
 Published at: **https://rbonon.github.io/alba-assistant/** (after Pages enable + push)

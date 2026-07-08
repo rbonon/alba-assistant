@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alba — Modules &amp; tools</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/portal.css" />
+  <link rel="stylesheet" href="../assets/portal-doc.css" />
+</head>
+<body>
+  <div class="toolbar"><div class="brand"><a href="../index.html">← Alba Docs</a></div></div>
+  <main class="doc-body">
+    <h1>Modules &amp; integrations</h1>
+    <blockquote>Map for grilling and environment parity (P1 requirements → P3 environments).</blockquote>
+    <h2>Canonical sources</h2>
+    <table><thead><tr><th>Module</th><th>Role</th><th>MVP</th><th>Staging</th><th>Production</th></tr></thead><tbody><tr><td><strong>Obsidian</strong></td><td>Human memory — notes, templates, inbox/drafts</td><td>Index + templates</td><td>Staging vault paths</td><td>Live vault paths</td></tr><tr><td><strong>Git</strong></td><td>Technical memory — code, README, agent docs</td><td>Allowlist + exclusions</td><td>Test repos subset</td><td>Full allowlist</td></tr></tbody></table>
+    <h2>Alba runtime (to be built)</h2>
+    <table><thead><tr><th>Module</th><th>Role</th><th>MVP</th></tr></thead><tbody><tr><td><strong>Ingestion</strong></td><td>Discover, chunk, embed, index</td><td>Obsidian + Git</td></tr><tr><td><strong>Retrieval</strong></td><td>Hybrid search + rerank</td><td>Yes</td></tr><tr><td><strong>API</strong></td><td>HTTP endpoints</td><td><code>/memory/search</code>, health</td></tr><tr><td><strong>MCP</strong></td><td>Cursor / Claude tools</td><td>Read-only tools first</td></tr><tr><td><strong>Metadata store</strong></td><td>Document/chunk registry</td><td>SQLite (TBD)</td></tr><tr><td><strong>Vector store</strong></td><td>Embeddings index</td><td>LanceDB or Chroma (TBD)</td></tr></tbody></table>
+    <h2>Client integrations</h2>
+    <table><thead><tr><th>Module</th><th>Role</th><th>MVP</th><th>Later</th></tr></thead><tbody><tr><td><strong>Cursor MCP</strong></td><td>Dev assistant access</td><td>P7</td><td>—</td></tr><tr><td><strong>Claude Code MCP</strong></td><td>Dev assistant access</td><td>P7</td><td>—</td></tr><tr><td><strong>ChatGPT / other MCP</strong></td><td>Additional clients</td><td>—</td><td>Post-MVP</td></tr></tbody></table>
+    <h2>External integrations (post-MVP)</h2>
+    <table><thead><tr><th>Module</th><th>Role</th><th>Spec (P1)</th><th>Arch (P2)</th><th>Env (P3)</th><th>Build</th></tr></thead><tbody><tr><td><strong>Google Calendar</strong></td><td>Read event context</td><td>✓</td><td>✓</td><td>✓</td><td>P10</td></tr><tr><td><strong>Tasks</strong> (Google Tasks / Todoist)</td><td>Task boundaries</td><td>✓</td><td>✓</td><td>✓</td><td>P11</td></tr><tr><td><strong>Google Drive</strong></td><td>Document index</td><td>✓</td><td>✓</td><td>✓</td><td>P12</td></tr><tr><td><strong>Android voice</strong></td><td>Capture → API → inbox draft</td><td>✓</td><td>✓</td><td>✓</td><td>P13</td></tr><tr><td><strong>Alexa / voice assistant</strong></td><td>Short commands</td><td>✓</td><td>✓</td><td>✓</td><td>P14</td></tr></tbody></table>
+    <h2>Environments</h2>
+    <p>Every module above must have a <strong>staging</strong> and <strong>production</strong> row in <a href="../architecture/environments.md">`../architecture/environments.md`</a> (created in P3).</p>
+    <p class="source-note doc-footer">Markdown source: <a href="https://github.com/rbonon/alba-assistant/blob/main/docs/planning/modules.md">modules.md</a></p>
+  </main>
+  <script>
+if (window.self !== window.top) document.body.classList.add('embed');
+</script>
+</body>
+</html>

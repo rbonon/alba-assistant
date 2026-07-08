@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alba — Workflow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/portal.css" />
+  <link rel="stylesheet" href="../assets/portal-doc.css" />
+</head>
+<body>
+  <div class="toolbar"><div class="brand"><a href="../index.html">← Alba Docs</a></div></div>
+  <main class="doc-body">
+    <h1>Workflow — Board, OpenSpec, GitHub Pages</h1>
+    <h2>Three layers</h2>
+    <pre><code>
+    docs/planning/     →  why, scope, questions, decisions
+    GitHub board       →  epics + issues (execution)
+    STATUS.md          →  session compass
+    ROADMAP.md         →  generated board mirror
+    OpenSpec           →  spec + tasks per implementable leaf (P6+)
+    Portal (Pages)     →  human-readable progress + architecture views
+    </code></pre>
+    <h2>Lifecycle skills</h2>
+    <pre><code>
+    rbo-create-issue        →  roadmap entry on board
+    rbo-create-change       →  branch + explore + propose (approval gate)
+    openspec-apply-change   →  implement tasks on branch
+    rbo-close-change        →  archive → merge → push → Closes #N → refresh ROADMAP
+    rbo-grilling            →  one question at a time before spec/arch decisions
+    </code></pre>
+    <h2>Issue hierarchy &amp; change linkage (Model A)</h2>
+    <table><thead><tr><th>Level</th><th>GitHub</th><th>Branch</th><th>OpenSpec change</th><th>Closes on merge</th></tr></thead><tbody><tr><td>Phase</td><td><strong>Phase</strong> field</td><td>No</td><td>No</td><td>No</td></tr><tr><td>Epic</td><td><code>[Epic] Pn — …</code></td><td>No</td><td>No</td><td>No — closes when children Done</td></tr><tr><td><strong>Leaf</strong> (Feature / Chore)</td><td>Implementable issue</td><td><strong>`feat/&lt;change-name&gt;`</strong></td><td>Yes (propose at minimum)</td><td><strong>`Closes #N`</strong></td></tr><tr><td>Gate</td><td><code>[Gate] Pn — …</code></td><td>No</td><td>No</td><td>Human closes after approval</td></tr></tbody></table>
+    <h3>Rules</h3>
+    <ol><li><strong>Every leaf issue</strong> → <code>rbo-create-change</code> → branch → propose → (apply) → <code>rbo-close-change</code> → <code>Closes #N</code>.</li><li><strong>Epics and gates</strong> never get a branch or OpenSpec change.</li><li><strong>Planning docs (P0–P5):</strong> leaf issues still get a branch + change; OpenSpec can be <strong>lightweight</strong> (proposal + tasks only) until P6 code work.</li><li><strong>No direct commits to `main`</strong> for leaf deliverables after P0 retro-close.</li><li>P0 leaf issues #7–#12 were retro-closed against commits already on <code>main</code> (one-time exception).</li></ol>
+    <h3>Lifecycle</h3>
+    <pre><code>
+    rbo-create-issue (leaf)
+      → rbo-create-change (branch feat/&lt;name&gt;, In Progress, propose)
+      → [approval gate]
+      → openspec-apply-change (if implementation)
+      → human validation
+      → rbo-close-change (archive → merge → push Closes #N → board Done → refresh ROADMAP)
+    </code></pre>
+    <p>Until <strong>Alba org</strong> exists: use <code>[Epic]</code> title prefix on personal repo. After org migration: native Epic issue type + sub-issues (like fortegb/platform).</p>
+    <h2>Refresh scripts</h2>
+    <table><thead><tr><th>Script</th><th>Output</th></tr></thead><tbody><tr><td><code>scripts/refresh-roadmap.sh</code></td><td><code>ROADMAP.md</code> + <code>docs/planning/board-hierarchy.md</code></td></tr><tr><td><code>scripts/refresh-board-hierarchy.sh</code></td><td>Same (both exec <code>scripts/gen-docs.py</code>)</td></tr></tbody></table>
+    <p><strong>REST-only</strong> — never uses <code>gh project</code> GraphQL. Safe to run after issue create/close.</p>
+    <p>Board writes (<code>add-issues-to-board.sh</code>) use bounded GraphQL — one-shot only, no loops.</p>
+    <p>Run after issue create/close. Update <code>docs/assets/build-info.json</code> on portal-facing commits.</p>
+    <h2>Gates</h2>
+    <p>No OpenSpec implementation until <strong>`[Gate] P5`</strong> is closed. Each planning phase (P1–P4) ends with explicit human approval.</p>
+    <h2>GitHub Pages</h2>
+    <ul><li>Source: <code>/docs</code> on <code>main</code></li><li>URL: https://rbonon.github.io/alba-assistant/</li><li>Language: <strong>English</strong> portal; vision handoff may stay Portuguese</li></ul>
+    <p class="source-note doc-footer">Markdown source: <a href="https://github.com/rbonon/alba-assistant/blob/main/docs/planning/workflow.md">workflow.md</a></p>
+  </main>
+  <script>
+if (window.self !== window.top) document.body.classList.add('embed');
+</script>
+</body>
+</html>

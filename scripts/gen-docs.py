@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate ROADMAP.md, board-hierarchy.md, and docs/planning/roadmap.html.
+"""Generate ROADMAP.md, board-hierarchy.md, portal HTML mirrors, and planning *.html.
 
 REST-ONLY. Uses `gh api repos/<owner>/<repo>/issues` (REST budget) — never the
 GraphQL `gh project` API. This avoids the point-heavy ProjectsV2 GraphQL calls
@@ -9,8 +9,8 @@ Phase is parsed from the issue title/body convention (`P0`..`P14`), not from the
 Project board (board field values are GraphQL-only). Board membership/status is
 NOT read here; issue open/closed state is used instead.
 
-`roadmap.html` is published under `/docs` for GitHub Pages embeds (repo-root
-ROADMAP.md is not deployed).
+Portal HTML under `docs/planning/` is published on GitHub Pages (`/docs` root).
+Repo-root `ROADMAP.md` is not deployed — use generated `roadmap.html`.
 
 Safe by design: single paginated REST call, no loops, hard-fail on error.
 """
@@ -22,13 +22,30 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+from portal_md import md_to_html, portal_page_html
+
 OWNER = "rbonon"
 REPO = "alba-assistant"
 ROOT = Path(__file__).resolve().parents[1]
+PLANNING = ROOT / "docs/planning"
 ROADMAP = ROOT / "ROADMAP.md"
-HIERARCHY = ROOT / "docs/planning/board-hierarchy.md"
-ROADMAP_HTML = ROOT / "docs/planning/roadmap.html"
+HIERARCHY = PLANNING / "board-hierarchy.md"
+ROADMAP_HTML = PLANNING / "roadmap.html"
+HIERARCHY_HTML = PLANNING / "board-hierarchy.html"
 PHASE_ORDER = [f"P{i}" for i in range(15)] + ["No Phase"]
+
+# Markdown canon → portal HTML (features.html is hand-maintained separately)
+PORTAL_MD_PAGES: list[tuple[str, str]] = [
+    ("open-questions.md", "Open questions"),
+    ("decisions.md", "Decisions log"),
+    ("workflow.md", "Workflow"),
+    ("phases.md", "Phases & epics"),
+    ("modules.md", "Modules & tools"),
+    ("architecture.md", "Architecture"),
+    ("session-handoff.md", "Session handoff"),
+    ("product-vision.md", "Product vision"),
+    ("README.md", "Planning index"),
+]
 
 
 def fetch_issues() -> list[dict]:
@@ -130,15 +147,81 @@ def write_hierarchy(issues: list[dict]) -> None:
     print(f"Wrote {HIERARCHY}")
 
 
+def _issue_row(i: dict) -> str:
+    closed = i["state"] == "closed"
+    cls = ' class="closed"' if closed else ""
+    title = html.escape(i["title"])
+    return (
+        f"<tr{cls}><td><a href=\"{html.escape(i['html_url'])}\" target=\"_blank\" "
+        f'rel="noopener">#{i["number"]}</a></td><td>{title}</td>'
+        f'<td>{html.escape(i["state"])}</td></tr>'
+    )
+
+
+def write_board_hierarchy_html(issues: list[dict]) -> None:
+    by_num = {i["number"]: i for i in issues}
+    epics_by_phase: dict[str, list[int]] = defaultdict(list)
+    leaves_by_phase: dict[str, list[int]] = defaultdict(list)
+    for n, i in by_num.items():
+        ph = phase_of(i)
+        (epics_by_phase if kind(i) == "epic" else leaves_by_phase)[ph].append(n)
+
+    n_epics = sum(len(v) for v in epics_by_phase.values())
+    sections: list[str] = [
+        "<h1>Board hierarchy</h1>",
+        "<blockquote>"
+        f"Owner: <strong>{OWNER}</strong> · Repo: <strong>{REPO}</strong> · "
+        f"Project: <strong>{REPO}</strong> (#5). "
+        f"{len(issues)} issues · {n_epics} epics · generated REST-only."
+        "</blockquote>",
+    ]
+    for ph in PHASE_ORDER:
+        if not epics_by_phase.get(ph) and not leaves_by_phase.get(ph):
+            continue
+        blocks: list[str] = [f"<h2>{html.escape(ph)}</h2>"]
+        for en in sorted(epics_by_phase.get(ph, [])):
+            e = by_num[en]
+            epic_closed = e["state"] == "closed"
+            state_cls = "state-closed" if epic_closed else "state-open"
+            state_lbl = "✅ closed" if epic_closed else "🟡 open"
+            blocks.append(
+                f'<div class="epic-head"><h3>'
+                f'<a href="{html.escape(e["html_url"])}" target="_blank" rel="noopener">'
+                f"#{en}</a> — {html.escape(e["title"])}</h3>"
+                f'<span class="{state_cls}">{state_lbl}</span></div>'
+            )
+        leaves = sorted(leaves_by_phase.get(ph, []))
+        if leaves:
+            rows = "".join(_issue_row(by_num[n]) for n in leaves)
+            blocks.append(
+                "<table><thead><tr><th>#</th><th>Title</th><th>State</th></tr></thead>"
+                f"<tbody>{rows}</tbody></table>"
+            )
+        sections.append("".join(blocks))
+
+    body = "\n    ".join(sections)
+    HIERARCHY_HTML.write_text(
+        portal_page_html(
+            title="Board hierarchy",
+            body_html=body,
+            source_md=HIERARCHY.relative_to(ROOT),
+        ),
+        encoding="utf-8",
+    )
+    print(f"Wrote {HIERARCHY_HTML}")
+
+
 def write_roadmap_html(issues: list[dict]) -> None:
-    """Portal embed for progress-report.html (published under /docs on GitHub Pages)."""
     by_phase = issues_by_phase(issues)
-    sections: list[str] = []
+    sections: list[str] = [
+        "<h1>ROADMAP</h1>",
+        "<blockquote>Generated (REST-only) mirror of GitHub issues by phase.</blockquote>",
+    ]
     for ph in PHASE_ORDER:
         d = by_phase.get(ph)
         if not d or (not d["open"] and not d["closed"]):
             continue
-        blocks: list[str] = []
+        blocks: list[str] = [f"<h2>{html.escape(ph)}</h2>"]
         for state in ("open", "closed"):
             items = sorted(d[state], key=lambda x: x["number"])
             if not items:
@@ -151,39 +234,38 @@ def write_roadmap_html(issues: list[dict]) -> None:
                     f'<li{cls}><a href="{html.escape(i["html_url"])}" target="_blank" rel="noopener">'
                     f'#{i["number"]}</a> {title}</li>'
                 )
-            blocks.append(
-                f'<h3>{state.capitalize()}</h3><ul>{"".join(lis)}</ul>'
-            )
-        sections.append(f'<section class="phase"><h2>{html.escape(ph)}</h2>{"".join(blocks)}</section>')
+            blocks.append(f"<h3>{state.capitalize()}</h3><ul>{''.join(lis)}</ul>")
+        sections.append("".join(blocks))
 
-    body = "\n    ".join(sections) if sections else "<p>No issues.</p>"
+    body = "\n    ".join(sections) if len(sections) > 2 else "<p>No issues.</p>"
     ROADMAP_HTML.write_text(
-        f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ROADMAP mirror</title>
-  <link rel="stylesheet" href="../assets/portal.css" />
-  <style>
-    body {{ padding: 1rem 1.25rem 1.5rem; font-size: 0.88rem; background: #fff; }}
-    .phase {{ margin-bottom: 1.25rem; }}
-    .phase h2 {{ font-size: 1rem; color: var(--navy); margin: 0 0 0.35rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; }}
-    .phase h3 {{ font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 0.65rem 0 0.3rem; font-weight: 600; }}
-    ul {{ margin: 0; padding-left: 1.1rem; list-style: disc; }}
-    li {{ margin: 0.2rem 0; line-height: 1.45; }}
-    li.closed {{ color: var(--muted); }}
-    li a {{ font-weight: 600; }}
-  </style>
-</head>
-<body>
-  {body}
-</body>
-</html>
-""",
+        portal_page_html(
+            title="ROADMAP",
+            body_html=body,
+            source_md=ROADMAP.relative_to(ROOT),
+        ),
         encoding="utf-8",
     )
     print(f"Wrote {ROADMAP_HTML}")
+
+
+def write_portal_md_html() -> None:
+    for md_name, title in PORTAL_MD_PAGES:
+        src = PLANNING / md_name
+        if not src.is_file():
+            print(f"Skip missing {src}", file=sys.stderr)
+            continue
+        out = PLANNING / (src.stem + ".html")
+        body = md_to_html(src.read_text(encoding="utf-8"))
+        out.write_text(
+            portal_page_html(
+                title=title,
+                body_html=body,
+                source_md=src.relative_to(ROOT),
+            ),
+            encoding="utf-8",
+        )
+        print(f"Wrote {out}")
 
 
 def main() -> int:
@@ -198,6 +280,8 @@ def main() -> int:
     write_roadmap(issues)
     write_hierarchy(issues)
     write_roadmap_html(issues)
+    write_board_hierarchy_html(issues)
+    write_portal_md_html()
     return 0
 
 
