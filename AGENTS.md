@@ -70,37 +70,73 @@ For multi-step tasks, state a brief plan before starting:
 Transform tasks into verifiable goals:
 
 - "Add validation" → write tests for invalid inputs, then make them pass
-- "Fix the bug" → write a test that reproduces it, then make it pass
+- "Fix the bug" → reproduce it, then grep callers and fix at the shared site (§5)
 - "Refactor X" → ensure tests pass before and after
 
 Loop independently on strong criteria. Weak criteria ("make it work") are a signal to define success before starting.
 
+### 5. Implementation Discipline
+
+> **Source:** Adapted from [Ponytail — lazy senior dev mode](https://github.com/DietrichGebert/ponytail) (MIT). Only net-new rules merged here; overlapping simplicity and surgical-change guidance lives in §2–4 above.
+
+#### Before writing code — decision ladder
+
+After you understand the task (read it, trace the real flow end to end — §1 and §7), climb only as far as needed:
+
+1. Does this need to be built at all? (YAGNI)
+2. Does it already exist in this codebase? Reuse the helper, util, or pattern — don't rewrite it.
+3. Does the standard library already do this?
+4. Does a native platform feature cover it?
+5. Does an already-installed dependency solve it? Prefer this over adding a new package.
+6. Can this be one line?
+7. Only then: write the minimum code that works.
+
+When two options are the same size, pick the edge-case-correct one — simpler means less code, not the flimsier algorithm.
+
+Question complex requests: "Do you actually need X, or does Y cover it?"
+
+#### Bug fixes — root cause, not symptom
+
+A report names a symptom. Grep every caller of the function you touch and fix the shared function once — one guard there beats one patch per caller. Patching only the path named in the ticket leaves sibling callers broken.
+
+#### Intentional shortcuts
+
+Mark deliberate simplifications with a `ponytail:` comment naming the known ceiling and the upgrade path (e.g. global lock, O(n²) scan, naive heuristic). This keeps debt visible without blocking the minimal fix.
+
+#### Never skip for "simplicity"
+
+Input validation at trust boundaries, error handling that prevents data loss, security, accessibility, and anything explicitly requested. A small diff you don't understand is carelessness, not efficiency.
+
+#### Checks for non-trivial logic
+
+When there is no existing coverage and the logic is non-trivial, leave one minimal runnable check — an assert, self-check, or small test file. No new test frameworks or broad suites unless requested or reproducing a bug (§4). Trivial one-liners need no test.
+
 ## Information Discipline
 
-### 5. Work on Facts, Not Assumptions
+### 6. Work on Facts, Not Assumptions
 
 - Act on what is known. Do not suppose, guess, or invent information.
 - If a decision point requires information you don't have, stop and ask — one focused question, not a list.
 - Use judgment: small details don't need confirmation; architectural choices, irreversible actions, and ambiguous requirements do.
 
-### 6. Read Before Editing
+### 7. Read Before Editing
 
 - Before modifying a file you have not yet read in this session, read it first.
 - Do not make edits based on assumptions about a file's contents.
 
-### 7. Prefer Existing Files Over New Ones
+### 8. Prefer Existing Files Over New Ones
 
 - Before creating a file, check if an existing file is the right place for the content.
 - Create new files only when no existing file is a reasonable fit.
 
-### 8. Don't Confuse Correlation with Cause
+### 9. Don't Confuse Correlation with Cause
 
 - Never state a cause confidently based on a structural difference alone (e.g. "missing file X is why Y fails")
 - If you don't know the root cause, say so explicitly: "I don't know exactly why — here's what I observe"
 - Only claim causation when you can trace the mechanism directly (code path, config key, documented behavior)
 - Prefer "try X to rule it out" over "X is the reason"
 
-### 9. Visual Output — Ask the User, Don't Debug Preview
+### 10. Visual Output — Ask the User, Don't Debug Preview
 
 When a change affects the UI and needs human visual judgment (does it look right? is the effect visible?), ask the user to check their browser directly instead of spending time debugging preview tool issues (viewport collapse, screenshot resolution, zoom artifacts). The user can see the result in seconds; preview debugging can waste minutes.
 
@@ -283,9 +319,9 @@ See `docs/planning/architecture.md` and `DECISIONS.md`:
 
 ## Milestone
 
-**Current:** P1 — Requirements & spec v1 (epic #2; leaves #14–#30).
+**Current:** P1 — Requirements & spec v1 (epic #2; leaves #19–#30 open).
 
-**Next:** `rbo-create-change` on **#14** → grilling Q-001.
+**Next:** `rbo-create-change` on **#19 — [Grill] P1 — Obsidian requirements**. #14–#18 closed (D-015–D-038).
 
 **Handoff:** [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md)
 

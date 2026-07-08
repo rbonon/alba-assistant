@@ -12,7 +12,7 @@
 | 2 | Read **STATUS.md** | [`../../STATUS.md`](../../STATUS.md) |
 | 3 | Read vision handoff (input, not spec) | [`../vision/alba-context-assistant-handoff.md`](../vision/alba-context-assistant-handoff.md) |
 | 4 | Board **`alba-assistant`** #5 | [GitHub Project](https://github.com/users/rbonon/projects/5) |
-| 5 | **`rbo-create-change`** on **#14 — [Grill] P1 — Users, workspaces & personas** → Q-001 | [`open-questions.md`](./open-questions.md) |
+| 5 | **`rbo-create-change`** on **#19 — [Grill] P1 — Obsidian requirements** | [`open-questions.md`](./open-questions.md) |
 
 **Grilling:** use **`rbo-grilling`** — one question at a time. Resolved items move to [`decisions.md`](./decisions.md) and root [`DECISIONS.md`](../../DECISIONS.md).
 
@@ -23,7 +23,7 @@
 | Document | Content |
 |----------|---------|
 | [session-handoff.md](./session-handoff.md) | **New session start** — full context handoff |
-| [features.md](./features.md) | Feature set — MVP vs later |
+| [features.md](./features.md) | Feature set — MVP scope + success metrics (D-035) |
 | [modules.md](./modules.md) | Tools & integrations map |
 | [phases.md](./phases.md) | P0–P14 epics and gates |
 | [reminder-after-p1-gate.md](./reminder-after-p1-gate.md) | **After #14–#30** — bootstrap brownfield inventory (deferred) |

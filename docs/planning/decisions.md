@@ -53,21 +53,15 @@
 - **#16 Q-006 closed:** hard delete erasure (D-030)
 - **#16 grilling complete** — ready for validation → `rbo-close-change`
 - **#17 Q-004 closed:** Artur non-prod stand-in (D-034)
-- **#17 grilling complete** — ready for `rbo-close-change`
+- **#17 closed** on main — D-031–D-034
 - **#18 Q-001 closed:** MVP metrics structure locked (D-035); Calendar/Tasks in deferred integrations bucket
 - **#18 Q-002 closed:** search fixtures, top-3, 100% pass on staging (D-036)
 - **#18 Q-003 closed:** synthetic staging corpus, AI/app-generated (D-037)
 - **#18 Q-004 closed:** prod manual smoke checklist (D-038)
-- **#18 grilling complete** — ready for validation → `rbo-close-change`
+- **#18 closed** on main (`feede3e`) — D-035–D-038
 
 ## Session (2026-07-07)
 
 - P0 complete: portal live, board #5, issues #7–#12 retro-closed
 - Repo public for GitHub Pages
 - Global rules persisted in `AGENTS.md`
-- **Next:** issue #14 → Q-002 grilling
-
-- Tech stack details (P2)
-- Vault paths on disk (P2/P3)
-- Staging vs production hosting (P3)
-- MVP workspace read boundaries (#14 Q-002 — closed D-016)
