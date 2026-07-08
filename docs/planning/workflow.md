@@ -55,10 +55,14 @@ Until **Alba org** exists: use `[Epic]` title prefix on personal repo. After org
 
 | Script | Output |
 |--------|--------|
-| `scripts/refresh-roadmap.sh` | `ROADMAP.md` |
-| `scripts/refresh-board-hierarchy.sh` | `docs/planning/board-hierarchy.md` |
+| `scripts/refresh-roadmap.sh` | `ROADMAP.md` + `docs/planning/board-hierarchy.md` |
+| `scripts/refresh-board-hierarchy.sh` | Same (both exec `scripts/gen-docs.py`) |
 
-Run after issue create/close or board status change. Update `docs/assets/build-info.json` date on portal-facing commits.
+**REST-only** — never uses `gh project` GraphQL. Safe to run after issue create/close.
+
+Board writes (`add-issues-to-board.sh`) use bounded GraphQL — one-shot only, no loops.
+
+Run after issue create/close. Update `docs/assets/build-info.json` on portal-facing commits.
 
 ## Gates
 

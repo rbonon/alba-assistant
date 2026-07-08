@@ -9,7 +9,7 @@ Ricardo and family need a context assistant that preserves research, decisions, 
 
 ## What
 
-Greenfield product repo: planning phase (P0). Docs portal on GitHub Pages (`/docs`). Engine code starts P6+ after spec, architecture, environments, ops, and roadmap gates.
+Greenfield product repo: **P1** — requirements & spec. Docs portal on GitHub Pages (`/docs`). Engine code starts P6+ after planning gates (Alba board) / after master implementation gate (`rbo-product-*` suite).
 
 Stack TBD in P2. Integrations: Obsidian, Git, MCP (MVP); Calendar, Tasks, Drive, Android, Alexa (later).
 

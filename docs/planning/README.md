@@ -1,6 +1,6 @@
 # Planning — Alba Context Assistant
 
-> Design canon and sequencing. **Phase P0 in progress** — foundation, board, and portal.
+> Design canon and sequencing. **Phase P1 in progress** — requirements & spec v1.
 
 ---
 
@@ -12,7 +12,7 @@
 | 2 | Read **STATUS.md** | [`../../STATUS.md`](../../STATUS.md) |
 | 3 | Read vision handoff (input, not spec) | [`../vision/alba-context-assistant-handoff.md`](../vision/alba-context-assistant-handoff.md) |
 | 4 | Board **`alba-assistant`** #5 | [GitHub Project](https://github.com/users/rbonon/projects/5) |
-| 5 | **`rbo-create-change`** on issue **#14** → grilling Q-001 | [`open-questions.md`](./open-questions.md) |
+| 5 | **`rbo-create-change`** on **#14 — [Grill] P1 — Users, workspaces & personas** → Q-001 | [`open-questions.md`](./open-questions.md) |
 
 **Grilling:** use **`rbo-grilling`** — one question at a time. Resolved items move to [`decisions.md`](./decisions.md) and root [`DECISIONS.md`](../../DECISIONS.md).
 
@@ -52,3 +52,4 @@ Published at: **https://rbonon.github.io/alba-assistant/** (after Pages enable +
 - **`ROADMAP.md`** = generated from board; never hand-edit
 - **`STATUS.md`** = session compass — update when focus changes
 - Lifecycle skills: **`rbo-create-issue`** → **`rbo-create-change`** → **`rbo-close-change`**
+- Product suite (ai-skills): **`rbo-product-bootstrap`**, **`rbo-product-test`**, **`rbo-product-release`** — see `ai-skills/docs/rbo-product-skills.md`

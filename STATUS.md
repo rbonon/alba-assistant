@@ -1,6 +1,6 @@
 # STATUS — Alba Context Assistant
 
-**Updated:** 2026-07-07 (session handoff)  
+**Updated:** 2026-07-08 (session handoff)  
 **Current phase:** **P1** — Requirements & spec v1  
 **Portal:** https://rbonon.github.io/alba-assistant/
 
@@ -11,15 +11,15 @@
 | Epic | Status | Next step |
 |------|--------|-----------|
 | ~~P0 Product foundation~~ | **Done** (#1, gate #13 closed) | — |
-| **P1 Requirements & spec v1** | **In Progress** (#2 open) | Start issue **#14** via `rbo-create-change` |
-| P2 Architecture v1 | Todo (#3) | Blocked by `[Gate] P1` (#30) |
+| **P1 Requirements & spec v1** | **In Progress** (#2 open) | **`rbo-create-change`** on **#14 — [Grill] P1 — Users, workspaces & personas** |
+| P2 Architecture v1 | Todo (#3) | Blocked by **#30 — [Gate] P1 — Approve spec v1** |
 
 ---
 
 ## Immediate next action
 
 ```text
-rbo-create-change → issue #14 [Grill] P1 — Users, workspaces & personas
+rbo-create-change → #14 — [Grill] P1 — Users, workspaces & personas
 → rbo-grilling Q-001 (one question, wait for answer)
 ```
 
@@ -30,7 +30,7 @@ rbo-create-change → issue #14 [Grill] P1 — Users, workspaces & personas
 
 ## P1 leaf issues (#14–#30)
 
-See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md) for full table and session context.
+See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
 
 | Block | Issues |
 |-------|--------|
@@ -44,9 +44,10 @@ See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md) for f
 ## Rules reminder
 
 - **Model A:** leaf → branch + change; no direct-to-main
-- **No runtime code** until `[Gate] P5`
-- **Grilling:** one question at a time
-- Refresh: `./scripts/refresh-board-hierarchy.sh` after board updates
+- **No runtime code** until **[Gate] P5** (Alba board)
+- **Grilling:** one question at a time; **`#N — Title`** always
+- **Doc refresh:** `./scripts/refresh-roadmap.sh` (REST-only, safe to run often)
+- **Product suite (ai-skills):** `rbo-product-bootstrap`, `rbo-product-test`, `rbo-product-release`
 
 ---
 

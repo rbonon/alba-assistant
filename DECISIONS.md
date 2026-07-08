@@ -95,6 +95,27 @@ This file is **append-only**. New sessions add entries at the bottom under a dat
 - Next work: `rbo-create-change` on #14 (grilling Q-001)
 - Spec implementation blocked until `[Gate] P1` (#30)
 
+### REST-only ROADMAP refresh (2026-07-08)
+
+**Decision:** `scripts/gen-docs.py` regenerates `ROADMAP.md` and `board-hierarchy.md` via REST only (`gh api repos/.../issues`). No `gh project` GraphQL in refresh paths.
+
+**Rationale:** GraphQL runaway from chained refresh scripts exhausted API budget.
+
+**Implications:**
+- `./scripts/refresh-roadmap.sh` and `refresh-board-hierarchy.sh` are thin wrappers
+- Board item-add remains bounded GraphQL (`add-issues-to-board.sh`) — one-shot, `set -euo pipefail`
+
+### Product management skills (ai-skills, 2026-07-08)
+
+**Decision:** Ship **`rbo-product-bootstrap`**, **`rbo-product-test`**, **`rbo-product-release`** in `ai-skills` as the canonical product SDLC suite.
+
+**Rationale:** Repeatable greenfield/brownfield bootstrap without retyping instructions; integration testing and release ceremony separated from bootstrap.
+
+**Implications:**
+- Alba board still uses P0–P14 map; realign to suite phase template is **future work**
+- Guide: `ai-skills/docs/rbo-product-bootstrap-guide.md` · Suite: `ai-skills/docs/rbo-product-skills.md`
+- Prod promote stays manual (Vercel/GitHub); `rbo-product-release` does not deploy
+
 ---
 
 ## TBD (resolve in grilling — do not implement assumptions)

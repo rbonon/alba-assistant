@@ -10,7 +10,7 @@ Planning canon: [`docs/planning/README.md`](docs/planning/README.md) · Board: [
 
 ## Status
 
-**Phase P0** — Product foundation. See [`STATUS.md`](STATUS.md).
+**Phase P1** — Requirements & spec v1. See [`STATUS.md`](STATUS.md) and [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
 
 ## Lifecycle
 
