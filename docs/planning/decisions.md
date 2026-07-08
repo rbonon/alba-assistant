@@ -26,8 +26,8 @@
 | D-018 | **Post-launch users** — dedicated workspace + D-016 read rules + assigned persona at onboarding (#14 Q-004) |
 | D-019 | **MVP RAG index** — **Drive/Docs + Git** + optional Obsidian; Calendar/Tasks/contacts post-MVP (#19 amends) |
 | D-020 | **Ricardo Git indexing** — all three GitHub accounts: `rbonon`, `fortegb`, `akamlibehsafe` (#15 Q-002) |
-| D-021 | **AI ideation** — chat ephemeral; final idea `.md` canonical in Obsidian; Git when building (#15 Q-003) |
-| D-022 | **Idea doc + repo** — idea stays canonical in Obsidian; Git for implementation (#15 Q-004) |
+| D-021 | **AI ideation** — chat ephemeral; final idea `.md` canonical in Obsidian or Git `ideas/` (#20 refines); Git when building (#15 Q-003; **amend at #20**) |
+| D-022 | **Idea doc + repo** — idea stays canonical in Obsidian **or** Git `ideas/`; repo holds implementation (#15 Q-004; **amend at #20**) |
 | D-023 | **Never-index list** — secrets, build/vendor, clinical until #16, raw chat logs (#15 Q-005) |
 | D-024 | **RAG rebuild** — full rebuild from canonical sources on recovery (D-004) (#15 Q-006) |
 | D-025 | **Calendar/Tasks model** — personal per user + Casa shared; Obsidian context only; integrate post-MVP (#15 Q-007) |

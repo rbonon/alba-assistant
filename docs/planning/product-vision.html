@@ -16,14 +16,15 @@
     <blockquote>English summary. Full vision input: <a href="../vision/alba-context-assistant-handoff.html">`../vision/alba-context-assistant-handoff.html`</a></blockquote>
     <h2>What</h2>
     <p>Alba is a <strong>personal/family context assistant</strong> that remembers, retrieves, and reuses knowledge from:</p>
-    <ul><li><strong>Obsidian</strong> — human memory (notes, research, recipes, decisions)</li><li><strong>Git</strong> — technical truth (code, docs, agent context files)</li><li><strong>Calendar / Tasks / Drive</strong> — operational systems (later integrations)</li><li><strong>RAG index</strong> — regenerable search layer (not primary storage)</li><li><strong>MCP/API</strong> — standard access for Cursor, Claude Code, ChatGPT, mobile, voice</li></ul>
+    <ul><li><strong>Google Drive/Docs</strong> — primary human memory (<code>Root_*/Alba/</code> per workspace; D-039, D-041)</li><li><strong>Git</strong> — technical truth (code, docs, agent context files; Ricardo <code>ideas/</code>, <code>habilidades/</code>)</li><li><strong>Obsidian</strong> — optional human memory editor (primarily Ricardo); mirrors <code>Alba/</code> if used (D-044)</li><li><strong>Calendar / Tasks</strong> — operational systems (post-MVP integrations)</li><li><strong>RAG index</strong> — regenerable search layer (not primary storage)</li><li><strong>MCP/API</strong> — standard access for Cursor, Claude Code, ChatGPT, mobile, voice</li></ul>
     <h2>Who</h2>
     <table><thead><tr><th>Workspace</th><th>Primary users</th><th>Persona (MVP)</th></tr></thead><tbody><tr><td><code>ricardo</code></td><td>Ricardo</td><td>Alba Dev — technical, implementation-focused</td></tr><tr><td><code>gisele</code></td><td>Gisele</td><td>Alba Texto — writing, clarity, preserves voice</td></tr><tr><td><code>casa</code></td><td>Family</td><td>Alba Casa — practical daily use (either user in <code>casa</code> context)</td></tr><tr><td><code>compartilhado</code></td><td>Shared</td><td>Cross-family context</td></tr></tbody></table>
     <p>Personas are fixed per user at MVP (D-017). Switching/custom personas may be added post-go-live.</p>
     <h2>Architectural invariants</h2>
     <pre><code>
     Canonical sources ≠ RAG index
-    AI writes → Inbox/AI Drafts only (human promotes)
+    Human memory canon: Drive/Docs + Git (+ optional Obsidian for Ricardo)
+    AI writes → `Root_*/Alba/…`; searchable after TTL — no mandatory inbox promote (D-042)
     All search filtered by user + allowed workspaces (see D-016: own + `compartilhado` + `casa`; never peer private workspace)
     Never index secrets, .env, node_modules, build output, clinical/sensitive content
     Start read-only; prove in staging before production
@@ -33,7 +34,7 @@
     <h2>GitHub org (planned)</h2>
     <p>Repos today: <strong>`rbonon/alba-assistant`</strong>, <strong>`rbonon/alba-docs`</strong>. Planned <strong>`Alba` GitHub org</strong> for all Alba projects; migrate when ready (native Epic issue types, shared board conventions).</p>
     <h2>Milestone</h2>
-    <p><strong>MVP:</strong> Ricardo and Gisele can query their context (Obsidian + Git) via hybrid search in <strong>staging</strong>, then <strong>production</strong> — read-only, workspace-filtered, MCP-enabled. User model extensible for more users after launch.</p>
+    <p><strong>MVP:</strong> Ricardo and Gisele can query their context (<strong>Drive/Docs + Git</strong> + optional Obsidian) via hybrid search in <strong>staging</strong>, then <strong>production</strong> — read-only, workspace-filtered, MCP-enabled. User model extensible for more users after launch.</p>
     <p class="source-note doc-footer">Markdown source: <a href="https://github.com/rbonon/alba-assistant/blob/main/docs/planning/product-vision.md">product-vision.md</a></p>
   </main>
   <script>

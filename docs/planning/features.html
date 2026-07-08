@@ -6,73 +6,42 @@
   <title>Alba — Feature set</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/portal.css" />
-  <style>
-    .doc-body { max-width: 820px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
-    .doc-body h2 { font-size: 1.15rem; color: var(--navy); margin: 1.75rem 0 0.75rem; }
-    .doc-body h3 { font-size: 1rem; color: var(--navy); margin: 1.25rem 0 0.5rem; }
-    .doc-body table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 0.75rem 0; }
-    .doc-body th, .doc-body td { border: 1px solid var(--border); padding: 0.5rem 0.65rem; text-align: left; vertical-align: top; }
-    .doc-body th { background: var(--bg); }
-    .doc-body ul { font-size: 0.9rem; margin: 0.5rem 0 0.75rem 1.25rem; }
-  </style>
+  <link rel="stylesheet" href="../assets/portal-doc.css" />
 </head>
 <body>
   <div class="toolbar"><div class="brand"><a href="../index.html">← Alba Docs</a></div></div>
-  <main class="doc-body">
-    <h1 style="font-size:1.5rem;color:var(--navy);margin-bottom:0.5rem">Feature set</h1>
-    <p class="notice" style="margin-top:1rem">Mirror of <a href="./features.md">features.md</a>. MVP boundary <strong>D-031</strong>; success metrics <strong>D-035–D-038</strong>.</p>
-
+  <main class="doc-body doc-body--wide">
+    
+    <h1>Feature set — Alba Context Assistant</h1>
+    <blockquote>Business-facing capability map. <strong>MVP boundary locked D-031</strong> (issue #17).</blockquote>
     <h2>MVP (P6–P7 go-live) — IN</h2>
-    <table>
-      <tr><th>Feature</th><th>Notes</th></tr>
-      <tr><td>Read-only hybrid memory search</td><td>Obsidian + Git; workspace-filtered</td></tr>
-      <tr><td>Git memory (Ricardo)</td><td><code>rbonon</code>, <code>fortegb</code>, <code>akamlibehsafe</code></td></tr>
-      <tr><td>Project / decision / standards lookup</td><td>Alba Dev persona</td></tr>
-      <tr><td>Casa / shared search</td><td><code>casa</code> + <code>compartilhado</code> Obsidian</td></tr>
-      <tr><td>Multi-user production</td><td>Ricardo + Gisele day one (D-015); isolation (D-016, D-033)</td></tr>
-      <tr><td>HTTP API + MCP</td><td><code>search_memory</code>, <code>get_decisions</code>, <code>get_project_context</code></td></tr>
-      <tr><td>Staging → production</td><td>Controlled promotion (D-011)</td></tr>
-    </table>
-    <p><strong>Indexed sources (D-019):</strong> Obsidian + Git only.</p>
-    <p><strong>Non-prod (D-034):</strong> Artur stand-in for Gisele workspace testing; synthetic data; removed at prod.</p>
-
+    <table><thead><tr><th>Feature</th><th>Description</th><th>Sources</th></tr></thead><tbody><tr><td>Read-only memory search</td><td>Hybrid vector + keyword search, workspace-filtered</td><td><strong>Google Drive/Docs</strong>, Git, optional Obsidian</td></tr><tr><td>Gisele / Casa memory</td><td>Notes, sessions, recipes, Habilidades in <code>Root_*/Alba/</code></td><td>Drive (D-039, D-041)</td></tr><tr><td>Git memory (Ricardo)</td><td>Index repos from <code>rbonon</code>, <code>fortegb</code>, <code>akamlibehsafe</code>; <code>ideas/</code>, <code>habilidades/</code></td><td>Git (D-020)</td></tr><tr><td>Project context</td><td>Retrieve notes + repo docs for a named project</td><td>Drive + Git</td></tr><tr><td>Decision lookup</td><td>Find prior decisions on a topic</td><td>Drive + Git</td></tr><tr><td>Standards lookup</td><td>Coding/writing standards for Ricardo</td><td>Drive + Git agent docs</td></tr><tr><td>Habilidades da Alba</td><td>Skill docs (inputs, steps, deliverables) in <code>…/Alba/Habilidades/</code></td><td>Drive gdoc + Git/Obsidian md (D-043)</td></tr><tr><td>Casa / shared search</td><td>Recipes and family notes in <code>casa</code> / <code>compartilhado</code> searchable</td><td>Drive <code>Root_Casa/Alba/</code></td></tr><tr><td>Multi-user production</td><td>Ricardo + Gisele day one; workspace isolation</td><td>D-015, D-016</td></tr><tr><td>HTTP API</td><td><code>/memory/search</code>, health, admin ingest log</td><td>Alba API</td></tr><tr><td>MCP tools</td><td><code>search_memory</code>, <code>get_decisions</code>, <code>get_project_context</code></td><td>MCP server</td></tr><tr><td>Chat UI</td><td>ChatGPT/Claude as client surface (ephemeral threads D-021)</td><td>API/MCP</td></tr><tr><td>Ingest audit</td><td>DB log + admin UI/CLI for Ricardo (staging + prod)</td><td>D-042</td></tr><tr><td>Staging → production</td><td>Controlled promotion from staging</td><td>All MVP components</td></tr><tr><td>Workspace isolation tests</td><td>Automated — Ricardo ↔ Gisele private never cross-read (D-033)</td><td>Staging gate before prod</td></tr></tbody></table>
+    <p><strong>Non-prod testing (D-034):</strong> Real account <strong>Artur</strong> — staging/dev stand-in for Gisele workspace RBAC; synthetic data only; disabled before production.</p>
+    <p><strong>Indexed sources (D-019, D-040):</strong> <strong>Google Drive/Docs (workspace roots) + Git</strong> + optional Obsidian paths.</p>
     <h2>MVP — OUT (post-MVP)</h2>
-    <table>
-      <tr><th>Category</th><th>Examples</th></tr>
-      <tr><td>Clinical slice</td><td>Meet transcripts, Patient-00N, Virtuologia (D-026–D-030)</td></tr>
-      <tr><td>Integrations</td><td>Calendar, Tasks, Drive, contacts (P10–P12)</td></tr>
-      <tr><td>Controlled writes</td><td>Obsidian inbox drafts (P8)</td></tr>
-      <tr><td>Voice</td><td>Interactive recipes, Alexa (P13–P14)</td></tr>
-    </table>
-
+    <table><thead><tr><th>Category</th><th>Examples</th><th>Phase (tentative)</th></tr></thead><tbody><tr><td>Clinical slice</td><td>Meet transcripts, Patient-00N, Virtuologia analysis</td><td>Post-MVP gated (D-026–D-030)</td></tr><tr><td>Integrations</td><td>Calendar, Tasks, contacts</td><td>P10–P11</td></tr><tr><td>Controlled writes</td><td>Alba writes to <code>Root_*/Alba/…</code> (P8); searchable after TTL (D-042)</td><td>P8</td></tr><tr><td>Interactive voice</td><td>Step-by-step recipe reading, Alexa</td><td>P13–P14</td></tr><tr><td>Android capture</td><td>Voice → API</td><td>P13</td></tr></tbody></table>
+    <h2>Post-MVP — Gisele clinical slice (gated)</h2>
+    <blockquote>Not MVP. Requires D-027–D-030 + professional LGPD review (D-028).</blockquote>
+    <table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody><tr><td>Meet transcript import</td><td>Manual placement in Drive session tree at MVP (D-045); auto-routing post-MVP</td></tr><tr><td>Clinical RAG search</td><td>De-identified Patient-00N only; <code>gisele</code> partition; encrypted at rest</td></tr><tr><td>Virtuologia analysis</td><td>Cloud LLM summaries/patterns (D-029)</td></tr><tr><td>Hard delete</td><td>Remove patient/session from Obsidian + clinical index (D-030)</td></tr></tbody></table>
+    <h2>Post-MVP — controlled writes (P8)</h2>
+    <table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody><tr><td>Save draft to Drive</td><td>Alba writes Google Doc under <code>Root_*/Alba/…</code>; searchable after TTL (D-042)</td></tr><tr><td>Save idea to Git</td><td>Structured <code>.md</code> → <code>ideas/</code> or <code>habilidades/</code></td></tr><tr><td>Optional Obsidian</td><td>Mirror <code>Alba/</code> if Ricardo uses vault</td></tr></tbody></table>
+    <h2>Post-MVP — integrations</h2>
+    <table><thead><tr><th>Feature</th><th>Phase (tentative)</th><th>Tool</th></tr></thead><tbody><tr><td>Meeting context (read-only)</td><td>P10</td><td>Google Calendar</td></tr><tr><td>Task context / create draft</td><td>P11</td><td>Google Tasks or Todoist</td></tr><tr><td>Voice capture</td><td>P13</td><td>Android app → API</td></tr><tr><td>Short voice commands</td><td>P14</td><td>Alexa Skill (or alternative)</td></tr></tbody></table>
+    <h2>Explicit non-goals (MVP)</h2>
+    <ul><li>Clinical / patient content in RAG (clinical slice post-MVP)</li><li>Gmail indexing</li><li>Autonomous writes without TTL/searchability rules (D-042)</li><li>Calendar/Tasks as indexed sources at MVP</li><li>Replacing Calendar or Tasks as systems of record</li><li>Interactive voice / Alexa at MVP</li><li>Full Alexa/ChatGPT long conversation replacement</li></ul>
+    <p>See <a href="../spec/non-goals.md">`non-goals.md`</a> after P1 spec gate.</p>
     <h2>MVP success metrics (D-035)</h2>
+    <blockquote>P6–P7 go-live validation. Integrations/clinical/voice excluded — see deferred below.</blockquote>
     <h3>Core (all users)</h3>
-    <ul>
-      <li>Isolation tests pass on staging (D-033)</li>
-      <li>Hybrid search: fixtures, top-3, 100% pass (D-036)</li>
-      <li>Synthetic AI/app-generated staging corpus (D-037)</li>
-      <li>API + MCP healthy on staging; staging sign-off (D-011)</li>
-      <li>Production: manual smoke per persona (D-038)</li>
-    </ul>
+    <ul><li>Isolation tests pass on staging (D-033)</li><li>Hybrid search: <strong>fixture suite, top-3, 100% pass on staging</strong> (D-036)</li><li>Staging corpus: <strong>synthetic only, AI/app-generated</strong> (D-037)</li><li>Production: <strong>manual smoke checklist</strong> per persona after promote (D-038)</li><li>API + MCP healthy on staging</li><li>Staging sign-off before prod (D-011)</li></ul>
     <h3>Per persona</h3>
-    <table>
-      <tr><th>Persona</th><th>MVP metric</th></tr>
-      <tr><td>Alba Dev (Ricardo)</td><td>Project context, decisions, coding standards</td></tr>
-      <tr><td>Alba Texto (Gisele)</td><td>Non-clinical <code>gisele</code> search; no Ricardo leakage</td></tr>
-      <tr><td>Alba Casa</td><td><code>casa</code> recipes/notes searchable</td></tr>
-    </table>
-    <p><strong>Deferred metrics:</strong> clinical (P9), Calendar/Tasks/Drive (P10–P12), voice, writes.</p>
-
-    <h2>Delivery phases (post-MVP)</h2>
-    <table>
-      <tr><th>Phase</th><th>Focus</th></tr>
-      <tr><td>P8</td><td>Controlled writes to Obsidian inbox</td></tr>
-      <tr><td>P9</td><td>Gisele clinical slice (not first Gisele access — that's MVP)</td></tr>
-      <tr><td>P10–P12</td><td>Calendar, Tasks, Drive</td></tr>
-      <tr><td>P13–P14</td><td>Android voice, Alexa</td></tr>
-    </table>
-
-    <p style="margin-top:1.5rem"><a href="./features.md">Full markdown source →</a></p>
+    <table><thead><tr><th>Persona</th><th>MVP metric</th></tr></thead><tbody><tr><td>Alba Dev (Ricardo)</td><td>Project context, decision lookup, coding standards from Drive + Git index</td></tr><tr><td>Alba Texto (Gisele)</td><td>Non-clinical <code>gisele</code> Drive search; no Ricardo workspace leakage</td></tr><tr><td>Alba Casa</td><td><code>casa</code> recipes/notes searchable in Drive <code>Root_Casa/Alba/</code></td></tr></tbody></table>
+    <h3>Deferred (post-MVP metrics)</h3>
+    <ul><li>Clinical (Virtuologia, Meet auto-routing, Patient-00N) — P9</li><li>Calendar, Tasks, contacts — P10–P12 (D-025 model; Drive core index is MVP — D-040)</li><li>Voice, writes — P8, P13–P14</li></ul>
+    <p class="source-note doc-footer">Markdown source: <a href="https://github.com/rbonon/alba-assistant/blob/main/docs/planning/features.md">features.md</a></p>
   </main>
+  <script>
+if (window.self !== window.top) document.body.classList.add('embed');
+</script>
 </body>
 </html>

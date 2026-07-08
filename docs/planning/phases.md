@@ -17,13 +17,13 @@
 
 | Phase | Epic | Capability |
 |-------|------|------------|
-| **P6** | MVP read-only memory | Index Obsidian + Git, hybrid search, staging |
+| **P6** | MVP read-only memory | Index Drive/Docs + Git + optional Obsidian; hybrid search, staging |
 | **P7** | MVP API + MCP + prod v0 | HTTP + MCP, production go-live |
-| **P8** | Controlled writes | Drafts to Obsidian inbox |
+| **P8** | Controlled writes | Alba writes to `Root_*/Alba/…`; TTL searchability (D-042) |
 | **P9** | Gisele clinical slice | Meet transcripts, Patient-00N, Virtuologia (post-MVP gated, D-026–D-030) |
 | **P10** | Google Calendar | Read-only meeting context |
 | **P11** | Tasks integration | TBD provider |
-| **P12** | Google Drive | Metadata/content index |
+| **P12** | TBD post-MVP | Drive advanced scope / contacts (#24); core Drive index at P6 (D-040) |
 | **P13** | Android voice capture | Speech → API → draft |
 | **P14** | Alexa / voice assistant | Short commands |
 
@@ -49,7 +49,7 @@
 | 16 | [Grill] Privacy, LGPD & sensitive content |
 | 17 | [Grill] MVP scope vs post-MVP |
 | 18 | [Grill] Success metrics per persona |
-| 19 | [Grill] Obsidian requirements |
+| 19 | [Grill] Human memory requirements (was Obsidian) |
 | 20 | [Grill] Git memory requirements |
 | 21 | [Grill] MCP client requirements |
 | 22 | [Grill] Google Calendar scope |

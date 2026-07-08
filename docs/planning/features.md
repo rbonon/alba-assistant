@@ -93,12 +93,12 @@ See [`non-goals.md`](../spec/non-goals.md) after P1 spec gate.
 
 | Persona | MVP metric |
 |---------|------------|
-| Alba Dev (Ricardo) | Project context, decision lookup, coding standards from Git index |
-| Alba Texto (Gisele) | Non-clinical `gisele` search; no Ricardo workspace leakage |
-| Alba Casa | `casa` recipes/notes searchable |
+| Alba Dev (Ricardo) | Project context, decision lookup, coding standards from Drive + Git index |
+| Alba Texto (Gisele) | Non-clinical `gisele` Drive search; no Ricardo workspace leakage |
+| Alba Casa | `casa` recipes/notes searchable in Drive `Root_Casa/Alba/` |
 
 ### Deferred (post-MVP metrics)
 
-- Clinical (Virtuologia, Meet, Patient-00N) — P9
-- Calendar, Tasks, Drive, contacts — P10–P12 (D-025 model; not MVP index)
+- Clinical (Virtuologia, Meet auto-routing, Patient-00N) — P9
+- Calendar, Tasks, contacts — P10–P12 (D-025 model; Drive core index is MVP — D-040)
 - Voice, writes — P8, P13–P14

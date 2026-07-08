@@ -12,7 +12,7 @@
 | 2 | Read **STATUS.md** | [`../../STATUS.md`](../../STATUS.md) |
 | 3 | Read vision handoff (input, not spec) | [`../vision/alba-context-assistant-handoff.html`](../vision/alba-context-assistant-handoff.html) |
 | 4 | Board **`alba-assistant`** #5 | [GitHub Project](https://github.com/users/rbonon/projects/5) |
-| 5 | **`rbo-create-change`** on **#19 — [Grill] P1 — Obsidian requirements** | [`open-questions.md`](./open-questions.md) |
+| 5 | **`rbo-create-change`** on **#20 — [Grill] P1 — Git memory requirements** | [`open-questions.md`](./open-questions.md) |
 
 **Grilling:** use **`rbo-grilling`** — one question at a time. Resolved items move to [`decisions.md`](./decisions.md) and root [`DECISIONS.md`](../../DECISIONS.md).
 
@@ -40,7 +40,7 @@
 | Home | `/docs/index.html` |
 | Progress — issues | `/docs/planning/progress-report.html` (embeds `roadmap.html`, `board-hierarchy.html`) |
 | Progress — phases | `/docs/planning/phase-map.html` |
-| Features | `/docs/planning/features.html` (hand-maintained) |
+| Features | `/docs/planning/features.html` (generated from `features.md`) |
 | Planning canon | `docs/planning/*.html` generated from `*.md` via `gen-docs.py` |
 | Architecture | `/docs/planning/architecture-overview.html` |
 

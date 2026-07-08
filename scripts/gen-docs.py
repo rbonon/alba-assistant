@@ -56,8 +56,9 @@ PHASE_LABELS: dict[str, str] = {
     "P14": "Alexa",
 }
 
-# Markdown canon → portal HTML (features.html is hand-maintained separately)
+# Markdown canon → portal HTML
 PORTAL_MD_SOURCES: list[tuple[Path, str, str, str]] = [
+    (Path("docs/planning/features.md"), "Feature set", "en", ""),
     # path (from repo root), title, lang, optional preamble HTML
     (Path("docs/planning/open-questions.md"), "Open questions", "en", ""),
     (Path("docs/planning/decisions.md"), "Decisions log", "en", ""),
