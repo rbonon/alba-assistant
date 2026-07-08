@@ -15,7 +15,9 @@
 | Staging environment | Full stack parity skeleton | All MVP components |
 | Production go-live v0 | Controlled promotion from staging | All MVP components |
 
-**MVP user:** Ricardo only (`ricardo` + `compartilhado` read paths). Gisele spec'd in P1, production in later phase.
+**MVP users:** Ricardo and Gisele from production go-live (multi-user day one). User model must support adding more users post-launch — each gets dedicated workspace, D-016 read rules, and assigned persona (D-018).
+
+**Workspace read (D-016):** each user — own workspace + `compartilhado` + `casa`; never the other’s private workspace.
 
 ## Post-MVP — controlled writes (P8)
 

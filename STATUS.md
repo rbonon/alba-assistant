@@ -1,6 +1,6 @@
 # STATUS — Alba Context Assistant
 
-**Updated:** 2026-07-08 (session handoff)  
+**Updated:** 2026-07-08 (#14 closed)  
 **Current phase:** **P1** — Requirements & spec v1  
 **Portal:** https://rbonon.github.io/alba-assistant/
 
@@ -11,7 +11,7 @@
 | Epic | Status | Next step |
 |------|--------|-----------|
 | ~~P0 Product foundation~~ | **Done** (#1, gate #13 closed) | — |
-| **P1 Requirements & spec v1** | **In Progress** (#2 open) | **`rbo-create-change`** on **#14 — [Grill] P1 — Users, workspaces & personas** |
+| **P1 Requirements & spec v1** | **In Progress** (#2 open) | **`rbo-create-change`** on **#15 — [Grill] P1 — Canonical sources vs RAG boundaries** |
 | P2 Architecture v1 | Todo (#3) | Blocked by **#30 — [Gate] P1 — Approve spec v1** |
 
 ---
@@ -19,12 +19,8 @@
 ## Immediate next action
 
 ```text
-rbo-create-change → #14 — [Grill] P1 — Users, workspaces & personas
-→ rbo-grilling Q-001 (one question, wait for answer)
+rbo-create-change → #15 — [Grill] P1 — Canonical sources vs RAG boundaries
 ```
-
-**Q-001:** MVP primary user — Ricardo only, or Ricardo + Gisele from day one?  
-**Recommended:** Ricardo only for MVP production.
 
 ---
 
@@ -51,8 +47,17 @@ See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
 
 ---
 
+## Deferred (after P1 #14–#30)
+
+When **[Gate] P1 — Approve spec v1** (#30) closes → run
+[`docs/planning/reminder-after-p1-gate.md`](docs/planning/reminder-after-p1-gate.md)
+(`rbo-product-bootstrap` brownfield inventory; no board mutations without OK).
+
+---
+
 ## Links
 
 - [Session handoff](docs/planning/session-handoff.md) ← **new session start**
 - [Planning index](docs/planning/README.md)
+- [After P1 gate reminder](docs/planning/reminder-after-p1-gate.md) ← **invoke when #14–#30 done**
 - [Board #5](https://github.com/users/rbonon/projects/5)

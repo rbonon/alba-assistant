@@ -14,19 +14,21 @@ Alba is a **personal/family context assistant** that remembers, retrieves, and r
 
 ## Who
 
-| Workspace | Primary users | Persona |
-|-----------|---------------|---------|
+| Workspace | Primary users | Persona (MVP) |
+|-----------|---------------|---------------|
 | `ricardo` | Ricardo | Alba Dev — technical, implementation-focused |
 | `gisele` | Gisele | Alba Texto — writing, clarity, preserves voice |
-| `casa` | Family | Alba Casa — practical daily use |
+| `casa` | Family | Alba Casa — practical daily use (either user in `casa` context) |
 | `compartilhado` | Shared | Cross-family context |
+
+Personas are fixed per user at MVP (D-017). Switching/custom personas may be added post-go-live.
 
 ## Architectural invariants
 
 ```text
 Canonical sources ≠ RAG index
 AI writes → Inbox/AI Drafts only (human promotes)
-All search filtered by user + allowed workspaces
+All search filtered by user + allowed workspaces (see D-016: own + `compartilhado` + `casa`; never peer private workspace)
 Never index secrets, .env, node_modules, build output, clinical/sensitive content
 Start read-only; prove in staging before production
 ```
@@ -41,4 +43,4 @@ Repos today: **`rbonon/alba-assistant`**, **`rbonon/alba-docs`**. Planned **`Alb
 
 ## Milestone
 
-**MVP:** Ricardo can query his context (Obsidian + Git) via hybrid search in **staging**, then **production** — read-only, workspace-filtered, MCP-enabled.
+**MVP:** Ricardo and Gisele can query their context (Obsidian + Git) via hybrid search in **staging**, then **production** — read-only, workspace-filtered, MCP-enabled. User model extensible for more users after launch.

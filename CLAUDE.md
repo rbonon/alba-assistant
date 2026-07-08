@@ -24,4 +24,4 @@ Stack TBD in P2. Integrations: Obsidian, Git, MCP (MVP); Calendar, Tasks, Drive,
 
 **Current:** P1 — Requirements & spec v1. P0 complete (gate #13 closed).
 
-**Next:** `rbo-create-change` on issue #14 → Q-001 grilling. See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
+**Next:** `rbo-create-change` on **#15 — [Grill] P1 — Canonical sources vs RAG boundaries**. #14 closed (D-015–D-018). See [`docs/planning/session-handoff.md`](docs/planning/session-handoff.md).
