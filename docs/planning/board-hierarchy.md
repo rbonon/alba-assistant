@@ -28,8 +28,8 @@
 | [14](https://github.com/rbonon/alba-assistant/issues/14) | [Grill] P1 — Users, workspaces & personas | closed |
 | [15](https://github.com/rbonon/alba-assistant/issues/15) | [Grill] P1 — Canonical sources vs RAG boundaries | closed |
 | [16](https://github.com/rbonon/alba-assistant/issues/16) | [Grill] P1 — Privacy, LGPD & sensitive content | closed |
-| [17](https://github.com/rbonon/alba-assistant/issues/17) | [Grill] P1 — MVP scope vs post-MVP | open |
-| [18](https://github.com/rbonon/alba-assistant/issues/18) | [Grill] P1 — Success metrics per persona | open |
+| [17](https://github.com/rbonon/alba-assistant/issues/17) | [Grill] P1 — MVP scope vs post-MVP | closed |
+| [18](https://github.com/rbonon/alba-assistant/issues/18) | [Grill] P1 — Success metrics per persona | closed |
 | [19](https://github.com/rbonon/alba-assistant/issues/19) | [Grill] P1 — Obsidian requirements | open |
 | [20](https://github.com/rbonon/alba-assistant/issues/20) | [Grill] P1 — Git memory requirements | open |
 | [21](https://github.com/rbonon/alba-assistant/issues/21) | [Grill] P1 — MCP client requirements | open |

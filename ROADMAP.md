@@ -21,8 +21,6 @@
 ## Open
 
 - [#2](https://github.com/rbonon/alba-assistant/issues/2) [Epic] P1 — Requirements & spec v1
-- [#17](https://github.com/rbonon/alba-assistant/issues/17) [Grill] P1 — MVP scope vs post-MVP
-- [#18](https://github.com/rbonon/alba-assistant/issues/18) [Grill] P1 — Success metrics per persona
 - [#19](https://github.com/rbonon/alba-assistant/issues/19) [Grill] P1 — Obsidian requirements
 - [#20](https://github.com/rbonon/alba-assistant/issues/20) [Grill] P1 — Git memory requirements
 - [#21](https://github.com/rbonon/alba-assistant/issues/21) [Grill] P1 — MCP client requirements
@@ -41,6 +39,8 @@
 - [#14](https://github.com/rbonon/alba-assistant/issues/14) [Grill] P1 — Users, workspaces & personas
 - [#15](https://github.com/rbonon/alba-assistant/issues/15) [Grill] P1 — Canonical sources vs RAG boundaries
 - [#16](https://github.com/rbonon/alba-assistant/issues/16) [Grill] P1 — Privacy, LGPD & sensitive content
+- [#17](https://github.com/rbonon/alba-assistant/issues/17) [Grill] P1 — MVP scope vs post-MVP
+- [#18](https://github.com/rbonon/alba-assistant/issues/18) [Grill] P1 — Success metrics per persona
 
 # P2
 
