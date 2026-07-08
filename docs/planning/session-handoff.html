@@ -14,34 +14,46 @@
     
     <h1>Session handoff — 2026-07-08</h1>
     <blockquote><strong>Start here in a new session.</strong> Run <code>rbo-catch-up</code> then read this file + <a href="../../STATUS.md">`STATUS.md`</a>.</blockquote>
+    <p>&gt;</p>
+    <blockquote><strong>Repo convention:</strong> this file is the canonical session handoff (not <code>/tmp</code>).</blockquote>
     <hr />
     <h2>Where we are</h2>
-    <table><thead><tr><th>Item</th><th>State</th></tr></thead><tbody><tr><td><strong>Phase</strong></td><td><strong>P1</strong> — Requirements &amp; spec v1</td></tr><tr><td><strong>P0</strong></td><td><strong>Complete</strong> — gate #13 closed</td></tr><tr><td><strong>P1 grilling</strong></td><td><strong>#14–#21 closed</strong> (D-015–D-057)</td></tr><tr><td><strong>Portal</strong></td><td>Live — https://rbonon.github.io/alba-assistant/</td></tr><tr><td><strong>Board</strong></td><td>GitHub Project <strong>`alba-assistant`</strong> <a href="https://github.com/users/rbonon/projects/5">#5</a></td></tr><tr><td><strong>Branch</strong></td><td><code>main</code> — no open Change</td></tr><tr><td><strong>OpenSpec</strong></td><td>Empty — no active change</td></tr><tr><td><strong>ROADMAP</strong></td><td>REST-only (<code>scripts/refresh-roadmap.sh</code>)</td></tr></tbody></table>
+    <table><thead><tr><th>Item</th><th>State</th></tr></thead><tbody><tr><td><strong>Phase</strong></td><td><strong>P1</strong> — Requirements &amp; spec v1</td></tr><tr><td><strong>P0</strong></td><td><strong>Complete</strong> — gate #13 closed</td></tr><tr><td><strong>P1 grilling</strong></td><td><strong>#14–#21 closed</strong> (D-015–D-057)</td></tr><tr><td><strong>Portal</strong></td><td>Live — https://rbonon.github.io/alba-assistant/</td></tr><tr><td><strong>Board</strong></td><td>GitHub Project <strong>`alba-assistant`</strong> <a href="https://github.com/users/rbonon/projects/5">#5</a></td></tr><tr><td><strong>Branch</strong></td><td><code>main</code> — no open Change</td></tr><tr><td><strong>OpenSpec</strong></td><td>No active change; main specs: <code>git-memory-requirements</code>, <code>mcp-client-requirements</code></td></tr><tr><td><strong>ROADMAP</strong></td><td>REST-only (<code>scripts/refresh-roadmap.sh</code>)</td></tr></tbody></table>
     <hr />
-    <h2>What recent sessions accomplished</h2>
-    <h3>P1 grilling closed (#14–#21)</h3>
-    <table><thead><tr><th>#</th><th>Topic</th><th>Decisions</th></tr></thead><tbody><tr><td>14–20</td><td>(see prior handoff)</td><td>D-015–D-051</td></tr><tr><td>21</td><td>MCP client requirements</td><td>D-052–D-057</td></tr></tbody></table>
-    <p><strong>#21 highlights (D-052–D-057):</strong> All clients at go-live (Cursor → Claude Code → chat); five read-only MCP tools; per-user token auth; server workspace enforcement; IDE MCP + chat API mirror; staging Artur / prod Ricardo+Gisele.</p>
+    <h2>What this session accomplished</h2>
+    <p>Closed <strong>#20 Git memory</strong> (D-046–D-051) and <strong>#21 MCP client</strong> (D-052–D-057). Portal synced after each close. No runtime code.</p>
+    <table><thead><tr><th>#</th><th>Topic</th><th>Highlights</th></tr></thead><tbody><tr><td>20</td><td>Git memory</td><td>Explicit allowlist; <code>canon</code>/<code>canon+code</code> profiles; default branch only; exclusions + HEAD secret scan; amend D-021/D-022</td></tr><tr><td>21</td><td>MCP client</td><td>All clients at go-live (validate Cursor → Claude Code → chat); 5 read-only tools; per-user token; server workspace enforcement; IDE MCP + chat API mirror; staging Artur / prod Ricardo+Gisele</td></tr></tbody></table>
+    <p>Prior grilling #14–#19: D-015–D-045 (see <code>DECISIONS.md</code>).</p>
     <hr />
-    <h2>Issue map (current)</h2>
-    <h3>Open — P1</h3>
+    <h2>Artifacts</h2>
+    <table><thead><tr><th>Item</th><th>Reference</th></tr></thead><tbody><tr><td>Latest <code>main</code></td><td><code>0b7d55c</code> — portal sync after #21</td></tr><tr><td>Merge #21</td><td><code>c33621f</code> — <code>Closes #21</code></td></tr><tr><td>Archive #20</td><td><code>openspec/changes/archive/2026-07-08-grill-p1-git-memory-requirements/</code></td></tr><tr><td>Archive #21</td><td><code>openspec/changes/archive/2026-07-08-grill-p1-mcp-client-requirements/</code></td></tr><tr><td>Next issue</td><td><a href="https://github.com/rbonon/alba-assistant/issues/22">#22 — Google Calendar scope</a></td></tr></tbody></table>
+    <hr />
+    <h2>Control doc paths</h2>
+    <table><thead><tr><th>Role</th><th>Path</th></tr></thead><tbody><tr><td>Decisions (canonical)</td><td><a href="../../DECISIONS.md">`DECISIONS.md`</a> · mirror <a href="./decisions.md">`decisions.md`</a></td></tr><tr><td>Session compass</td><td><a href="../../STATUS.md">`STATUS.md`</a></td></tr><tr><td>Planning</td><td><a href="./">`docs/planning/`</a></td></tr><tr><td>Agent context</td><td><a href="../../AGENTS.md">`AGENTS.md`</a>, <a href="../../CLAUDE.md">`CLAUDE.md`</a></td></tr><tr><td>Portal home (hand-edit)</td><td><a href="../index.html">`docs/index.html`</a></td></tr></tbody></table>
+    <hr />
+    <h2>Issue map (open P1)</h2>
     <table><thead><tr><th>#</th><th>Title</th><th>Notes</th></tr></thead><tbody><tr><td>2</td><td>[Epic] P1 — Requirements &amp; spec v1</td><td></td></tr><tr><td><strong>22</strong></td><td>[Grill] Google Calendar scope</td><td><strong>NEXT</strong></td></tr><tr><td>23–25</td><td>Remaining grills</td><td></td></tr><tr><td>26–28</td><td>Spec docs</td><td>After grills</td></tr><tr><td>29</td><td>OpenSpec spec v1 (docs only)</td><td></td></tr><tr><td><strong>30</strong></td><td>[Gate] Approve spec v1</td><td>→ P2</td></tr></tbody></table>
     <p>See <a href="./board-hierarchy.md">`board-hierarchy.md`</a> and <a href="../../ROADMAP.md">`ROADMAP.md`</a>.</p>
     <hr />
     <h2>Next session — exact steps</h2>
     <ol><li><strong>`rbo-catch-up`</strong> on <code>alba-assistant</code></li><li>Read <strong>`STATUS.md`</strong> and this handoff</li><li><strong>`rbo-create-change`</strong> on <strong>#22 — [Grill] P1 — Google Calendar scope</strong></li><li><strong>`rbo-grilling`</strong> — one question at a time</li><li>Continue #23–#25, then spec leaves #26–#28</li><li>Close <strong>#30</strong> only when spec is approved</li></ol>
-    <p><strong>Do not:</strong> runtime code, skip gates, direct-to-main leaf commits.</p>
+    <p><strong>On close-out:</strong> <code>./scripts/refresh-roadmap.sh</code> + update <code>docs/index.html</code> + <code>docs/assets/build-info.json</code> — commit push.</p>
+    <p><strong>Do not:</strong> runtime code, skip gates, direct-to-main leaf commits, hand-edit <code>ROADMAP.md</code>.</p>
     <hr />
     <h2>Architecture invariants (do not violate)</h2>
     <pre><code>
     Obsidian = optional human memory editor · Drive/Docs + Git = human canon · RAG = regenerable index
     Workspaces: ricardo, gisele, casa, compartilhado
+    Git: explicit repo allowlist · canon/canon+code · default branch only (D-046–D-051)
     MCP: five read-only tools · per-user token · server enforces D-016 (D-052–D-057)
     IDE = native MCP · Chat = HTTP API mirror · Staging Artur / prod Ricardo+Gisele
     No runtime implementation until [Gate] P5
     </code></pre>
     <hr />
-    <p><strong>Handoff author:</strong> Cursor session 2026-07-08 (#21 close — MCP client requirements)</p>
+    <h2>Suggested skills</h2>
+    <p><code>rbo-catch-up</code> · <code>rbo-create-change</code> · <code>rbo-grilling</code> · <code>rbo-close-change</code></p>
+    <hr />
+    <p><strong>Handoff author:</strong> Cursor session 2026-07-08 (#20–#21 close + portal sync)</p>
     <p class="source-note doc-footer">Markdown source: <a href="https://github.com/rbonon/alba-assistant/blob/main/docs/planning/session-handoff.md">session-handoff.md</a></p>
   </main>
   <script>
