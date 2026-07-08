@@ -21,7 +21,6 @@
 ## Open
 
 - [#2](https://github.com/rbonon/alba-assistant/issues/2) [Epic] P1 — Requirements & spec v1
-- [#21](https://github.com/rbonon/alba-assistant/issues/21) [Grill] P1 — MCP client requirements
 - [#22](https://github.com/rbonon/alba-assistant/issues/22) [Grill] P1 — Google Calendar scope
 - [#23](https://github.com/rbonon/alba-assistant/issues/23) [Grill] P1 — Tasks integration scope
 - [#24](https://github.com/rbonon/alba-assistant/issues/24) [Grill] P1 — Google Drive index scope
@@ -41,6 +40,7 @@
 - [#18](https://github.com/rbonon/alba-assistant/issues/18) [Grill] P1 — Success metrics per persona
 - [#19](https://github.com/rbonon/alba-assistant/issues/19) [Grill] P1 — Obsidian requirements
 - [#20](https://github.com/rbonon/alba-assistant/issues/20) [Grill] P1 — Git memory requirements
+- [#21](https://github.com/rbonon/alba-assistant/issues/21) [Grill] P1 — MCP client requirements
 
 # P2
 

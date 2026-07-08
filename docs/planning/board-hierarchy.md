@@ -32,7 +32,7 @@
 | [18](https://github.com/rbonon/alba-assistant/issues/18) | [Grill] P1 — Success metrics per persona | closed |
 | [19](https://github.com/rbonon/alba-assistant/issues/19) | [Grill] P1 — Obsidian requirements | closed |
 | [20](https://github.com/rbonon/alba-assistant/issues/20) | [Grill] P1 — Git memory requirements | closed |
-| [21](https://github.com/rbonon/alba-assistant/issues/21) | [Grill] P1 — MCP client requirements | open |
+| [21](https://github.com/rbonon/alba-assistant/issues/21) | [Grill] P1 — MCP client requirements | closed |
 | [22](https://github.com/rbonon/alba-assistant/issues/22) | [Grill] P1 — Google Calendar scope | open |
 | [23](https://github.com/rbonon/alba-assistant/issues/23) | [Grill] P1 — Tasks integration scope | open |
 | [24](https://github.com/rbonon/alba-assistant/issues/24) | [Grill] P1 — Google Drive index scope | open |
